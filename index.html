@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio of a game programming student focused on gameplay systems, tools, and performance."
+    />
+    <title>Your Name | Game Programming Student</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-glow"></div>
+    <header class="site-header">
+      <nav class="nav container">
+        <a class="brand" href="#home">YourName.dev</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero container section">
+        <p class="eyebrow">Game Programming Student</p>
+        <h1>
+          I build gameplay systems and interactive experiences that feel
+          polished and fun.
+        </h1>
+        <p class="hero-text">
+          I focus on clean architecture, responsive controls, and optimized
+          real-time performance. This site is intentionally simple to keep it
+          easy to edit and deploy on GitHub Pages.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#projects">View My Work</a>
+          <a class="btn btn-ghost" href="#contact">Get In Touch</a>
+        </div>
+      </section>
+
+      <section id="about" class="container section card">
+        <h2>About Me</h2>
+        <p>
+          I am currently studying game programming and building projects that
+          explore gameplay mechanics, AI behavior, and graphics programming.
+          I enjoy turning ideas into systems that are both technically solid
+          and enjoyable to play.
+        </p>
+        <p>
+          Replace this text with your own story, preferred engines/languages,
+          and what kind of roles you are targeting.
+        </p>
+      </section>
+
+      <section id="skills" class="container section">
+        <h2>Skills & Tools</h2>
+        <div class="skill-grid">
+          <article class="card skill-card">
+            <h3>Programming</h3>
+            <ul>
+              <li>C++</li>
+              <li>C#</li>
+              <li>Data Structures & Algorithms</li>
+              <li>Object-Oriented Design</li>
+            </ul>
+          </article>
+          <article class="card skill-card">
+            <h3>Game Development</h3>
+            <ul>
+              <li>Unity / Unreal Engine</li>
+              <li>Gameplay Systems</li>
+              <li>Physics & Animation Basics</li>
+              <li>UI/UX for Games</li>
+            </ul>
+          </article>
+          <article class="card skill-card">
+            <h3>Workflow</h3>
+            <ul>
+              <li>Git & GitHub</li>
+              <li>Debugging & Profiling</li>
+              <li>Agile Team Projects</li>
+              <li>Technical Documentation</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="container section">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p>Add your own projects below. Structure is ready.</p>
+        </div>
+        <div class="project-grid">
+          <article class="card project-card">
+            <h3>Project Title 01</h3>
+            <p>
+              Short summary: what the game/tool does, your responsibilities,
+              and the tech used.
+            </p>
+            <p class="meta">Engine/Language • Year • Team Size</p>
+            <a href="#" aria-label="Project 01 link">GitHub / Demo</a>
+          </article>
+          <article class="card project-card">
+            <h3>Project Title 02</h3>
+            <p>
+              Short summary: gameplay focus, notable systems, and challenge
+              solved.
+            </p>
+            <p class="meta">Engine/Language • Year • Team Size</p>
+            <a href="#" aria-label="Project 02 link">GitHub / Demo</a>
+          </article>
+          <article class="card project-card">
+            <h3>Project Title 03</h3>
+            <p>
+              Short summary: optimization, AI, networking, tools, or rendering
+              highlight.
+            </p>
+            <p class="meta">Engine/Language • Year • Team Size</p>
+            <a href="#" aria-label="Project 03 link">GitHub / Demo</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="container section card contact">
+        <h2>Contact</h2>
+        <p>
+          Open to internships and junior opportunities in gameplay, tools, and
+          engine programming.
+        </p>
+        <ul>
+          <li>Email: your.email@example.com</li>
+          <li>GitHub: github.com/yourusername</li>
+          <li>LinkedIn: linkedin.com/in/yourusername</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Your Name. Built for GitHub Pages.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
