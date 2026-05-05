@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Milo Pernemark — game programming student at Forsbergs skola. Gameplay, Unity, Unreal, C++."
+      content="Milo Pernemark — game programming student at Forsbergs Skola. Portfolio: gameplay, Unity, Unreal, C++ engine and graphics work."
     />
-    <title>Milo Pernemark</title>
+    <title>Milo Pernemark | Game Programmer</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <nav class="nav container">
+      <nav class="nav container" aria-label="Primary">
         <a class="brand" href="index.html">Milo Pernemark</a>
         <ul class="nav-links">
           <li><a href="index.html" aria-current="page">Home</a></li>
@@ -23,60 +24,81 @@
       </nav>
     </header>
 
-    <main id="home">
-      <section class="intro container section">
-        <h1>Hi, I’m Milo</h1>
-        <p>
-          I’m a game programming student at
-          <a href="https://www.forsbergsskola.se/" target="_blank" rel="noopener noreferrer">Forsbergs Skola</a>.
-          I’m mainly looking for <strong>gameplay programming</strong> work
-          (internship or junior). I use Unity and Unreal a lot, and I also have
-          C++ projects — engine stuff and Vulkan — when the task fits.
+    <main id="main">
+      <section class="intro container section" aria-labelledby="intro-heading">
+        <p class="intro-kicker">Game programming · Forsbergs Skola</p>
+        <h1 id="intro-heading">Milo Pernemark</h1>
+        <p class="intro-lead">
+          Game programming student seeking <strong>internship or junior</strong>
+          roles in <strong>gameplay programming</strong>. Experienced with
+          Unity (C#) and Unreal Engine, with additional C++ work in engine
+          architecture and graphics (Vulkan).
         </p>
-        <p class="links-row">
-          <a href="#projects">Projects</a>
-          ·
+        <p>
+          This site summarizes selected projects and how to get in touch. Full
+          source for most work is on GitHub.
+        </p>
+        <p class="intro-actions">
+          <a href="#projects">View projects</a>
+          <span class="sep" aria-hidden="true">|</span>
           <a href="about.html">About</a>
-          ·
+          <span class="sep" aria-hidden="true">|</span>
           <a
             href="https://github.com/MiloPernemarkDEV"
             target="_blank"
             rel="noopener noreferrer"
-            >GitHub</a
+            >GitHub<span class="sr-only"> (opens in new tab)</span></a
           >
         </p>
       </section>
 
-      <section id="skills" class="container section">
-        <h2>Tools &amp; topics</h2>
-        <p>
-          C# and Unity for gameplay and tools, Unreal for gameplay and AI-style
-          systems, C++ for engine and graphics exercises. Git for version control.
-        </p>
+      <section id="skills" class="container section" aria-labelledby="skills-heading">
+        <h2 id="skills-heading">Skills</h2>
+        <ul class="skill-list">
+          <li>
+            <strong>Gameplay</strong> — Unity (C#), Unreal Engine; combat,
+            character control, and AI-style gameplay systems.
+          </li>
+          <li>
+            <strong>C++ and engines</strong> — Custom engine project (Helicon),
+            systems-level C++, debugging native code.
+          </li>
+          <li>
+            <strong>Graphics</strong> — Vulkan (Eclips); familiarity with
+            pipeline setup and draw workflows.
+          </li>
+          <li>
+            <strong>Workflow</strong> — Git, team collaboration, technical
+            documentation.
+          </li>
+        </ul>
       </section>
 
-      <section id="projects" class="container section">
-        <h2>Projects</h2>
-        <p class="projects-intro">
-          Some things from GitHub. Images are placeholders until I drop in
-          screenshots.
+      <section id="projects" class="container section" aria-labelledby="projects-heading">
+        <h2 id="projects-heading">Projects</h2>
+        <p class="section-note">
+          Representative thumbnails; final screenshots can be substituted in
+          <code class="code-inline">assets/projects/</code>.
         </p>
 
-        <h3 class="subhead">Gameplay (Unity / Unreal)</h3>
+        <h3 class="subhead">Gameplay — Unity / Unreal</h3>
         <ul class="project-list">
           <li class="project-item">
             <img
               class="project-thumb"
               src="assets/projects/project-placeholder.svg"
               alt=""
+              width="320"
+              height="180"
             />
-            <div>
-              <h4>USS Calliope — Unity combat</h4>
+            <div class="project-body">
+              <h4>USS Calliope — ARPG combat (Unity)</h4>
               <p>
-                Combat flow in C#: input, aiming, attacks, impacts. Uses
-                ScriptableObjects so values are easy to change.
+                Data-driven combat in C# using ScriptableObjects: player input,
+                aiming, attack execution, and impact handling, structured for
+                designer iteration.
               </p>
-              <p class="meta">Unity, C#</p>
+              <p class="meta">Unity · C# · Gameplay</p>
             </div>
           </li>
           <li class="project-item">
@@ -84,41 +106,53 @@
               class="project-thumb"
               src="assets/projects/project-placeholder.svg"
               alt=""
+              width="320"
+              height="180"
             />
-            <div>
-              <h4>Unreal AI system</h4>
-              <p>AI / behaviour-style gameplay in Unreal.</p>
-              <p class="meta">Unreal</p>
+            <div class="project-body">
+              <h4>Unreal Engine — AI system</h4>
+              <p>
+                Gameplay-focused project emphasizing AI behaviour and decision
+                logic in Unreal Engine.
+              </p>
+              <p class="meta">Unreal Engine · Gameplay / AI</p>
               <p>
                 <a
+                  class="project-link"
                   href="https://github.com/MiloPernemarkDEV/UnrealEngineAISystem"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >GitHub</a
+                  >Repository on GitHub<span class="sr-only"> (opens in new tab)</span></a
                 >
               </p>
             </div>
           </li>
         </ul>
 
-        <h3 class="subhead">C++ — engine &amp; graphics</h3>
+        <h3 class="subhead">C++ — engine and graphics</h3>
         <ul class="project-list">
           <li class="project-item">
             <img
               class="project-thumb"
               src="assets/projects/project-placeholder.svg"
               alt=""
+              width="320"
+              height="180"
             />
-            <div>
+            <div class="project-body">
               <h4>Helicon Engine</h4>
-              <p>Small 3D engine in C++ — systems and rendering.</p>
-              <p class="meta">C++</p>
+              <p>
+                Custom 3D game engine in C++: core systems, rendering integration,
+                and engine-oriented architecture.
+              </p>
+              <p class="meta">C++ · Engine programming</p>
               <p>
                 <a
+                  class="project-link"
                   href="https://github.com/MiloPernemarkDEV/Helicon_Engine"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >GitHub</a
+                  >Repository on GitHub<span class="sr-only"> (opens in new tab)</span></a
                 >
               </p>
             </div>
@@ -128,17 +162,23 @@
               class="project-thumb"
               src="assets/projects/project-placeholder.svg"
               alt=""
+              width="320"
+              height="180"
             />
-            <div>
+            <div class="project-body">
               <h4>Eclips</h4>
-              <p>Vulkan rendering — pipeline and drawing.</p>
-              <p class="meta">C++, Vulkan</p>
+              <p>
+                Vulkan-based rendering: graphics pipeline fundamentals and object
+                drawing workflow.
+              </p>
+              <p class="meta">C++ · Vulkan</p>
               <p>
                 <a
+                  class="project-link"
                   href="https://github.com/MiloPernemarkDEV/Eclips"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >GitHub</a
+                  >Repository on GitHub<span class="sr-only"> (opens in new tab)</span></a
                 >
               </p>
             </div>
@@ -148,17 +188,23 @@
               class="project-thumb"
               src="assets/projects/project-placeholder.svg"
               alt=""
+              width="320"
+              height="180"
             />
-            <div>
+            <div class="project-body">
               <h4>Vectormath and Pong</h4>
-              <p>Vector math in C++, then a simple Pong-style game.</p>
-              <p class="meta">C++</p>
+              <p>
+                C++ vector mathematics library with a small Pong-style game
+                demonstrating practical use of the math layer.
+              </p>
+              <p class="meta">C++ · Math · Gameplay</p>
               <p>
                 <a
+                  class="project-link"
                   href="https://github.com/MiloPernemarkDEV/Vectormath_and_pong"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >GitHub</a
+                  >Repository on GitHub<span class="sr-only"> (opens in new tab)</span></a
                 >
               </p>
             </div>
@@ -166,24 +212,31 @@
         </ul>
       </section>
 
-      <section id="contact" class="container section contact">
-        <h2>Contact</h2>
+      <section id="contact" class="container section contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Contact</h2>
         <p>
-          If you have a gameplay programming role or something close to it, you
-          can reach me here:
+          Open to internships and junior positions in gameplay programming and
+          related engineering roles. Please use the email below for
+          opportunities or questions about this portfolio.
         </p>
         <ul class="contact-list">
           <li>
-            Email:
+            <span class="contact-key">Email</span>
             <a href="mailto:milosnya@gmail.com">milosnya@gmail.com</a>
           </li>
           <li>
-            GitHub:
+            <span class="contact-key">GitHub</span>
             <a
               href="https://github.com/MiloPernemarkDEV"
               target="_blank"
               rel="noopener noreferrer"
-              >MiloPernemarkDEV</a
+              >github.com/MiloPernemarkDEV<span class="sr-only"> (opens in new tab)</span></a
+            >
+          </li>
+          <li>
+            <span class="contact-key">School</span>
+            <a href="https://www.forsbergsskola.se/" target="_blank" rel="noopener noreferrer"
+              >Forsbergs Skola<span class="sr-only"> (opens in new tab)</span></a
             >
           </li>
         </ul>
