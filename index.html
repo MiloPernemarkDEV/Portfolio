@@ -7,7 +7,7 @@
       name="description"
       content="Portfolio of a game programming student focused on gameplay systems, tools, and performance."
     />
-    <title>Your Name | Game Programming Student</title>
+    <title>Milo Pernemark | Game Programming Student</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,7 +20,7 @@
     <div class="bg-glow"></div>
     <header class="site-header">
       <nav class="nav container">
-        <a class="brand" href="#home">YourName.dev</a>
+        <a class="brand" href="#home">MiloPernemark.dev</a>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
@@ -34,31 +34,31 @@
       <section class="hero container section">
         <p class="eyebrow">Game Programming Student</p>
         <h1>
-          I build gameplay systems and interactive experiences that feel
-          polished and fun.
+          I build gameplay systems, AI behavior, and rendering-focused game
+          tech.
         </h1>
         <p class="hero-text">
-          I focus on clean architecture, responsive controls, and optimized
-          real-time performance. This site is intentionally simple to keep it
-          easy to edit and deploy on GitHub Pages.
+          I am Milo Pernemark, a game programming student focused on C++, Unity,
+          Unreal, and real-time gameplay architecture. This portfolio is
+          lightweight and GitHub Pages friendly.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#projects">View My Work</a>
-          <a class="btn btn-ghost" href="#contact">Get In Touch</a>
+          <a class="btn btn-ghost" href="https://github.com/MiloPernemarkDEV" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
         </div>
       </section>
 
       <section id="about" class="container section card">
         <h2>About Me</h2>
         <p>
-          I am currently studying game programming and building projects that
-          explore gameplay mechanics, AI behavior, and graphics programming.
-          I enjoy turning ideas into systems that are both technically solid
-          and enjoyable to play.
+          I am a game programming student who enjoys building systems that are
+          designer friendly, prototype friendly, and technically robust. My work
+          focuses on gameplay feel, clean combat architecture, and rendering.
         </p>
         <p>
-          Replace this text with your own story, preferred engines/languages,
-          and what kind of roles you are targeting.
+          I am especially interested in gameplay programming, tools, and engine
+          level features. I like solving practical problems around combat flow,
+          AI behavior, and performance.
         </p>
       </section>
 
@@ -98,35 +98,85 @@
       <section id="projects" class="container section">
         <div class="section-head">
           <h2>Projects</h2>
-          <p>Add your own projects below. Structure is ready.</p>
+          <p>Selected work from my public repos and current game systems.</p>
         </div>
         <div class="project-grid">
-          <article class="card project-card">
-            <h3>Project Title 01</h3>
+          <article class="card project-card featured-project">
+            <img
+              class="project-image"
+              src="assets/projects/project-placeholder.svg"
+              alt="Placeholder for USS Calliope ARPG combat screenshot"
+            />
+            <h3>USS Calliope - Unity ARPG Combat System</h3>
             <p>
-              Short summary: what the game/tool does, your responsibilities,
-              and the tech used.
+              A data-driven combat architecture built with ScriptableObjects.
+              I implemented the flow from player input and aiming to attack
+              execution and impact handling, while keeping the system easy for
+              designers to tune.
             </p>
-            <p class="meta">Engine/Language • Year • Team Size</p>
-            <a href="#" aria-label="Project 01 link">GitHub / Demo</a>
+            <p>
+              Includes: `AttackInput`, `PlayerAimController`,
+              `PlayerWeaponHandler`, `PerformAttack`, `ImpactProcessor`,
+              `HitChance`, and `BallisticsUtility`.
+            </p>
+            <p class="meta">Unity • C# • ARPG Combat</p>
+            <p class="image-note">Drop your screenshot at `assets/projects/project-placeholder.svg` or update this image path.</p>
           </article>
           <article class="card project-card">
-            <h3>Project Title 02</h3>
+            <img
+              class="project-image"
+              src="assets/projects/project-placeholder.svg"
+              alt="Placeholder for Helicon Engine screenshot"
+            />
+            <h3>Helicon Engine</h3>
             <p>
-              Short summary: gameplay focus, notable systems, and challenge
-              solved.
+              Custom C++ 3D game engine project focused on low-level systems,
+              rendering, and engine architecture.
             </p>
-            <p class="meta">Engine/Language • Year • Team Size</p>
-            <a href="#" aria-label="Project 02 link">GitHub / Demo</a>
+            <p class="meta">C++ • Engine Programming</p>
+            <a href="https://github.com/MiloPernemarkDEV/Helicon_Engine" target="_blank" rel="noopener noreferrer">View on GitHub</a>
           </article>
           <article class="card project-card">
-            <h3>Project Title 03</h3>
+            <img
+              class="project-image"
+              src="assets/projects/project-placeholder.svg"
+              alt="Placeholder for Unreal AI system screenshot"
+            />
+            <h3>Unreal Engine AI System</h3>
             <p>
-              Short summary: optimization, AI, networking, tools, or rendering
-              highlight.
+              AI-focused gameplay project in Unreal Engine covering behavior
+              logic and decision systems.
             </p>
-            <p class="meta">Engine/Language • Year • Team Size</p>
-            <a href="#" aria-label="Project 03 link">GitHub / Demo</a>
+            <p class="meta">Unreal Engine • AI Gameplay</p>
+            <a href="https://github.com/MiloPernemarkDEV/UnrealEngineAISystem" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          </article>
+          <article class="card project-card">
+            <img
+              class="project-image"
+              src="assets/projects/project-placeholder.svg"
+              alt="Placeholder for Eclips Vulkan project screenshot"
+            />
+            <h3>Eclips</h3>
+            <p>
+              Vulkan object rendering project with focus on graphics pipeline
+              fundamentals and rendering workflow.
+            </p>
+            <p class="meta">Vulkan • Graphics Programming</p>
+            <a href="https://github.com/MiloPernemarkDEV/Eclips" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          </article>
+          <article class="card project-card">
+            <img
+              class="project-image"
+              src="assets/projects/project-placeholder.svg"
+              alt="Placeholder for Vector math and Pong project screenshot"
+            />
+            <h3>Vectormath and Pong</h3>
+            <p>
+              C++ vector math library used to build a Pong clone in Unity,
+              combining foundational math with practical gameplay implementation.
+            </p>
+            <p class="meta">C++ • Unity • Math for Gameplay</p>
+            <a href="https://github.com/MiloPernemarkDEV/Vectormath_and_pong" target="_blank" rel="noopener noreferrer">View on GitHub</a>
           </article>
         </div>
       </section>
@@ -138,16 +188,16 @@
           engine programming.
         </p>
         <ul>
-          <li>Email: your.email@example.com</li>
-          <li>GitHub: github.com/yourusername</li>
-          <li>LinkedIn: linkedin.com/in/yourusername</li>
+          <li>Email: add-your-email-here@example.com</li>
+          <li>GitHub: github.com/MiloPernemarkDEV</li>
+          <li>LinkedIn: add-your-linkedin-here</li>
         </ul>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container">
-        <p>© <span id="year"></span> Your Name. Built for GitHub Pages.</p>
+        <p>© <span id="year"></span> Milo Pernemark. Built for GitHub Pages.</p>
       </div>
     </footer>
 

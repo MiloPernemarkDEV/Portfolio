@@ -210,8 +210,26 @@ h3 {
   margin-bottom: 0.65rem;
 }
 
+.project-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 0.9rem;
+  background: var(--bg-elev);
+}
+
+.featured-project {
+  grid-column: span 2;
+}
+
 .project-card .meta {
   font-size: 0.9rem;
+}
+
+.image-note {
+  font-size: 0.85rem;
 }
 
 .project-card a {
@@ -235,6 +253,10 @@ h3 {
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .featured-project {
+    grid-column: span 2;
+  }
 }
 
 @media (max-width: 700px) {
@@ -256,5 +278,9 @@ h3 {
   .skill-grid,
   .project-grid {
     grid-template-columns: 1fr;
+  }
+
+  .featured-project {
+    grid-column: span 1;
   }
 }
