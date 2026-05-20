@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="VectorAssignment — native C++ vector math DLL with P/Invoke in Unity, unit tests, and a Pong clone. Case study by Milo Pernemark."
+    />
+    <title>VectorAssignment &amp; Pong | Milo Pernemark</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary">
+        <a class="brand" href="../index.html">Milo Pernemark</a>
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <article class="case-study container section">
+        <p class="case-back">
+          <a href="../index.html#projects">← Back to projects</a>
+        </p>
+
+        <header class="case-header">
+          <p class="intro-kicker">C++ · Unity · P/Invoke · Native DLL</p>
+          <h1>VectorAssignment &amp; Pong</h1>
+          <p class="case-lead">
+            A three-part project: a <strong>native C++ DLL</strong> for 2D/3D vector
+            math, a <strong>console test suite</strong> that validates every export,
+            and a <strong>Unity Pong clone</strong> that drives ball and paddle physics
+            through <code class="code-inline">PongVector</code> — a thin C# wrapper over
+            the DLL. The goal was to practice engine-adjacent math in C++, then prove it
+            in a real gameplay loop without leaning on Unity’s built-in vector types for
+            core simulation.
+          </p>
+          <ul class="tag-list" aria-label="Technologies">
+            <li>C++</li>
+            <li>Windows DLL</li>
+            <li>Unity</li>
+            <li>P/Invoke</li>
+            <li>Unit tests</li>
+          </ul>
+          <p class="case-repo">
+            <a
+              href="https://github.com/MiloPernemarkDEV/Vectormath_and_pong"
+              target="_blank"
+              rel="noopener noreferrer"
+              >github.com/MiloPernemarkDEV/Vectormath_and_pong<span class="sr-only"> (opens in new tab)</span></a
+            >
+          </p>
+        </header>
+
+        <section class="case-block" aria-labelledby="overview-heading">
+          <h2 id="overview-heading">Project structure</h2>
+          <ul class="case-list">
+            <li>
+              <strong>VectorAssignment</strong> — <code class="code-inline">VectorAssignment.dll</code>
+              exports plain C-style functions with <code class="code-inline">extern "C" __declspec(dllexport)</code>
+              and blittable <code class="code-inline">Vec2</code> / <code class="code-inline">Vec3</code> structs.
+            </li>
+            <li>
+              <strong>TestOperations</strong> — Executable tests for arithmetic, normalization,
+              dot/cross, reflection, distance, projection, and edge cases (zero vectors).
+            </li>
+            <li>
+              <strong>Pong (Unity)</strong> — Playable two-player / AI match: movement,
+              wall reflection, paddle AABB hits, angle-based deflection, and scoring.
+            </li>
+          </ul>
+        </section>
+
+        <section class="case-block" aria-labelledby="dll-heading">
+          <h2 id="dll-heading">Native vector library</h2>
+          <p>
+            Operations are implemented in a single header-style translation unit using
+            <code class="code-inline">&lt;math.h&gt;</code> (<code class="code-inline">sqrtf</code>,
+            <code class="code-inline">acosf</code>). Each function is exported for consumption
+            from managed code without name mangling on the C++ side.
+          </p>
+          <h3 class="case-h3">Vec2 (used by Pong)</h3>
+          <ul class="case-list case-list--compact">
+            <li><code class="code-inline">v2_add</code>, <code class="code-inline">v2_subtract</code>, <code class="code-inline">v2_scale</code></li>
+            <li><code class="code-inline">v2_magnitude</code>, <code class="code-inline">v2_normalize</code>, <code class="code-inline">v2_dot</code></li>
+            <li><code class="code-inline">v2_reflect</code> — wall bounces use <em>r = v − 2(v·n)n</em></li>
+            <li><code class="code-inline">v2_lerp</code></li>
+          </ul>
+          <h3 class="case-h3">Vec3 (library completeness)</h3>
+          <ul class="case-list case-list--compact">
+            <li>Core ops: add, subtract, scale, magnitude, normalize, dot, cross</li>
+            <li><code class="code-inline">v3_distance</code> / <code class="code-inline">v3_distance_sqr</code> — squared distance avoids a sqrt when only ordering matters</li>
+            <li><code class="code-inline">v3_angle_between</code>, <code class="code-inline">v3_clamp_magnitude</code>, <code class="code-inline">v3_project</code>, <code class="code-inline">v3_lerp</code></li>
+          </ul>
+          <p>
+            Normalization guards divide-by-zero by returning a zero vector when magnitude
+            is 0. Projection returns zero when the target axis has zero length.
+          </p>
+        </section>
+
+        <section class="case-block" aria-labelledby="interop-heading">
+          <h2 id="interop-heading">P/Invoke bridge (<code class="code-inline">PongVector.cs</code>)</h2>
+          <p>
+            Unity talks to the DLL through a static wrapper class. The C# side mirrors the
+            C++ layout exactly so structs pass by value without custom marshalling:
+          </p>
+          <ul class="case-list">
+            <li>
+              <code class="code-inline">[StructLayout(LayoutKind.Sequential)]</code> on
+              <code class="code-inline">Vec2</code> with public <code class="code-inline">float x, y</code>
+            </li>
+            <li>
+              <code class="code-inline">[DllImport("VectorAssignment")]</code> on each
+              import — DLL placed under <code class="code-inline">Assets/Plugins/</code> for
+              Windows x64 builds
+            </li>
+            <li>
+              Ball and paddles store simulation state as <code class="code-inline">PongVector.Vec2</code>;
+              only the final <code class="code-inline">transform.position</code> sync uses
+              Unity’s <code class="code-inline">Vector3</code> for rendering
+            </li>
+          </ul>
+        </section>
+
+        <section class="case-block" aria-labelledby="gameplay-heading">
+          <h2 id="gameplay-heading">Pong gameplay systems</h2>
+
+          <h3 class="case-h3"><code class="code-inline">BallController</code></h3>
+          <ul class="case-list">
+            <li>
+              Integrates velocity each frame with <code class="code-inline">v2_add</code> and
+              <code class="code-inline">v2_scale</code> (delta time as scalar).
+            </li>
+            <li>
+              Top/bottom walls: build a surface normal, then
+              <code class="code-inline">v2_reflect</code> on velocity.
+            </li>
+            <li>
+              Paddle hits: AABB overlap, snap ball outside paddle, compute hit factor along
+              paddle height (−1 bottom → +1 top), map to a deflection angle (up to
+              <code class="code-inline">maxBounceAngle</code>), rebuild direction, then
+              <code class="code-inline">v2_normalize</code> + <code class="code-inline">v2_scale</code>
+              to keep constant speed.
+            </li>
+            <li>
+              Score zones past ±9 units; <code class="code-inline">GameManager</code> increments
+              score and resets serve direction.
+            </li>
+          </ul>
+
+          <h3 class="case-h3"><code class="code-inline">PaddleController</code> &amp; <code class="code-inline">PaddleAI</code></h3>
+          <p>
+            Human paddles read keyboard input into a vertical delta vector and accumulate
+            position with <code class="code-inline">v2_add</code>. The AI paddle tracks the
+            ball’s Y with a dead zone, moves at a capped speed, and clamps to the same
+            court limits as the ball uses for walls.
+          </p>
+        </section>
+
+        <section class="case-block" aria-labelledby="tests-heading">
+          <h2 id="tests-heading">TestOperations</h2>
+          <p>
+            A separate console project exercises the DLL before Unity depends on it.
+            Tests cover expected numeric results and failure modes (e.g. normalizing
+            <code class="code-inline">{0,0}</code>) so regressions in native code surface
+            as <strong>[PASS]/[FAIL]</strong> output instead of subtle in-game bugs.
+          </p>
+        </section>
+
+        <section class="case-block" aria-labelledby="math-heading">
+          <h2 id="math-heading">Why vectors matter in games</h2>
+          <p>
+            The Pong slice is intentionally small, but it uses the same primitives as
+            larger engines: velocity as direction × speed, normals for bounces, dot
+            products for angles and lighting-style queries, and (in 3D) cross products
+            for perpendicular axes. Matrices sit one layer above — Unity’s
+            <code class="code-inline">Transform</code> is a 4×4 matrix handling translation,
+            rotation, scale, and eventually projection to screen space. This project keeps
+            simulation in explicit vector ops so the math stays visible in code reviews
+            and coursework-style documentation.
+          </p>
+        </section>
+
+        <section class="case-block" aria-labelledby="build-heading">
+          <h2 id="build-heading">Build &amp; run</h2>
+          <ul class="case-list">
+            <li>
+              <strong>DLL</strong> — Open <code class="code-inline">VectorAssignment.sln</code>,
+              build <strong>Release x64</strong>, copy
+              <code class="code-inline">VectorAssignment.dll</code> into
+              <code class="code-inline">Pong/Assets/Plugins/</code>.
+            </li>
+            <li>
+              <strong>Tests</strong> — Build and run <code class="code-inline">TestOperations.exe</code>
+              after the library project.
+            </li>
+            <li>
+              <strong>Play</strong> — W/S vs arrow keys; first to 5 points; <strong>R</strong>
+              to restart after game over.
+            </li>
+          </ul>
+        </section>
+
+        <section class="case-block case-outro" aria-labelledby="takeaways-heading">
+          <h2 id="takeaways-heading">What this demonstrates</h2>
+          <ul class="case-list">
+            <li>
+              Shipping a <strong>native plugin boundary</strong> with correct struct layout
+              and DLL lifecycle (build arch, plugin folder, import name).
+            </li>
+            <li>
+              Separating <strong>testable C++ core</strong> from presentation-layer Unity code.
+            </li>
+            <li>
+              Applying vector math to <strong>feel</strong> (reflection, angled paddle hits,
+              speed normalization) rather than only textbook exercises.
+            </li>
+          </ul>
+          <p class="case-back case-back--footer">
+            <a href="../index.html#projects">← All projects</a>
+            <span class="sep" aria-hidden="true">|</span>
+            <a
+              href="https://github.com/MiloPernemarkDEV/Vectormath_and_pong"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Repository<span class="sr-only"> (opens in new tab)</span></a
+            >
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Milo Pernemark</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
