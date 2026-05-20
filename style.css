@@ -615,6 +615,17 @@ a:focus-visible {
   font-size: 0.9375rem;
 }
 
+.case-status {
+  margin-top: 0.85rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  max-width: 48rem;
+}
+
+.case-status strong {
+  color: var(--text);
+}
+
 .case-h3 {
   font-size: 0.9375rem;
   font-weight: 700;
