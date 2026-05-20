@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="USS Calliope — Unity isometric ARPG: data-driven combat, hit chance, ballistics, audio pooling, and editor tooling. Case study by Milo Pernemark."
+    />
+    <title>USS Calliope (Unity ARPG) | Milo Pernemark</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="nav container" aria-label="Primary">
+        <a class="brand" href="../index.html">Milo Pernemark</a>
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <article class="case-study container section">
+        <p class="case-back">
+          <a href="../index.html#projects">← Back to projects</a>
+        </p>
+
+        <header class="case-header">
+          <p class="intro-kicker">Unity · C# · Gameplay / combat</p>
+          <h1>USS Calliope — isometric ARPG prototype</h1>
+          <p class="case-lead">
+            A sci-fi action RPG built in Unity over <strong>eight weeks</strong> in a
+            <strong>five-person team</strong> using an Agile workflow with
+            <strong>one-week sprints</strong>. The focus of my contribution was
+            end-to-end <strong>player combat</strong>: input, aiming, data-driven
+            weapons, hit resolution, feedback systems, and supporting editor and
+            audio tooling.
+          </p>
+          <ul class="tag-list" aria-label="Technologies">
+            <li>Unity</li>
+            <li>C#</li>
+            <li>Input System</li>
+            <li>ScriptableObjects</li>
+            <li>Cinemachine</li>
+          </ul>
+        </header>
+
+        <section class="case-block" aria-labelledby="gallery-heading">
+          <h2 id="gallery-heading">From greybox to ship-ready slice</h2>
+          <p>
+            Early work validated mechanics with primitives: locomotion, UI, and a
+            readable <strong>hit chance</strong> readout. Mid-sprint shots layered in
+            authored content and character art while retaining debug visualizations
+            for combat. The vertical slice below shows the environment, lighting,
+            interaction prompts, and HUD working together as a cohesive player
+            experience.
+          </p>
+          <div class="case-gallery">
+            <figure class="case-figure">
+              <img
+                src="../assets/projects/calliope-prototype-hitchance.png"
+                alt="Early USS Calliope greybox: isometric sci-fi corridor with capsule enemies, health bars, and floating hit chance percentage."
+                width="960"
+                height="540"
+                loading="lazy"
+              />
+              <figcaption>
+                Early prototype — modular environment greybox, placeholder actors,
+                floating health, and live <strong>hit chance</strong> feedback.
+              </figcaption>
+            </figure>
+            <figure class="case-figure">
+              <img
+                src="../assets/projects/calliope-prototype-combat.png"
+                alt="Combat sandbox: player capsule with weapon mesh, enemies, health bars, and a large translucent cone showing attack or spread visualization."
+                width="960"
+                height="540"
+                loading="lazy"
+              />
+              <figcaption>
+                Systems testbed — player mesh and weapons in place; cone and UI
+                used to tune <strong>aiming, range, and inaccuracy</strong> before
+                final content.
+              </figcaption>
+            </figure>
+            <figure class="case-figure">
+              <img
+                src="../assets/projects/calliope-final.png"
+                alt="Polished isometric sci-fi interior: armored player, dramatic lighting, terminal with Press E prompt, HUD with health and stamina bars."
+                width="960"
+                height="540"
+                loading="lazy"
+              />
+              <figcaption>
+                Late build — lit environment art, armored hero, interaction prompts,
+                and diegetic HUD tied to player state.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="case-block" aria-labelledby="combat-heading">
+          <h2 id="combat-heading">Combat architecture</h2>
+          <p>
+            Combat is split into small, testable responsibilities so designers could
+            iterate in data while programmers extended behaviour in code.
+          </p>
+          <ul class="case-list">
+            <li>
+              <strong>Input (<code class="code-inline">AttackInput</code>)</strong> —
+              Wraps the Unity Input System and raises high-level events for aim,
+              fire, reload, weapon switch, and unequip. Also exposes move and sprint
+              actions used by accuracy and spread logic.
+            </li>
+            <li>
+              <strong>Aiming (<code class="code-inline">PlayerAimController</code>)</strong> —
+              Projects the cursor to a ground-aligned plane, applies a short
+              <em>hold</em> threshold before entering aim mode, rotates the character
+              toward the target, drives animator weapon type, and nudges the
+              Cinemachine offset for a subtle aim pull-in.
+            </li>
+            <li>
+              <strong>Weapons (<code class="code-inline">PlayerWeaponHandler</code>)</strong> —
+              Equips weapon prefabs, gates semi-auto vs full-auto with coroutines,
+              integrates reload and cooldown helpers, and routes magazine state
+              through an <code class="code-inline">AmmoModel</code> backed by runtime
+              inventory data.
+            </li>
+            <li>
+              <strong>Execution (<code class="code-inline">PerformAttack</code>)</strong> —
+              Hitscan (per-pellet raycasts), melee (sphere sweep), and unarmed paths
+              share one entry point. Optional Gaussian spread from
+              <code class="code-inline">BallisticsUtility</code> perturbs shot
+              direction for ballistic weapons.
+            </li>
+            <li>
+              <strong>Hits (<code class="code-inline">ImpactProcessor</code>)</strong> —
+              Resolves <code class="code-inline">IDamageable</code> on colliders,
+              scales hitscan damage by distance using the weapon’s animation curve,
+              and handles melee, non-lethal stun, and delayed unarmed damage with
+              feedback at the impact point.
+            </li>
+          </ul>
+        </section>
+
+        <section class="case-block" aria-labelledby="hit-chance-heading">
+          <h2 id="hit-chance-heading">Hit chance, ballistics, and crosshair feedback</h2>
+          <p>
+            <code class="code-inline">HitChance</code> scores normalized accuracy from
+            distance (relative to weapon range and falloff curve), stamina and
+            health, movement and sprint multipliers from the equipped weapon, and
+            designer-tunable edge cases (for example a small assist band at very low
+            health). That score feeds both <em>feel</em> and <em>mechanics</em>:
+          </p>
+          <ul class="case-list">
+            <li>
+              The crosshair shifts from green → yellow → red as confidence drops, and
+              screen-space <strong>noise</strong> scales inversely with score so
+              low-confidence shots look unstable before they miss.
+            </li>
+            <li>
+              Ballistic weapons reuse the same conceptual signal: spread intensity can
+              track the score so desperate fights read clearly in both UI and gunplay.
+            </li>
+            <li>
+              <code class="code-inline">BallisticsUtility.GetGaussianSpread</code> uses a
+              Box–Muller transform so pellet clusters feel like real-world dispersion
+              around the aim vector instead of uniform cones.
+            </li>
+          </ul>
+        </section>
+
+        <section class="case-block" aria-labelledby="data-heading">
+          <h2 id="data-heading">Data-driven weapons and inventory</h2>
+          <p>
+            <code class="code-inline">SO_WeaponType</code> ScriptableObjects describe
+            attack category (hitscan, melee, non-lethal, utility), fire rate,
+            semi-auto vs automatic behaviour, magazine and reload timing, pellet
+            count, damage-over-distance curves, movement penalties, melee reach, and
+            audio/visual hooks. Weapons and ammo types receive stable editor-generated
+            IDs so pickups, UI, and saves stay aligned without hand-maintained keys.
+          </p>
+        </section>
+
+        <section class="case-block" aria-labelledby="audio-heading">
+          <h2 id="audio-heading">Footsteps and pooled audio</h2>
+          <p>
+            Footsteps run on a dedicated cadence component that mirrors locomotion
+            state from the player controller (walk, sprint, crouch, stamina-aware
+            rules) and fires only while moving. A companion audio layer picks clips
+            with light pitch variation and avoids immediate repeats when multiple
+            clips are available.
+          </p>
+          <p>
+            Playback never allocates per-step <code class="code-inline">AudioSource</code>
+            instances: a global <code class="code-inline">AudioPoolManager</code> hands
+            out pooled sources, and a small handler coroutine returns each source
+            after its clip finishes so rapid footsteps stay allocation-free.
+          </p>
+        </section>
+
+        <section class="case-block" aria-labelledby="editor-heading">
+          <h2 id="editor-heading">Editor tooling: GUID generator</h2>
+          <p>
+            I shipped a lightweight <code class="code-inline">EditorWindow</code>
+            (<strong>Tools → GUID Generator</strong>) for generating
+            <code class="code-inline">System.Guid</code> strings, copying them to the
+            system clipboard, and logging to the console once per session to avoid
+            duplicate spam. Small quality-of-life tools like this kept content authors
+            unblocked when wiring ScriptableObject IDs and test data.
+          </p>
+        </section>
+
+        <section class="case-block case-outro" aria-labelledby="takeaways-heading">
+          <h2 id="takeaways-heading">What this demonstrates</h2>
+          <ul class="case-list">
+            <li>
+              Designing gameplay systems as <strong>event-driven pipelines</strong>
+              (input → aim → weapon → attack → impact) that stay approachable for
+              teammates in design and engineering.
+            </li>
+            <li>
+              Bridging <strong>designer-facing data</strong> (ScriptableObjects,
+              curves, tuners) with <strong>programmer-facing services</strong>
+              (pools, processors, input facades).
+            </li>
+            <li>
+              Shipping <strong>player-visible feedback</strong> (crosshair, camera,
+              HUD) that reflects the same underlying simulation numbers used for
+              weapons, not a disconnected cosmetic layer.
+            </li>
+          </ul>
+          <p class="case-back case-back--footer">
+            <a href="../index.html#projects">← All projects</a>
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Milo Pernemark</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
