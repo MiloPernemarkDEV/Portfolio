@@ -6,9 +6,9 @@
     <meta name="color-scheme" content="light" />
     <meta
       name="description"
-      content="USS Calliope — Unity ARPG combat: hit chance, ballistics, ScriptableObject weapons, audio pool. Milo Pernemark."
+      content="USS Calliope — Unity ARPG combat systems by Milo Pernemark."
     />
-    <title>USS Calliope (Unity ARPG) | Milo Pernemark</title>
+    <title>USS Calliope | Milo Pernemark</title>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
@@ -27,17 +27,12 @@
 
     <main id="main">
       <article class="case-study container section">
-        <p class="case-back">
-          <a href="../index.html#projects">← Back to projects</a>
-        </p>
+        <p class="case-back"><a href="../index.html#projects">← Projects</a></p>
 
         <header class="case-header">
           <p class="intro-kicker">Unity · C# · Gameplay</p>
           <h1>USS Calliope</h1>
-          <p class="case-lead">
-            8-week team prototype (5 people, 1-week sprints). I owned <strong>player combat</strong>:
-            input, aiming, weapons, hits, hit chance / ballistics, footstep audio pool, GUID editor tool.
-          </p>
+          <p class="case-lead">Isometric team prototype — I owned player combat end to end.</p>
           <ul class="tag-list" aria-label="Technologies">
             <li>Unity</li>
             <li>C#</li>
@@ -47,76 +42,98 @@
           </ul>
         </header>
 
+        <section class="case-block">
+          <h2>Project overview</h2>
+          <ul class="project-facts">
+            <li><strong>Role</strong> Gameplay Programmer</li>
+            <li><strong>Team</strong> 5 · 1-week sprints · 8 weeks</li>
+            <li><strong>Engine</strong> Unity</li>
+          </ul>
+        </section>
+
         <section class="case-block" aria-label="Screenshots">
           <div class="case-gallery">
             <figure class="case-figure">
               <img
                 src="../assets/projects/calliope-prototype-combat.png"
-                alt="Combat tuning with spread cone and health bars."
+                alt="Combat spread cone debug view."
                 width="960"
                 height="540"
                 loading="lazy"
               />
-              <figcaption>Combat tuning — spread / range debug view.</figcaption>
+              <figcaption>Combat tuning — spread / range.</figcaption>
             </figure>
             <figure class="case-figure">
               <img
                 src="../assets/projects/calliope-prototype-hitchance.png"
-                alt="Greybox level with hit chance UI."
+                alt="Hit chance UI on greybox level."
                 width="960"
                 height="540"
                 loading="lazy"
               />
-              <figcaption>Prototype — hit chance readout on targets.</figcaption>
+              <figcaption>Hit chance on targets.</figcaption>
             </figure>
             <figure class="case-figure">
               <img
                 src="../assets/projects/calliope-final.png"
-                alt="Late-build scene with HUD and interaction prompt."
+                alt="Late-build scene with HUD."
                 width="960"
                 height="540"
                 loading="lazy"
               />
-              <figcaption>Late build — environment, HUD, interact prompt.</figcaption>
+              <figcaption>Late build — HUD and interact.</figcaption>
             </figure>
           </div>
         </section>
 
-        <section class="case-block" aria-labelledby="combat-heading">
-          <h2 id="combat-heading">What I built</h2>
+        <section class="case-block">
+          <h2>Contributions</h2>
           <ul class="case-list">
-            <li>
-              <strong><code class="code-inline">AttackInput</code></strong> — Input System events (aim, fire, reload, swap weapon).
-            </li>
-            <li>
-              <strong><code class="code-inline">PlayerAimController</code></strong> — Mouse aim on ground plane, hold-to-aim, Cinemachine offset, crosshair color/noise from hit chance.
-            </li>
-            <li>
-              <strong><code class="code-inline">PlayerWeaponHandler</code></strong> — Equip weapons, semi/full auto, reload, <code class="code-inline">AmmoModel</code> + inventory.
-            </li>
-            <li>
-              <strong><code class="code-inline">PerformAttack</code></strong> — Hitscan, melee sphere cast, unarmed; Gaussian spread via <code class="code-inline">BallisticsUtility</code>.
-            </li>
-            <li>
-              <strong><code class="code-inline">ImpactProcessor</code></strong> — Damage by distance curve, melee/unarmed/stun on <code class="code-inline">IDamageable</code>.
-            </li>
-            <li>
-              <strong><code class="code-inline">SO_WeaponType</code></strong> — ScriptableObject weapon data (fire rate, pellets, falloff, movement penalties).
-            </li>
-            <li>
-              <strong>Hit chance</strong> — Score from range, stamina, health, movement; drives crosshair and spread.
-            </li>
-            <li>
-              <strong>Footsteps</strong> — Cadence by walk/sprint/crouch; <code class="code-inline">AudioPoolManager</code> (no per-step <code class="code-inline">AudioSource</code> alloc).
-            </li>
-            <li>
-              <strong>GUID Generator</strong> — Editor tool for ScriptableObject IDs (<code class="code-inline">Tools → GUID Generator</code>).
-            </li>
+            <li>Combat pipeline: <code class="code-inline">AttackInput</code> → aim → <code class="code-inline">PlayerWeaponHandler</code> → <code class="code-inline">PerformAttack</code> → <code class="code-inline">ImpactProcessor</code>.</li>
+            <li>Data-driven weapons via <code class="code-inline">SO_WeaponType</code> (hitscan, melee, ammo, falloff curves).</li>
+            <li>Hit chance score (range, stamina, health, movement) → crosshair color/noise + spread.</li>
+            <li>Pooled footstep audio (<code class="code-inline">AudioPoolManager</code>).</li>
+            <li>Editor GUID tool for ScriptableObject IDs.</li>
           </ul>
-          <p class="case-back case-back--footer">
-            <a href="../index.html#projects">← All projects</a>
-          </p>
         </section>
+
+        <section class="case-block">
+          <h2>Code samples</h2>
+
+          <div class="code-block">
+            <div class="code-block-header">BallisticsUtility.cs — Gaussian spread</div>
+            <pre><code>public static Vector3 GetGaussianSpread(Vector3 forward, float spreadStandardDeviation)
+{
+    var u1 = Random.value;
+    var u2 = Random.value;
+    var offsetX = Mathf.Sqrt(-2f * Mathf.Log(u1)) * Mathf.Cos(2f * Mathf.PI * u2);
+    var offsetY = Mathf.Sqrt(-2f * Mathf.Log(u1)) * Mathf.Sin(2f * Mathf.PI * u2);
+    offsetX *= spreadStandardDeviation;
+    offsetY *= spreadStandardDeviation;
+
+    var right = Vector3.Cross(Vector3.up, forward.normalized);
+    var up = Vector3.Cross(forward, right).normalized;
+    return (forward + offsetX * right + offsetY * up).normalized;
+}</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">PlayerAimController.cs — crosshair from hit chance</div>
+            <pre><code>crosshairImage.color = score switch
+{
+    &gt;= 0.8f =&gt; Color.green,
+    &gt;= 0.4f =&gt; Color.yellow,
+    _ =&gt; Color.red
+};
+
+float targetNoise = maxNoiseOffset * (1f - hitChanceScore);
+Vector2 noise = Random.insideUnitCircle * targetNoise;</code></pre>
+          </div>
+        </section>
+
+        <p class="case-back case-back--footer">
+          <a href="../index.html#projects">← Projects</a>
+        </p>
       </article>
     </main>
 

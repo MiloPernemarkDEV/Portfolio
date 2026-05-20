@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="light" />
     <meta
       name="description"
-      content="VectorAssignment — C++ vector DLL, tests, Unity Pong via P/Invoke. Milo Pernemark."
+      content="VectorAssignment — C++ DLL and Unity Pong. Milo Pernemark."
     />
     <title>VectorAssignment &amp; Pong | Milo Pernemark</title>
     <link rel="stylesheet" href="../style.css" />
@@ -27,17 +27,12 @@
 
     <main id="main">
       <article class="case-study container section">
-        <p class="case-back">
-          <a href="../index.html#projects">← Back to projects</a>
-        </p>
+        <p class="case-back"><a href="../index.html#projects">← Projects</a></p>
 
         <header class="case-header">
           <p class="intro-kicker">C++ · Unity · P/Invoke</p>
           <h1>VectorAssignment &amp; Pong</h1>
-          <p class="case-lead">
-            C++ <strong>VectorAssignment.dll</strong> (Vec2/Vec3 math), console tests, Unity Pong using
-            <code class="code-inline">PongVector</code> for physics — not Unity’s <code class="code-inline">Vector2</code> in simulation.
-          </p>
+          <p class="case-lead">Native vector math DLL + Unity game using P/Invoke for physics.</p>
           <ul class="tag-list" aria-label="Technologies">
             <li>C++</li>
             <li>Unity</li>
@@ -53,30 +48,63 @@
           </p>
         </header>
 
-        <section class="case-block" aria-labelledby="built-heading">
-          <h2 id="built-heading">What I built</h2>
-          <ul class="case-list">
-            <li>
-              <strong>VectorAssignment.dll</strong> — Exported <code class="code-inline">v2_*</code> / <code class="code-inline">v3_*</code>
-              (add, scale, normalize, dot, reflect, lerp, cross, distance, etc.).
-            </li>
-            <li>
-              <strong>TestOperations</strong> — Console tests before Unity uses the DLL.
-            </li>
-            <li>
-              <strong><code class="code-inline">PongVector.cs</code></strong> — Sequential <code class="code-inline">Vec2</code> + <code class="code-inline">DllImport</code> to <code class="code-inline">VectorAssignment</code>.
-            </li>
-            <li>
-              <strong><code class="code-inline">BallController</code></strong> — Movement, wall <code class="code-inline">v2_reflect</code>, paddle AABB + angled bounce, scoring.
-            </li>
-            <li>
-              <strong>Paddles</strong> — Player input + simple AI; position via <code class="code-inline">v2_add</code>.
-            </li>
+        <section class="case-block">
+          <h2>Project overview</h2>
+          <ul class="project-facts">
+            <li><strong>Role</strong> Programmer (solo)</li>
+            <li><strong>Scope</strong> DLL · unit tests · Unity Pong</li>
           </ul>
-          <p class="case-back case-back--footer">
-            <a href="../index.html#projects">← All projects</a>
-          </p>
         </section>
+
+        <section class="case-block">
+          <h2>Contributions</h2>
+          <ul class="case-list">
+            <li>Exported Vec2/Vec3 math from <code class="code-inline">VectorAssignment.dll</code>.</li>
+            <li>Console test suite (<code class="code-inline">TestOperations</code>) before Unity integration.</li>
+            <li>Pong ball/paddle physics through <code class="code-inline">PongVector</code>, not Unity vectors in sim.</li>
+          </ul>
+        </section>
+
+        <section class="case-block">
+          <h2>Code samples</h2>
+
+          <div class="code-block">
+            <div class="code-block-header">Vector math — wall reflection (C++)</div>
+            <pre><code>Vec2 v2_reflect(Vec2 v, Vec2 normal) {
+    float dot = v2_dot(v, normal);
+    Vec2 scaledNormal = v2_scale(normal, 2.0f * dot);
+    return v2_subtract(v, scaledNormal);
+}</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">PongVector.cs — P/Invoke bridge</div>
+            <pre><code>[StructLayout(LayoutKind.Sequential)]
+public struct Vec2 {
+    public float x;
+    public float y;
+}
+
+[DllImport("VectorAssignment")]
+public static extern Vec2 v2_add(Vec2 a, Vec2 b);
+
+[DllImport("VectorAssignment")]
+public static extern Vec2 v2_reflect(Vec2 v, Vec2 normal);</code></pre>
+          </div>
+
+          <div class="code-block">
+            <div class="code-block-header">BallController.cs — movement</div>
+            <pre><code>position = PongVector.v2_add(position,
+    PongVector.v2_scale(velocity, Time.deltaTime));
+
+// Wall bounce
+velocity = PongVector.v2_reflect(velocity, normal);</code></pre>
+          </div>
+        </section>
+
+        <p class="case-back case-back--footer">
+          <a href="../index.html#projects">← Projects</a>
+        </p>
       </article>
     </main>
 

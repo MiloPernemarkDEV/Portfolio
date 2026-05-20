@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="light" />
     <meta
       name="description"
-      content="Milo Pernemark — game programming student at Forsbergs Skola. Portfolio: gameplay, Unity, Unreal, C++ engine and graphics work."
+      content="Milo Pernemark — Game Programmer. Unity gameplay, Unreal AI, C++ Vulkan engine work. Portfolio and code samples."
     />
     <title>Milo Pernemark | Game Programmer</title>
     <link rel="stylesheet" href="style.css" />
@@ -27,16 +27,18 @@
 
     <main id="main">
       <section class="intro container section" aria-labelledby="intro-heading">
-        <p class="intro-kicker">Game programming · Forsbergs Skola</p>
+        <p class="intro-kicker">Game Programmer</p>
         <h1 id="intro-heading">Milo Pernemark</h1>
         <p class="intro-lead">
-          Game programming student — <strong>internship / junior gameplay</strong>.
-          Unity, Unreal, C++ (Vulkan, engines, native plugins).
+          I build <strong>gameplay systems</strong> in Unity and Unreal, and lower-level
+          <strong>C++</strong> when the project needs it (Vulkan, custom engines, native plugins).
+        </p>
+        <p>
+          Seeking an <strong>internship or junior gameplay programming</strong> role.
+          Student at <a href="https://www.forsbergsskola.se/" target="_blank" rel="noopener noreferrer">Forsbergs Skola</a>.
         </p>
         <p class="intro-actions">
           <a href="#projects">View projects</a>
-          <span class="sep" aria-hidden="true">|</span>
-          <a href="about.html">About</a>
           <span class="sep" aria-hidden="true">|</span>
           <a
             href="https://github.com/MiloPernemarkDEV"
@@ -44,29 +46,59 @@
             rel="noopener noreferrer"
             >GitHub<span class="sr-only"> (opens in new tab)</span></a
           >
+          <span class="sep" aria-hidden="true">|</span>
+          <a href="mailto:milosnya@gmail.com">Email</a>
         </p>
       </section>
 
       <section id="skills" class="container section" aria-labelledby="skills-heading">
-        <h2 id="skills-heading">Skills</h2>
-        <ul class="skill-list">
-          <li><strong>Gameplay</strong> — Unity (C#), Unreal; combat, AI, character systems.</li>
-          <li><strong>C++</strong> — MelonEngine (Vulkan), native DLLs, engine-style code.</li>
-          <li><strong>Graphics</strong> — Vulkan pipelines (Eclips, MelonEngine).</li>
-        </ul>
+        <h2 id="skills-heading">Technical skills</h2>
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <ul class="skill-tags">
+            <li>C#</li>
+            <li>C++</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Engines &amp; APIs</h3>
+          <ul class="skill-tags">
+            <li>Unity</li>
+            <li>Unreal Engine</li>
+            <li>Vulkan</li>
+            <li>Unity Input System</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Tools</h3>
+          <ul class="skill-tags">
+            <li>Git</li>
+            <li>CMake</li>
+            <li>Visual Studio</li>
+            <li>ScriptableObjects</li>
+            <li>Cinemachine</li>
+          </ul>
+        </div>
       </section>
 
       <section id="projects" class="container section" aria-labelledby="projects-heading">
-        <h2 id="projects-heading">Projects</h2>
+        <h2 id="projects-heading">Selected work</h2>
+        <p class="section-note">Each project lists my role, contributions, and tech. Case studies include code samples.</p>
 
-        <h3 class="subhead">Gameplay — Unity / Unreal</h3>
+        <h3 class="subhead">Gameplay</h3>
         <ul class="project-list">
           <li class="project-entry">
             <div class="project-body">
-              <h4><a href="projects/uss-calliope.html">USS Calliope — ARPG combat (Unity)</a></h4>
-              <p class="meta">Unity · C# · Gameplay · Team of 5</p>
-              <p>Team ARPG (8 weeks). I built combat: aim, weapons, hit chance, ballistics, audio pool, editor GUID tool.</p>
-              <p class="project-links"><a href="projects/uss-calliope.html">Details</a></p>
+              <h4><a href="projects/uss-calliope.html">USS Calliope</a></h4>
+              <p class="project-role">Gameplay Programmer · Team of 5 · 8 weeks (Agile)</p>
+              <p class="meta">Unity · C# · ScriptableObjects · Input System</p>
+              <p class="project-label">Contributions</p>
+              <ul class="contributions-list">
+                <li>Implemented data-driven combat (weapons, aim, hitscan / melee, damage).</li>
+                <li>Built hit chance system tied to crosshair feedback and ballistic spread.</li>
+                <li>Added pooled footstep audio and a GUID generator editor utility.</li>
+              </ul>
+              <p class="project-links"><a href="projects/uss-calliope.html">Case study + code</a></p>
             </div>
           </li>
           <li class="project-entry">
@@ -76,32 +108,41 @@
                   href="https://github.com/MiloPernemarkDEV/UnrealEngineAISystem"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Unreal Engine — AI system<span class="sr-only"> (opens in new tab)</span></a
+                  >Unreal AI system<span class="sr-only"> (opens in new tab)</span></a
                 >
               </h4>
-              <p class="meta">Unreal Engine · Gameplay / AI</p>
-              <p>Enemy AI in Unreal — patrol, chase, attack.</p>
+              <p class="project-role">Gameplay / AI · Solo</p>
+              <p class="meta">Unreal Engine · Behaviour trees</p>
+              <p class="project-label">Contributions</p>
+              <ul class="contributions-list">
+                <li>Implemented enemy patrol, chase, and attack behaviour.</li>
+              </ul>
               <p class="project-links">
                 <a
                   href="https://github.com/MiloPernemarkDEV/UnrealEngineAISystem"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Code on GitHub<span class="sr-only"> (opens in new tab)</span></a
+                  >GitHub<span class="sr-only"> (opens in new tab)</span></a
                 >
               </p>
             </div>
           </li>
         </ul>
 
-        <h3 class="subhead">C++ — engine and graphics</h3>
+        <h3 class="subhead">C++ · Graphics · Engines</h3>
         <ul class="project-list">
           <li class="project-entry">
             <div class="project-body">
               <h4><a href="projects/melon-engine.html">MelonEngine</a></h4>
-              <p class="meta">C++ · Vulkan · Engine · In progress</p>
-              <p>Vulkan 1.3 engine (WIP): compute backgrounds, ImGui editor, tilemap panel, sandbox.</p>
+              <p class="project-role">Engine Programmer · Solo · In progress</p>
+              <p class="meta">C++20 · Vulkan 1.3 · ImGui · CMake</p>
+              <p class="project-label">Contributions</p>
+              <ul class="contributions-list">
+                <li>Built Vulkan device, swapchain, and frame rendering path.</li>
+                <li>Implemented compute + graphics pipelines and ImGui editor shell.</li>
+              </ul>
               <p class="project-links">
-                <a href="projects/melon-engine.html">Details</a>
+                <a href="projects/melon-engine.html">Case study + code</a>
                 <span class="sep" aria-hidden="true">·</span>
                 <a
                   href="https://github.com/MiloPernemarkDEV/MelonEngine"
@@ -122,14 +163,18 @@
                   >Eclips<span class="sr-only"> (opens in new tab)</span></a
                 >
               </h4>
+              <p class="project-role">Graphics · Solo</p>
               <p class="meta">C++ · Vulkan</p>
-              <p>Vulkan basics — swapchain, render pass, draw geometry.</p>
+              <p class="project-label">Contributions</p>
+              <ul class="contributions-list">
+                <li>Swapchain, render pass, and basic mesh drawing.</li>
+              </ul>
               <p class="project-links">
                 <a
                   href="https://github.com/MiloPernemarkDEV/Eclips"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Code on GitHub<span class="sr-only"> (opens in new tab)</span></a
+                  >GitHub<span class="sr-only"> (opens in new tab)</span></a
                 >
               </p>
             </div>
@@ -137,10 +182,15 @@
           <li class="project-entry">
             <div class="project-body">
               <h4><a href="projects/vectormath-pong.html">VectorAssignment &amp; Pong</a></h4>
+              <p class="project-role">Gameplay + native code · Solo</p>
               <p class="meta">C++ · Unity · P/Invoke</p>
-              <p>C++ vector DLL + tests + Unity Pong via P/Invoke.</p>
+              <p class="project-label">Contributions</p>
+              <ul class="contributions-list">
+                <li>Wrote vector math DLL and console tests.</li>
+                <li>Integrated DLL into Unity Pong via P/Invoke.</li>
+              </ul>
               <p class="project-links">
-                <a href="projects/vectormath-pong.html">Details</a>
+                <a href="projects/vectormath-pong.html">Case study + code</a>
                 <span class="sep" aria-hidden="true">·</span>
                 <a
                   href="https://github.com/MiloPernemarkDEV/Vectormath_and_pong"
@@ -156,29 +206,29 @@
 
       <section id="contact" class="section contact-wrap" aria-labelledby="contact-heading">
         <div class="contact">
-        <h2 id="contact-heading">Contact</h2>
-        <p>Internships and junior roles welcome — email below.</p>
-        <ul class="contact-list">
-          <li>
-            <span class="contact-key">Email</span>
-            <a href="mailto:milosnya@gmail.com">milosnya@gmail.com</a>
-          </li>
-          <li>
-            <span class="contact-key">GitHub</span>
-            <a
-              href="https://github.com/MiloPernemarkDEV"
-              target="_blank"
-              rel="noopener noreferrer"
-              >github.com/MiloPernemarkDEV<span class="sr-only"> (opens in new tab)</span></a
-            >
-          </li>
-          <li>
-            <span class="contact-key">School</span>
-            <a href="https://www.forsbergsskola.se/" target="_blank" rel="noopener noreferrer"
-              >Forsbergs Skola<span class="sr-only"> (opens in new tab)</span></a
-            >
-          </li>
-        </ul>
+          <h2 id="contact-heading">Contact</h2>
+          <p>Open to internships and junior gameplay roles.</p>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-key">Email</span>
+              <a href="mailto:milosnya@gmail.com">milosnya@gmail.com</a>
+            </li>
+            <li>
+              <span class="contact-key">GitHub</span>
+              <a
+                href="https://github.com/MiloPernemarkDEV"
+                target="_blank"
+                rel="noopener noreferrer"
+                >github.com/MiloPernemarkDEV<span class="sr-only"> (opens in new tab)</span></a
+              >
+            </li>
+            <li>
+              <span class="contact-key">School</span>
+              <a href="https://www.forsbergsskola.se/" target="_blank" rel="noopener noreferrer"
+                >Forsbergs Skola<span class="sr-only"> (opens in new tab)</span></a
+              >
+            </li>
+          </ul>
         </div>
       </section>
     </main>

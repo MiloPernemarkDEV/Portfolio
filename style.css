@@ -269,6 +269,114 @@ a:focus-visible {
   border: none;
 }
 
+.project-role {
+  font-size: 0.9375rem;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.project-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--green);
+  margin: 0.75rem 0 0.4rem;
+}
+
+.contributions-list {
+  margin: 0 0 0.65rem;
+  padding-left: 1.25rem;
+  font-size: 1.0625rem;
+  color: var(--text-soft);
+  max-width: 44rem;
+}
+
+.contributions-list li {
+  margin-bottom: 0.4rem;
+}
+
+.contributions-list li::marker {
+  color: var(--green);
+}
+
+.skill-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.skill-tags li {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+}
+
+.skill-group {
+  margin-bottom: 1.25rem;
+}
+
+.skill-group h3 {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.35rem;
+}
+
+.project-facts {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  font-size: 1rem;
+  color: var(--text-soft);
+}
+
+.project-facts li {
+  margin-bottom: 0.35rem;
+}
+
+.project-facts strong {
+  color: var(--text);
+  font-weight: 600;
+  display: inline-block;
+  min-width: 5.5rem;
+}
+
+.code-block {
+  margin: 1rem 0 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #f8faf9;
+}
+
+.code-block-header {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--green);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--green-soft);
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  font-family: ui-monospace, "Cascadia Code", "Consolas", monospace;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--text);
+  tab-size: 2;
+}
+
 /* Projects — text-first list */
 .project-list {
   list-style: none;
