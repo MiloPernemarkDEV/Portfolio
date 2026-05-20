@@ -34,6 +34,8 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+  background-color: #ffffff;
 }
 
 body {
@@ -41,7 +43,7 @@ body {
   font-size: 1.1875rem;
   line-height: var(--line);
   color: var(--text);
-  background: var(--bg);
+  background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -319,23 +321,25 @@ a:focus-visible {
   font-weight: 600;
 }
 
-/* Contact */
+/* Contact — centered card (keep horizontal auto margins; do not use margin: 0 shorthand) */
 .contact {
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
   background: var(--bg-soft);
-  margin: 0 calc(-1 * var(--pad-inline));
-  padding: 2.5rem var(--pad-inline) calc(2.5rem + var(--pad-bottom));
-  padding-right: var(--pad-inline-end);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  padding: 2.5rem 2rem calc(2.5rem + var(--pad-bottom));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: left;
 }
 
-@media (min-width: 720px) {
-  .contact {
-    margin: 0;
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-  }
+.contact h2 {
+  text-align: left;
+}
+
+.contact-list {
+  text-align: left;
 }
 
 .contact-list {
@@ -365,6 +369,11 @@ a:focus-visible {
   padding: 2rem 0 calc(2.5rem + var(--pad-bottom));
   font-size: 1rem;
   color: var(--muted);
+  text-align: center;
+}
+
+.site-footer .container {
+  max-width: 36rem;
 }
 
 /* About */
