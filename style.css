@@ -1,4 +1,4 @@
-/* --- Global Styles & Cyberpunk Palette --- */
+/* --- Global Overrides & Visual Core --- */
 * {
     margin: 0;
     padding: 0;
@@ -7,14 +7,14 @@
 }
 
 :root {
-    --bg-black: #050507;
-    --bg-dark: #0c0c10;
-    --card-bg: #121218;
+    --bg-black: #050508;
+    --bg-dark: #0a0a0f;
+    --card-bg: #101016;
     --neon-green: #39ff14;
     --neon-melon: #ff3b6c;
     --text-white: #ffffff;
-    --text-dark: #707080;
-    --border-color: #222230;
+    --text-dark: #78788a;
+    --border-color: #1e1e2a;
 }
 
 html {
@@ -23,27 +23,26 @@ html {
     color: var(--text-white);
 }
 
-/* Subtle retro scanline effect across screen */
 .scanline {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 4px, 6px 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
+    background-size: 100% 4px;
     z-index: 999;
     pointer-events: none;
 }
 
-/* --- Navbar --- */
+/* --- Layout Components --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 8%;
-    background: rgba(5, 5, 7, 0.95);
-    backdrop-filter: blur(5px);
+    background: rgba(5, 5, 8, 0.95);
+    backdrop-filter: blur(4px);
     position: fixed;
     width: 100%;
     top: 0;
@@ -53,7 +52,7 @@ html {
 
 .logo {
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     letter-spacing: 2px;
 }
 
@@ -70,7 +69,7 @@ html {
     .nav-links a {
         color: var(--text-white);
         text-decoration: none;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         text-transform: uppercase;
         transition: color 0.2s;
     }
@@ -79,24 +78,25 @@ html {
             color: var(--neon-green);
         }
 
-/* --- Hero --- */
+/* --- Hero Intro block --- */
 .hero {
     height: 100vh;
     display: flex;
     align-items: center;
     padding: 0 8%;
-    background: radial-gradient(circle at 80% 20%, rgba(255, 59, 108, 0.07) 0%, transparent 50%);
+    background: radial-gradient(circle at 85% 25%, rgba(255, 59, 108, 0.05) 0%, transparent 60%);
     border-bottom: 1px solid var(--border-color);
 }
 
 .terminal-loader {
     color: var(--neon-green);
     margin-bottom: 1rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: bold;
 }
 
 .glitch-text {
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     line-height: 1.1;
     margin-bottom: 1.5rem;
     letter-spacing: -1px;
@@ -108,9 +108,9 @@ html {
     }
 
 .hero-sub {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     color: var(--text-dark);
-    max-width: 650px;
+    max-width: 700px;
     margin-bottom: 2.5rem;
     line-height: 1.6;
 }
@@ -122,11 +122,11 @@ html {
 }
 
 .btn-primary, .btn-secondary {
-    padding: 1rem 2rem;
+    padding: 1rem 1.8rem;
     text-decoration: none;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     transition: all 0.2s ease;
 }
 
@@ -138,7 +138,7 @@ html {
     .btn-primary:hover {
         background: var(--neon-melon);
         color: var(--bg-black);
-        box-shadow: 0 0 15px var(--neon-melon);
+        box-shadow: 0 0 15px rgba(255, 59, 108, 0.4);
     }
 
 .btn-secondary {
@@ -148,10 +148,10 @@ html {
 
     .btn-secondary:hover {
         border-color: var(--text-white);
-        background: rgba(255,255,255,0.05);
+        background: rgba(255,255,255,0.03);
     }
 
-/* --- Flagship Engine Feature Section --- */
+/* --- Engine Profile Segment --- */
 .engine-section {
     padding: 8rem 8%;
     background: var(--bg-dark);
@@ -167,14 +167,14 @@ html {
 
 .tag {
     color: var(--neon-melon);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     letter-spacing: 2px;
     display: block;
     margin-bottom: 0.5rem;
 }
 
 .engine-text h2 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-bottom: 1.5rem;
 }
 
@@ -193,46 +193,47 @@ html {
         margin-bottom: 0.75rem;
         position: relative;
         padding-left: 1.5rem;
-        color: #e0e0e6;
+        color: #e2e2e8;
     }
 
         .engine-features li::before {
-            content: ">>";
+            content: ">";
             position: absolute;
             left: 0;
             color: var(--neon-green);
+            font-weight: bold;
         }
 
 .btn-text {
     color: var(--neon-green);
     text-decoration: none;
     font-weight: bold;
+    font-size: 0.9rem;
 }
 
     .btn-text:hover {
         text-decoration: underline;
     }
 
-/* Code Block Graphic */
 .terminal-box {
     background: var(--bg-black);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
-    overflow: hidden;
+    border-radius: 2px;
 }
 
 .terminal-header {
-    background: #14141a;
+    background: #0f0f14;
     padding: 0.5rem;
     display: flex;
     gap: 0.4rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
     .terminal-header .dot {
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
         border-radius: 50%;
-        background: var(--border-color);
+        background: #2a2a3a;
     }
 
 .terminal-box pre {
@@ -241,26 +242,27 @@ html {
 }
 
 .terminal-box code {
-    color: #a0a0b0;
-    font-size: 0.85rem;
+    color: #8a8a9d;
+    font-size: 0.8rem;
     line-height: 1.5;
 }
 
-/* --- Deployments / Projects Grid --- */
+/* --- Engineering Project Grid --- */
 .projects-section {
     padding: 8rem 8%;
 }
 
 .section-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 4rem;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
 }
 
 .project-card {
@@ -271,26 +273,27 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 280px;
 }
 
 .card-status {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     padding: 0.2rem 0.6rem;
     border: 1px solid;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.project-card.architecture-focus .card-status {
+    color: var(--neon-green);
+    border-color: var(--neon-green);
 }
 
 .project-card.ongoing .card-status {
     color: #ffcc00;
     border-color: #ffcc00;
-}
-
-.project-card.completed .card-status {
-    color: var(--neon-green);
-    border-color: var(--neon-green);
 }
 
 .project-card.standalone .card-status {
@@ -300,36 +303,69 @@ html {
 
 .project-tech {
     color: var(--text-dark);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     display: block;
     margin-bottom: 0.5rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    font-weight: bold;
 }
 
 .project-card h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
+    color: #fff;
 }
 
 .project-card p {
     color: var(--text-dark);
     font-size: 0.9rem;
-    line-height: 1.6;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.tech-breakdown {
+    border-top: 1px dashed #222230;
+    padding-top: 1.5rem;
     margin-bottom: 2rem;
 }
 
+    .tech-breakdown h4 {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        color: var(--text-white);
+        margin-bottom: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+
+    .tech-breakdown ul {
+        list-style: none;
+    }
+
+    .tech-breakdown li {
+        font-size: 0.85rem;
+        color: var(--text-dark);
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+    }
+
+        .tech-breakdown li strong {
+            color: #d1d1d6;
+        }
+
 .project-link {
-    color: var(--text-white);
+    color: var(--neon-melon);
     font-weight: bold;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
     .project-link:hover {
-        color: var(--neon-melon);
+        text-decoration: underline;
     }
 
-/* --- Skills Layout --- */
+/* --- Tech Spec Matrix --- */
 .skills-section {
     padding: 8rem 8%;
     background: var(--bg-dark);
@@ -343,11 +379,12 @@ html {
 }
 
 .skill-group h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--neon-green);
     margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.5rem;
+    text-transform: uppercase;
 }
 
 .skill-group ul {
@@ -355,47 +392,46 @@ html {
 }
 
 .skill-group li {
-    margin-bottom: 1rem;
-    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
     color: var(--text-white);
+    font-weight: bold;
 }
 
     .skill-group li span {
         color: var(--text-dark);
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         display: block;
-        margin-top: 0.2rem;
+        margin-top: 0.25rem;
+        font-weight: normal;
     }
 
 footer {
     text-align: center;
     padding: 3rem;
     color: var(--text-dark);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     border-top: 1px solid var(--border-color);
+    background: var(--bg-black);
 }
 
-/* --- Responsiveness --- */
+/* --- System Responsiveness --- */
 @media (max-width: 968px) {
-    .engine-container, .skills-grid {
+    .engine-container, .skills-grid, .projects-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
 
     .glitch-text {
-        font-size: 2.5rem;
+        font-size: 2.4rem;
     }
 }
 
 @media (max-width: 600px) {
-    .navbar {
-        padding: 1.5rem 5%;
-    }
-
     .nav-links {
         display: none;
     }
-    /* Kept clean on tiny viewports */
+
     .hero, .engine-section, .projects-section, .skills-section {
         padding: 5rem 5%;
     }
