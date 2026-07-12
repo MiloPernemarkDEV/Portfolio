@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
-    <meta name="description"
-          content="The Unseen — Unreal Engine 5 puzzle mechanics and engine tools. Milo Pernemark." />
+    <meta name="description" content="The Unseen — Unreal Engine 5 puzzle mechanics and engine tools by Milo Pernemark." />
     <title>The Unseen | Milo Pernemark</title>
     <link rel="stylesheet" href="../style.css" />
 </head>
@@ -28,7 +27,7 @@
             <header class="case-header">
                 <p class="intro-kicker">C++ · Unreal Engine 5 · Gameplay & Tools</p>
                 <h1>The Unseen</h1>
-                <p class="case-lead">A decoupled, node-based interaction puzzle system and performance-conscious development utilities built in Unreal Engine C++.</p>
+                <p class="case-lead">A decoupled, node-based puzzle system and performance-conscious development utilities built in Unreal Engine C++.</p>
                 <ul class="tag-list" aria-label="Technologies">
                     <li>Unreal Engine 5</li>
                     <li>C++</li>
@@ -39,31 +38,31 @@
                 <p class="case-repo">
                     <a href="https://github.com/Forsbergs-Skola/HeliconUnrealOne"
                        target="_blank"
-                       rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in new tab)</span></a>
+                       rel="noopener noreferrer">GitHub Repository <span class="sr-only"> (opens in new tab)</span></a>
                 </p>
             </header>
 
             <section class="case-block">
-                <h2>Project overview</h2>
+                <h2>Project Overview</h2>
                 <ul class="project-facts">
-                    <li><strong>Role</strong> Gameplay & Systems Programmer</li>
-                    <li><strong>Status</strong> Completed Feature Set</li>
-                    <li><strong>Stack</strong> Unreal Engine C++ · Templates · Custom Gameplay Event Routing</li>
+                    <li><strong>Role:</strong> Gameplay & Systems Programmer</li>
+                    <li><strong>Status:</strong> Completed Feature Set</li>
+                    <li><strong>Stack:</strong> Unreal Engine C++ · Variadic Templates · Custom Event Routing</li>
                 </ul>
             </section>
 
             <section class="case-block">
-                <h2>Contributions & Architecture</h2>
+                <h2>Architecture & Core Features</h2>
                 <ul class="case-list">
-                    <li><strong>Decoupled Board Puzzle System:</strong> Architected a single-responsibility, node-based interaction sequence manager utilizing four dedicated actors (<code class="code-inline">Board</code>, <code class="code-inline">Node</code>, <code class="code-inline">Link</code>, and <code class="code-inline">Listener</code>) to allow designers to build infinitely reusable layout permutations entirely in-editor.</li>
-                    <li><strong>State & Order Validation:</strong> Programmed a standalone tracking matrix inside the board actor that records exact player activation patterns, verifying order-dependent logic sequences before firing state changes.</li>
-                    <li><strong>Blueprint-Safe Event Dispatching:</strong> Developed specialized event listener actors translating low-level C++ triggers into dynamic Blueprint events, creating direct gameplay reaction capabilities with zero hard dependency coupling.</li>
-                    <li><strong>Zero-Overhead Metaprogramming Utilities:</strong> Engineered <code class="code-inline">DebugUtility</code>, a type-safe logging suite using C++ variadic templates that auto-resolves engine data transformations (<code class="code-inline">FText</code>, <code class="code-inline">FName</code>) at compile time and strips completely out of shipping configurations via compiler expansion (<code class="code-inline">UE_BUILD_SHIPPING</code>).</li>
+                    <li><strong>Decoupled Puzzle Architecture:</strong> Programmed a flexible, modular puzzle system splitting responsibility across four discrete actors (<code class="code-inline">Board</code>, <code class="code-inline">Node</code>, <code class="code-inline">Link</code>, and <code class="code-inline">Listener</code>), allowing designers to build infinitely custom puzzle layouts directly within the editor viewport.</li>
+                    <li><strong>Sequence Validation:</strong> Implemented a clean sequence tracking system within the controller board actor that records exact player inputs and verifies order-dependent puzzle logic before executing state updates.</li>
+                    <li><strong>Blueprint-Safe Event Dispatching:</strong> Developed specialized event listener components that convert low-level C++ triggers into dynamic Blueprint events via dynamic multicast delegates, allowing gameplay reactions without tight code-to-asset coupling.</li>
+                    <li><strong>Zero-Overhead Debug Utilities:</strong> Engineered a type-safe `DebugUtility` tool using C++ variadic templates that auto-resolves engine strings (<code class="code-inline">FText</code>, <code class="code-inline">FName</code>) at compile time and strips completely out of shipping builds (<code class="code-inline">UE_BUILD_SHIPPING</code>).</li>
                 </ul>
             </section>
 
             <section class="case-block">
-                <h2>Code samples</h2>
+                <h2>Code Samples</h2>
 
                 <div class="code-block">
                     <div class="code-block-header">DebugUtility.h — Type-Safe Variadic Screen Messaging Template</div>
@@ -110,7 +109,7 @@ static void ScreenMessage(const FString& Format, Args&&... args)
                 <span class="sep" aria-hidden="true">·</span>
                 <a href="https://github.com/Forsbergs-Skola/HeliconUnrealOne"
                    target="_blank"
-                   rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in new tab)</span></a>
+                   rel="noopener noreferrer">GitHub Source <span class="sr-only"> (opens in new tab)</span></a>
             </p>
         </article>
     </main>
@@ -122,7 +121,7 @@ static void ScreenMessage(const FString& Format, Args&&... args)
     </footer>
 
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+        document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </body>
 </html>

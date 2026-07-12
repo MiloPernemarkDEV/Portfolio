@@ -1,18 +1,10 @@
-Ah, my apologies! Let's strip out SDL3 completely. If you are rolling your own native platform layers from scratch, the boilerplate should strictly be pure **Win32 API** windowing. Let's make sure the copy highlights exactly that: you are handling the raw platform creation and standard loop yourself, while keeping it clearly labeled as a work in progress.
-
-Here is the updated HTML block focusing strictly on the raw C++20 + Win32 + Vulkan architecture.
-
-### Updated HTML Markup
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
-    <meta name="description"
-          content="MelonEngine — C++20 Vulkan 1.3 engine. Milo Pernemark." />
+    <meta name="description" content="MelonEngine — Custom C++20 Vulkan 1.3 engine by Milo Pernemark." />
     <title>MelonEngine | Milo Pernemark</title>
     <link rel="stylesheet" href="../style.css" />
 </head>
@@ -35,9 +27,9 @@ Here is the updated HTML block focusing strictly on the raw C++20 + Win32 + Vulk
             <p class="case-back"><a href="../index.html#projects">← Projects</a></p>
 
             <header class="case-header">
-                <p class="intro-kicker">C++20 · Vulkan 1.3 · Work in Progress</p>
+                <p class="intro-kicker">C++20 · Vulkan 1.3 · Win32 API (Work in Progress)</p>
                 <h1>MelonEngine</h1>
-                <p class="case-lead">A native, modular Vulkan 1.3 graphics engine built from scratch with custom Win32 subsystems.</p>
+                <p class="case-lead">A modular Vulkan 1.3 graphics engine written from scratch in modern C++ featuring custom native platform layers.</p>
                 <ul class="tag-list" aria-label="Technologies">
                     <li>Vulkan 1.3</li>
                     <li>C++20</li>
@@ -49,31 +41,31 @@ Here is the updated HTML block focusing strictly on the raw C++20 + Win32 + Vulk
                 <p class="case-repo">
                     <a href="https://github.com/MiloPernemarkDEV/MelonEngine"
                        target="_blank"
-                       rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in new tab)</span></a>
+                       rel="noopener noreferrer">GitHub Backend Repository <span class="sr-only"> (opens in new tab)</span></a>
                 </p>
             </header>
 
             <section class="case-block">
-                <h2>Project overview</h2>
+                <h2>Project Overview</h2>
                 <ul class="project-facts">
-                    <li><strong>Role</strong> Engine Programmer (solo)</li>
-                    <li><strong>Status</strong> Active Development (Win32 Backend WIP)</li>
-                    <li><strong>Stack</strong> Vulkan 1.3 · Win32 API · C++20 · VMA · GLM</li>
+                    <li><strong>Role:</strong> Engine Programmer (Solo)</li>
+                    <li><strong>Status:</strong> Active Development (Win32 Backend WIP)</li>
+                    <li><strong>Stack:</strong> Vulkan 1.3 · Win32 API · C++20 · VMA · GLM</li>
                 </ul>
             </section>
 
             <section class="case-block">
-                <h2>Contributions & Architecture</h2>
+                <h2>Architecture & Core Features</h2>
                 <ul class="case-list">
-                    <li><strong>Decoupled Subsystems:</strong> Designed a structured core layer splitting ownership cleanly between the application driver (<code class="code-inline">Engine</code>), native window management, graphics contexts, and the renderer.</li>
-                    <li><strong>Native Win32 Window Layer (WIP):</strong> Developing a custom windowing layer directly on the native **Win32 API**, eliminating third-party wrapper dependencies to maintain low-overhead setup and custom message processing.</li>
-                    <li><strong>Context Management:</strong> Implemented a dedicated <code class="code-inline">VulkanContext</code> abstraction to encapsulate physical/logical device selection, extensions validation, instance lifetime, and surface bindings.</li>
-                    <li><strong>Pipeline Abstraction:</strong> Created a highly reusable <code class="code-inline">PipelineBuilder</code> module to streamline complex Vulkan graphics and compute pipeline configuration.</li>
+                    <li><strong>Decoupled Subsystems:</strong> Programmed a modular core architecture that cleanly separates explicit ownership boundaries between the primary driver (<code class="code-inline">Engine</code>), native window wrappers, device contexts, and the renderer backend.</li>
+                    <li><strong>Native Win32 Window Layer:</strong> Developing a lightweight, zero-dependency windowing wrapper using the native **Win32 API** to manage window lifecycles and handle raw OS hardware message pumps directly.</li>
+                    <li><strong>Context Management:</strong> Implemented a detailed <code class="code-inline">VulkanContext</code> abstraction to encapsulate physical/logical device selection, extension verification, validation layers, and surface bindings.</li>
+                    <li><strong>Pipeline Abstraction:</strong> Created a highly reusable, fluid <code class="code-inline">PipelineBuilder</code> class to streamline complex Vulkan graphics and compute pipeline configuration, layout tracking, and shader stage compilation.</li>
                 </ul>
             </section>
 
             <section class="case-block">
-                <h2>Code samples</h2>
+                <h2>Code Samples</h2>
 
                 <div class="code-block">
                     <div class="code-block-header">Engine.cpp — Core Initialization Sequence</div>
@@ -111,7 +103,7 @@ Here is the updated HTML block focusing strictly on the raw C++20 + Win32 + Vulk
                 <span class="sep" aria-hidden="true">·</span>
                 <a href="https://github.com/MiloPernemarkDEV/MelonEngine"
                    target="_blank"
-                   rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in new tab)</span></a>
+                   rel="noopener noreferrer">GitHub Source <span class="sr-only"> (opens in new tab)</span></a>
             </p>
         </article>
     </main>
@@ -127,5 +119,3 @@ Here is the updated HTML block focusing strictly on the raw C++20 + Win32 + Vulk
     </script>
 </body>
 </html>
-
-```

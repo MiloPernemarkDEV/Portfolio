@@ -14,7 +14,10 @@
     --text-primary: #1a1d20; /* Crisp, legible near-black */
     --text-muted: #5a626a; /* Soft dark gray for body details */
     --border-clean: #e2e8f0; /* Sharp, clean borders */
-    --tag-bg: #f1f5f9; /* Slate-tinted pill background */
+    /* Missing variables for the Engine terminal visual added here */
+    --bg-black: #121416;
+    --neon-melon: #4ade80;
+    --text-dark: #a1a1aa;
 }
 
 html {
@@ -96,11 +99,12 @@ html {
 /* --- Welcoming Hero Section --- */
 .hero {
     height: 80vh;
+    min-height: 500px;
     display: flex;
     align-items: center;
     padding: 0 10%;
     background: var(--bg-main);
-    /* Subtle engine viewport grid lines faintly layered on the white background */
+    /* Engine viewport grid lines faintly layered on the white background */
     background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
     border-bottom: 1px solid var(--border-clean);
@@ -119,6 +123,13 @@ html {
         color: var(--text-muted);
         opacity: 0.5;
     }
+
+/* Prevent text from over-stretching on huge monitors */
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
 
 .terminal-loader {
     color: var(--accent-coral);
@@ -167,6 +178,7 @@ html {
     letter-spacing: 0.5px;
     border-radius: 0px; /* Sharp, game-engine UI geometry */
     transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+    cursor: pointer;
 }
 
 .btn-primary {
@@ -202,6 +214,8 @@ html {
 }
 
 .engine-container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 4rem;
@@ -272,6 +286,12 @@ html {
         border-bottom-color: var(--primary-tech);
     }
 
+/* Explicit styling for terminal container */
+.terminal-box {
+    font-family: monospace;
+    border-radius: 0px;
+}
+
 /* --- Clean Projects Matrix --- */
 .projects-section {
     padding: 6rem 10%;
@@ -279,15 +299,17 @@ html {
 }
 
 .section-title {
+    max-width: 1200px;
+    margin: 0 auto 3.5rem auto;
     font-size: 2rem;
     font-weight: 800;
-    margin-bottom: 3.5rem;
     color: var(--text-primary);
     letter-spacing: -0.5px;
-    position: relative;
 }
 
 .projects-grid {
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     gap: 2.5rem;
@@ -349,10 +371,18 @@ html {
     margin-bottom: 1.5rem;
 }
 
+/* Grow the middle section so card actions align uniformly */
+.project-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 .tech-breakdown {
     border-top: 1px dashed var(--border-clean);
     padding-top: 1.25rem;
     margin-bottom: 1.5rem;
+    flex-grow: 1; /* Pushes content down evenly */
 }
 
     .tech-breakdown h4 {
@@ -370,9 +400,19 @@ html {
     .tech-breakdown li {
         font-size: 0.85rem;
         color: var(--text-muted);
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.6rem;
         line-height: 1.4;
+        position: relative;
+        padding-left: 0.75rem;
     }
+
+        /* Subtle dashboard style dashes for sub bullet points */
+        .tech-breakdown li::before {
+            content: "-";
+            position: absolute;
+            left: 0;
+            color: var(--primary-tech);
+        }
 
         .tech-breakdown li strong {
             color: var(--text-primary);
@@ -387,6 +427,7 @@ html {
     letter-spacing: 0.5px;
     display: inline-flex;
     align-items: center;
+    margin-top: auto; /* Aligns link to bottom */
 }
 
     .project-link:hover {
@@ -398,6 +439,11 @@ html {
     padding: 6rem 10%;
     background: var(--bg-main);
     border-top: 1px solid var(--border-clean);
+}
+
+.skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .skills-grid {

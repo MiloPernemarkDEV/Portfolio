@@ -8,22 +8,20 @@
 </head>
 <body>
 
-    <!-- Optional scanline div can go here if you decide to keep it, otherwise leave empty -->
-
     <nav class="navbar">
         <div class="logo">MILO_<span>PERNEMARK</span></div>
         <ul class="nav-links">
             <li><a href="#engine">Melon Engine</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills Matrix</a></li>
+            <li><a href="#skills">Technical Matrix</a></li>
         </ul>
     </nav>
 
     <header class="hero">
         <div class="hero-content">
-            <p class="terminal-loader">[Status] Open to Junior / Graduate Programming Roles</p>
+            <p class="terminal-loader">[Status] Seeking Junior / Graduate Programming Roles</p>
             <h1 class="glitch-text">GAMEPLAY & <span>SYSTEMS</span> PROGRAMMER</h1>
-            <p class="hero-sub">Personal project portfolio focusing on core systems development, gameplay implementation, and low-level math applications using C++, C#, Vulkan, and custom frameworks.</p>
+            <p class="hero-sub">Engine and gameplay portfolio focusing on core systems development, low-level engine architecture, and native interop using C++, C#, Vulkan, and custom frameworks.</p>
             <div class="hero-btns">
                 <a href="#projects" class="btn-primary">View Projects</a>
                 <a href="#engine" class="btn-secondary">View Custom Engine</a>
@@ -34,24 +32,24 @@
     <section id="engine" class="engine-section">
         <div class="engine-container">
             <div class="engine-text">
-                <span class="tag">C++ PROJECT</span>
+                <span class="tag">C++ / VULKAN PROJECT</span>
                 <h2>Melon Engine</h2>
                 <p class="engine-desc">
-                    A native, modular Vulkan 1.3 graphics engine written from scratch in C++. The purpose of this project is to learn how low-level subsystems manage hardware context selections, compile pipeline interfaces, and process operating system boundaries cleanly.
+                    A modular Vulkan 1.3 graphics engine written from scratch in modern C++. Built to gain a deep, practical understanding of low-level hardware initialization, swapchain lifecycles, and cross-platform window management.
                 </p>
                 <ul class="engine-features">
-                    <li><strong>Win32 Window Layer (WIP):</strong> Engineering a custom, low-overhead native platform window backend wrapper to handle window mutations and raw hardware event message pumps directly.</li>
-                    <li><strong>Pipeline Abstraction:</strong> Created a highly reusable `PipelineBuilder` class to streamline complex Vulkan graphics and compute pipeline configuration, shader stages, and layout compilation.</li>
-                    <li><strong>Subsystem Decoupling:</strong> Architected a structured core architecture splitting ownership cleanly between the core application layer (`Engine`), window controllers, and the backend `VulkanRenderer`.</li>
+                    <li><strong>Win32 Window Layer:</strong> Built a custom, low-overhead native platform wrapper to handle window instantiation and raw hardware event message pumps directly.</li>
+                    <li><strong>Pipeline Abstraction:</strong> Created a reusable `PipelineBuilder` class to cleanly manage complex Vulkan graphics/compute pipeline configurations and shader stage compilation.</li>
+                    <li><strong>Decoupled Architecture:</strong> Designed a modular structure that cleanly separates ownership between the core application layer (`Engine`), the window controllers, and the `VulkanRenderer` backend.</li>
                 </ul>
                 <a href="https://github.com/MiloPernemarkDEV/MelonEngine" target="_blank" class="btn-text">View Repository &rarr;</a>
             </div>
             <div class="engine-visual">
                 <div class="terminal-box" style="padding: 2.5rem; background: var(--bg-black); border: 1px solid var(--border-color);">
                     <h4 style="color: var(--neon-melon); margin-bottom: 1rem; font-size: 0.9rem;">DEVELOPMENT OBJECTIVES:</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6; margin-bottom: 0.5rem;">• Strip away black-box abstractions to understand raw application lifecycles and hardware boundaries.</p>
-                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6; margin-bottom: 0.5rem;">• Practice handling explicit Vulkan contexts, swapchains, and physical/logical device initialization profiles.</p>
-                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6;">• Build performant, modular pipeline architectures using clean modern C++20 conventions.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6; margin-bottom: 0.5rem;">• Strip away black-box abstractions to master raw hardware boundaries and resource lifecycles.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6; margin-bottom: 0.5rem;">• Manage explicit Vulkan contexts, swapchains, and multi-device synchronization profiles.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6;">• Write performant, maintainable code utilizing C++20 design conventions.</p>
                 </div>
             </div>
         </div>
@@ -62,83 +60,79 @@
 
         <div class="projects-grid">
 
-            <!-- Unreal Engine 5 Project: The Unseen -->
             <div class="project-card architecture-focus">
                 <div class="card-status active-tag">FEATURE COMPLETE</div>
                 <div class="project-info">
                     <span class="project-tech">Unreal Engine 5 / C++ / Systems</span>
                     <h3>The Unseen</h3>
-                    <p>Designed and built a modular, node-based interaction puzzle system alongside performance-conscious compile-time debug logging utilities inside Unreal Engine C++.</p>
+                    <p>A modular, node-based interaction puzzle system alongside performance-conscious compile-time debug utilities built using Unreal Engine C++.</p>
 
                     <div class="tech-breakdown">
                         <h4>Key Implementations:</h4>
                         <ul>
-                            <li><strong>Board Puzzle Architecture:</strong> Programmed a decoupled system splitting puzzle logic into single-responsibility actors (`Board`, `Node`, `Link`, `Listener`) to allow infinite structural combinations in-editor.</li>
-                            <li><strong>Blueprint-Safe Listeners:</strong> Broadcasted custom interaction sequencing updates safely into Blueprint event layers without adding direct references or tight C++ coupling.</li>
-                            <li><strong>Zero-Overhead Debug Suite:</strong> Engineered a custom type-safe `DebugUtility` tool using variadic templates that auto-handles engine strings and drops completely out of release configurations (`UE_BUILD_SHIPPING`).</li>
+                            <li><strong>Puzzle Architecture:</strong> Programmed a decoupled system splitting puzzle logic into single-responsibility actors (`Board`, `Node`, `Link`) to allow endless layout combinations in-editor.</li>
+                            <li><strong>Blueprint-Safe Event Layer:</strong> Broadcasted puzzle sequencing states safely to Blueprints using dynamic multicast delegates, avoiding tight C++ coupling.</li>
+                            <li><strong>Zero-Overhead Debug Suite:</strong> Engineered a type-safe `DebugUtility` tool using variadic templates that automatically optimizes out of release builds (`UE_BUILD_SHIPPING`).</li>
                         </ul>
                     </div>
                     <a href="projects/the_unseen.html" class="project-link">View Case Study &rarr;</a>
                 </div>
             </div>
 
-            <!-- Unity Group Project: USS Calliope -->
             <div class="project-card architecture-focus">
-                <div class="card-status group-tag">5-MAN GROUP PROJECT</div>
+                <div class="card-status group-tag">5-PLAYER GROUP PROJECT</div>
                 <div class="project-info">
                     <span class="project-tech">Unity / C# / Editor Tools</span>
                     <h3>USS Calliope</h3>
-                    <p>A collaborative project where I focused on writing the weapon shooting mechanics, data management via ScriptableObjects, and workflow tools to help our designers edit items faster.</p>
+                    <p>A collaborative project where I developed core weapon ballistics, data-driven item management via ScriptableObjects, and workflow tools for designers.</p>
 
                     <div class="tech-breakdown">
                         <h4>Key Implementations:</h4>
                         <ul>
-                            <li><strong>Ballistics & Spread:</strong> Applied Box–Muller mathematical transforms to create randomized weapon spread patterns.</li>
-                            <li><strong>Weapon Variables:</strong> Organized weapon attributes and damage values into scriptable containers for modular tweaking.</li>
-                            <li><strong>Custom Editor Tool:</strong> Programmed a dedicated `EditorWindow` utility featuring a unique ID generator to prevent designers from duplicating asset references.</li>
+                            <li><strong>Ballistics & Spread:</strong> Applied Box–Muller mathematical transforms to generate randomized, realistic weapon spread patterns.</li>
+                            <li><strong>Data-Driven Weapons:</strong> Managed weapon attributes and tuning parameters using modular ScriptableObject configurations for fast designer iteration.</li>
+                            <li><strong>Custom Editor Tooling:</strong> Wrote a dedicated `EditorWindow` utility featuring a unique ID generator to prevent duplicate asset reference errors.</li>
                         </ul>
                     </div>
-                    <a href="https://github.com/MiloPernemarkDEV/PortfolioPage" target="_blank" class="project-link">View Script Source</a>
+                    <a href="https://github.com/MiloPernemarkDEV/PortfolioPage" target="_blank" class="project-link">View Script Source &rarr;</a>
                 </div>
             </div>
 
-            <!-- Project: Native C++ Math Library & Unity Integration -->
             <div class="project-card architecture-focus">
                 <div class="card-status tech-tag">NATIVE INTEROP</div>
                 <div class="project-info">
                     <span class="project-tech">C++ / C# / Native Plugins</span>
                     <h3>Native Math Library & Pong Clone</h3>
-                    <p>A technical exercise in cross-language communication, consisting of a custom 2D math library written in unmanaged C++ that runs a simple Pong simulation inside Unity via DLL plugins.</p>
+                    <p>A technical exercise in cross-language communication, featuring a custom 2D math and physics library written in unmanaged C++ running inside Unity via DLL plugins.</p>
 
                     <div class="tech-breakdown">
                         <h4>Technical Focus:</h4>
                         <ul>
-                            <li><strong>P/Invoke Integration:</strong> Used `DllImport` to expose raw C++ structure math functions directly to Unity's managed C# environment.</li>
-                            <li><strong>Memory Layouts:</strong> Applied strict `LayoutKind.Sequential` structures to ensure that data packages retained the same memory size and alignment across language barriers.</li>
-                            <li><strong>Physics Calculations:</strong> Calculated basic directional reflection vectors and continuous AABB collision boundaries entirely inside the C++ DLL.</li>
+                            <li><strong>P/Invoke Integration:</strong> Used `DllImport` to expose raw C++ mathematical structures directly to Unity’s managed C# environment.</li>
+                            <li><strong>Memory Layout Blitting:</strong> Applied strict `LayoutKind.Sequential` formatting to ensure seamless data alignment and zero-copy structure passing across language boundaries.</li>
+                            <li><strong>Physics Calculations:</strong> Handled continuous AABB collision boundaries and directional reflection vectors entirely within the C++ backend.</li>
                         </ul>
                     </div>
-                    <a href="https://github.com/MiloPernemarkDEV/Vectormath_and_pong" target="_blank" class="project-link">View Plugin Source</a>
+                    <a href="https://github.com/MiloPernemarkDEV/Vectormath_and_pong" target="_blank" class="project-link">View Plugin Source &rarr;</a>
                 </div>
             </div>
 
-            <!-- Raylib Project -->
             <div class="project-card standalone">
                 <div class="card-status tech-tag">STANDALONE</div>
                 <div class="project-info">
                     <span class="project-tech">C++ / Raylib</span>
                     <h3>Native 2D Arcade Project</h3>
-                    <p>A simple, self-contained arcade project written using the Raylib library to practice structural game architecture without using an all-in-one editor interface.</p>
+                    <p>A self-contained arcade application built using Raylib to practice core architectural patterns without relying on an all-in-one editor interface.</p>
 
                     <div class="tech-breakdown">
                         <h4>Technical Focus:</h4>
                         <ul>
-                            <li><strong>State Machine:</strong> Set up an explicit screen router handling clean tracking transitions between menus, playing, and reset states.</li>
-                            <li><strong>Collisions:</strong> Wrote basic bounding box intersection checks manually for simple actor and environment overlaps.</li>
-                            <li><strong>Asset Flow:</strong> Practiced managing memory carefully by explicitly initializing textures and audio files on startup and deleting them completely upon exit.</li>
+                            <li><strong>State Machine:</strong> Implemented an explicit state router handling clean lifecycle transitions between game screens and reset routines.</li>
+                            <li><strong>Manual Collisions:</strong> Wrote custom bounding box intersection checks manually for simple actor and environment overlaps.</li>
+                            <li><strong>Resource Lifecycle:</strong> Practiced explicit memory management by manually allocating textures/audio on startup and releasing them cleanly on exit.</li>
                         </ul>
                     </div>
-                    <a href="https://github.com/MiloPernemarkDEV?tab=repositories" target="_blank" class="project-link">View Raylib Source</a>
+                    <a href="https://github.com/MiloPernemarkDEV?tab=repositories" target="_blank" class="project-link">View Raylib Source &rarr;</a>
                 </div>
             </div>
 
@@ -150,28 +144,28 @@
 
         <div class="skills-grid">
             <div class="skill-group">
-                <h3>Languages & Core Systems</h3>
+                <h3>Languages & Low-Level Systems</h3>
                 <ul>
-                    <li>C++ <span>Modern C++20 design conventions, manual memory allocation flows, type-safe structures</span></li>
-                    <li>Vulkan 1.3 <span>Logical/Physical hardware discovery, swapchain synchronization, graphics pipeline builder setup</span></li>
-                    <li>Win32 API <span>Custom engine window instantiation wrappers, window hooks, raw platform message routing</span></li>
-                    <li>Raylib & Math <span>Lightweight framework initialization, unmanaged asset flows, AABB math calculations</span></li>
+                    <li>C++ <span>Modern C++20 conventions, manual memory management, variadic templates, and metaprogramming</span></li>
+                    <li>Vulkan 1.3 <span>Physical/Logical device selection, swapchain synchronization, and graphics pipeline builds</span></li>
+                    <li>Win32 API <span>Custom engine window instantiation wrappers, window hooks, and raw event loop handling</span></li>
+                    <li>Game Math <span>Box-Muller transforms, linear algebra, custom 2D vector libraries, and AABB collision systems</span></li>
                 </ul>
             </div>
             <div class="skill-group">
-                <h3>Game Engines & Frameworks</h3>
+                <h3>Game Engines & Architectures</h3>
                 <ul>
-                    <li>Unreal Engine 5 <span>Decoupled gameplay components, specialized game actors, Blueprint validation exposure</span></li>
-                    <li>Unity <span>C# script architecture, ScriptableObject workflows, custom editor configuration tools</span></li>
-                    <li>Metaprogramming <span>Compile-time optimization tricks using C++ variadic template functions</span></li>
-                    <li>Systems & Interop <span>Native plugin building, P/Invoke memory layout pinning (`LayoutKind.Sequential`)</span></li>
+                    <li>Unreal Engine 5 <span>Decoupled C++ gameplay components, Custom Actor lifecycles, and Blueprint API exposure</span></li>
+                    <li>Unity <span>C# script architecture, ScriptableObject data flows, and custom editor window utilities</span></li>
+                    <li>Native Interop <span>Cross-language architecture, P/Invoke, and unmanaged memory layout pinning</span></li>
+                    <li>Frameworks <span>Raylib, lightweight framework initialization, and manual asset lifecycles</span></li>
                 </ul>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Milo Pernemark | Source code portfolio pages.</p>
+        <p>&copy; 2026 Milo Pernemark | Systems & Gameplay Portfolio</p>
     </footer>
 
 </body>
