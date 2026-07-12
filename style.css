@@ -7,17 +7,18 @@
 }
 
 :root {
-    --bg-main: #ffffff; /* Crisp, pure white background */
-    --bg-card: #ffffff; /* Pure white cards */
-    --primary-tech: #007a87; /* Deep Professional Teal */
-    --accent-coral: #e05345; /* Clean, motivating Coral */
-    --text-primary: #1a1d20; /* Crisp, legible near-black */
-    --text-muted: #5a626a; /* Soft dark gray for body details */
-    --border-clean: #e2e8f0; /* Sharp, clean borders */
-    /* Missing variables for the Engine terminal visual added here */
-    --bg-black: #121416;
+    /* Rider Dark IDE Palette */
+    --bg-main: #232425; /* Classic JetBrains dark IDE background */
+    --bg-card: #2c2c2c; /* Slightly lighter gray for containers and tool windows */
+    --primary-tech: #7f52ff; /* JetBrains Rider iconic Purple/Indigo */
+    --accent-coral: #e0683b; /* Rider Accent Orange/Warning tint */
+    --text-primary: #dfe1e5; /* High-contrast crisp light text */
+    --text-muted: #9da0a6; /* Muted gray for comments, metadata, and subtexts */
+    --border-clean: #393b40; /* Subtle UI separator line */
+    /* Terminal overrides updated for cohesive look */
+    --bg-black: #1e1e1e;
     --neon-melon: #4ade80;
-    --text-dark: #a1a1aa;
+    --text-dark: #71717a;
 }
 
 html {
@@ -39,13 +40,14 @@ html {
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 10%;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(35, 36, 37, 0.95); /* Tinted transparent background matching Rider dark */
     backdrop-filter: blur(8px);
     position: fixed;
-    width: 100%;
+    left: 0;
+    right: 0;
     top: 0;
     z-index: 100;
-    border-bottom: 2px solid var(--text-primary); /* Bold framing line */
+    border-bottom: 2px solid var(--border-clean); /* Changed from primary text to match IDE panel framing */
 }
 
 .logo {
@@ -88,7 +90,7 @@ html {
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent-coral);
+            background: var(--primary-tech); /* Swapped to Rider Purple for UI tabs */
             transition: width 0.15s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -104,8 +106,8 @@ html {
     align-items: center;
     padding: 0 10%;
     background: var(--bg-main);
-    /* Engine viewport grid lines faintly layered on the white background */
-    background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    /* Engine grid line opacity adjusted cleanly for the dark background */
+    background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
     background-size: 40px 40px;
     border-bottom: 1px solid var(--border-clean);
     margin-top: 60px;
@@ -182,16 +184,17 @@ html {
 }
 
 .btn-primary {
-    background: var(--text-primary);
+    background: var(--primary-tech); /* Inverted light/dark priority for dark mode pop */
     color: #ffffff;
-    border: 2px solid var(--text-primary);
+    border: 2px solid var(--primary-tech);
 }
 
     .btn-primary:hover {
-        background: var(--primary-tech);
-        border-color: var(--primary-tech);
+        background: transparent;
+        border-color: var(--text-primary);
+        color: var(--text-primary);
         transform: translate(-2px, -2px);
-        box-shadow: 4px 4px 0px var(--text-primary);
+        box-shadow: 4px 4px 0px var(--primary-tech);
     }
 
 .btn-secondary {
@@ -203,7 +206,7 @@ html {
     .btn-secondary:hover {
         border-color: var(--text-primary);
         transform: translate(-2px, -2px);
-        box-shadow: 4px 4px 0px var(--primary-tech);
+        box-shadow: 4px 4px 0px var(--accent-coral);
     }
 
 /* --- Sandbox / Custom Engine Layout --- */
@@ -290,6 +293,8 @@ html {
 .terminal-box {
     font-family: monospace;
     border-radius: 0px;
+    background: var(--bg-black);
+    border: 1px solid var(--border-clean);
 }
 
 /* --- Clean Projects Matrix --- */
@@ -315,11 +320,11 @@ html {
     gap: 2.5rem;
 }
 
-/* Sharp framing, completely white card backgrounds */
+/* Sharp framing, clean dark toolcard backgrounds */
 .project-card {
     background: var(--bg-card);
-    border: 2px solid var(--text-primary);
-    border-radius: 0px; /* Mechanical, crisp edges */
+    border: 2px solid var(--border-clean);
+    border-radius: 0px;
     padding: 2.25rem;
     position: relative;
     display: flex;
@@ -331,6 +336,7 @@ html {
     .project-card:hover {
         transform: translate(-4px, -4px);
         box-shadow: 6px 6px 0px var(--primary-tech);
+        border-color: var(--text-primary);
     }
 
 .card-status {
@@ -340,7 +346,7 @@ html {
     font-size: 0.65rem;
     padding: 0.25rem 0.6rem;
     font-weight: 800;
-    background: var(--text-primary);
+    background: var(--primary-tech);
     color: #ffffff;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -348,7 +354,7 @@ html {
 }
 
 .project-tech {
-    color: var(--primary-tech);
+    color: var(--text-muted);
     font-size: 0.8rem;
     display: block;
     margin-bottom: 0.6rem;
@@ -411,7 +417,7 @@ html {
             content: "-";
             position: absolute;
             left: 0;
-            color: var(--primary-tech);
+            color: var(--accent-coral);
         }
 
         .tech-breakdown li strong {
@@ -456,7 +462,7 @@ html {
     font-size: 1.15rem;
     color: var(--text-primary);
     margin-bottom: 1.75rem;
-    border-bottom: 2px solid var(--text-primary);
+    border-bottom: 2px solid var(--border-clean);
     padding-bottom: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -489,7 +495,7 @@ footer {
     padding: 3rem;
     color: var(--text-muted);
     font-size: 0.8rem;
-    border-top: 2px solid var(--text-primary);
+    border-top: 2px solid var(--border-clean);
     background: var(--bg-main);
     font-family: monospace;
 }
@@ -512,8 +518,18 @@ footer {
 }
 
 @media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 6%;
+    }
+
     .nav-links {
-        display: none;
+        gap: 1.5rem;
+    }
+
+    .hero {
+        margin-top: 100px;
     }
 
     .hero, .engine-section, .projects-section, .skills-section {
