@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milo Pernemark | Gameplay & Systems Programmer</title>
+    <title>Milo Pernemark | Gameplay & Game Engine Programmer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,8 +20,8 @@
     <header class="hero">
         <div class="hero-content">
             <p class="terminal-loader">[Status] Seeking Junior / Graduate Programming Roles</p>
-            <h1 class="glitch-text">GAMEPLAY & <span>SYSTEMS</span> PROGRAMMER</h1>
-            <p class="hero-sub">Engine and gameplay portfolio focusing on core systems development, low-level engine architecture, and native interop using C++, C#, Vulkan, and custom frameworks.</p>
+            <h1 class="glitch-text">GAMEPLAY & <span>ENGINE</span> PROGRAMMER</h1>
+            <p class="hero-sub">Engine and gameplay portfolio focusing on my personal and group projects.</p>
             <div class="hero-btns">
                 <a href="#projects" class="btn-primary">View Projects</a>
                 <a href="#engine" class="btn-secondary">View Custom Engine</a>
@@ -35,12 +35,12 @@
                 <span class="tag">C++ / VULKAN PROJECT</span>
                 <h2>Melon Engine</h2>
                 <p class="engine-desc">
-                    A modular Vulkan 1.3 graphics engine written from scratch in modern C++. Built to gain a deep, practical understanding of low-level hardware initialization, swapchain lifecycles, and cross-platform window management.
+                    A modular Vulkan 1.3 graphics engine written from scratch in modern C++. Built to gain a deep, practical understanding of low-level hardware initialization, os interaction, and the win32 API.
                 </p>
                 <ul class="engine-features">
-                    <li><strong>Win32 Window Layer:</strong> Built a custom, low-overhead native platform wrapper to handle window instantiation and raw hardware event message pumps directly.</li>
-                    <li><strong>Pipeline Abstraction:</strong> Created a reusable `PipelineBuilder` class to cleanly manage complex Vulkan graphics/compute pipeline configurations and shader stage compilation.</li>
-                    <li><strong>Decoupled Architecture:</strong> Designed a modular structure that cleanly separates ownership between the core application layer (`Engine`), the window controllers, and the `VulkanRenderer` backend.</li>
+                    <li><strong>Win32 Window Layer:</strong> A native platform wrapper to handle window instantiation, file utility and utilities for the renderer.</li>
+                    <li><strong>FFI bridge:</strong> Created a ffi bridge for writing renderer code in both Rust and C++</li>
+                    <li><strong>Decoupled Architecture:</strong>Clear seperation of concern and layered architecture by building and linknig to static libraries</li>
                 </ul>
                 <a href="https://github.com/MiloPernemarkDEV/MelonEngine" target="_blank" class="btn-text">View Repository &rarr;</a>
             </div>
@@ -65,14 +65,13 @@
                 <div class="project-info">
                     <span class="project-tech">Unreal Engine 5 / C++ / Systems</span>
                     <h3>The Unseen</h3>
-                    <p>A modular, node-based interaction puzzle system alongside performance-conscious compile-time debug utilities built using Unreal Engine C++.</p>
+                    <p>A modular, node-based interaction puzzle system alongside compile time debug utilities built using Unreal Engine C++.</p>
 
                     <div class="tech-breakdown">
                         <h4>Key Implementations:</h4>
                         <ul>
                             <li><strong>Puzzle Architecture:</strong> Programmed a decoupled system splitting puzzle logic into single-responsibility actors (`Board`, `Node`, `Link`) to allow endless layout combinations in-editor.</li>
-                            <li><strong>Blueprint-Safe Event Layer:</strong> Broadcasted puzzle sequencing states safely to Blueprints using dynamic multicast delegates, avoiding tight C++ coupling.</li>
-                            <li><strong>Zero-Overhead Debug Suite:</strong> Engineered a type-safe `DebugUtility` tool using variadic templates that automatically optimizes out of release builds (`UE_BUILD_SHIPPING`).</li>
+                            <li><strong>On Screen Debug macro</strong> Engineered a type-safe `DebugUtility` tool using variadic templates that are stripped out of release builds (`UE_BUILD_SHIPPING`).</li>
                         </ul>
                     </div>
                     <a href="projects/the_unseen.html" class="project-link">View Case Study &rarr;</a>
