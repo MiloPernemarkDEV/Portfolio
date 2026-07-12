@@ -37,22 +37,21 @@
                 <span class="tag">C++ PROJECT</span>
                 <h2>Melon Engine</h2>
                 <p class="engine-desc">
-                    A personal 2D/3D development sandbox written from scratch in C++. The purpose of this project is to learn how low-level frameworks manage memory, initialize graphics APIs, and organize entities without relying on commercial editors.
+                    A native, modular Vulkan 1.3 graphics engine written from scratch in C++. The purpose of this project is to learn how low-level subsystems manage hardware context selections, compile pipeline interfaces, and process operating system boundaries cleanly.
                 </p>
                 <ul class="engine-features">
-                    <li><strong>Memory Handling:</strong> Implemented basic linear allocators and memory arenas to practice cache-friendly layouts.</li>
-                    <li><strong>Architecture:</strong> Developed a basic Entity Component System (ECS) to handle components sequentially.</li>
-                    <li><strong>Graphics:</strong> Wrote the baseline boilerplate for Vulkan physical device binding and pipeline initialization.</li>
+                    <li><strong>Win32 Window Layer (WIP):</strong> Engineering a custom, low-overhead native platform window backend wrapper to handle window mutations and raw hardware event message pumps directly.</li>
+                    <li><strong>Pipeline Abstraction:</strong> Created a highly reusable `PipelineBuilder` class to streamline complex Vulkan graphics and compute pipeline configuration, shader stages, and layout compilation.</li>
+                    <li><strong>Subsystem Decoupling:</strong> Architected a structured core architecture splitting ownership cleanly between the core application layer (`Engine`), window controllers, and the backend `VulkanRenderer`.</li>
                 </ul>
-                <a href="https://github.com/MiloPernemarkDEV?tab=repositories" target="_blank" class="btn-text">View Repository &rarr;</a>
+                <a href="https://github.com/MiloPernemarkDEV/MelonEngine" target="_blank" class="btn-text">View Repository &rarr;</a>
             </div>
             <div class="engine-visual">
-                <!-- Cleaned up block focused on explicit design goals -->
                 <div class="terminal-box" style="padding: 2.5rem; background: var(--bg-black); border: 1px solid var(--border-color);">
                     <h4 style="color: var(--neon-melon); margin-bottom: 1rem; font-size: 0.9rem;">DEVELOPMENT OBJECTIVES:</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6; margin-bottom: 0.5rem;">• Strip away black-box editor abstractions to understand raw application lifecycles.</p>
-                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6; margin-bottom: 0.5rem;">• Practice handling explicit CPU/GPU synchronization and resource lifetimes.</p>
-                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6;">• Isolate performance bottlenecks manually using simple benchmarking wrappers.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6; margin-bottom: 0.5rem;">• Strip away black-box abstractions to understand raw application lifecycles and hardware boundaries.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6; margin-bottom: 0.5rem;">• Practice handling explicit Vulkan contexts, swapchains, and physical/logical device initialization profiles.</p>
+                    <p style="font-size: 0.85rem; color: var(--text-dark); line-height: 1.6;">• Build performant, modular pipeline architectures using clean modern C++20 conventions.</p>
                 </div>
             </div>
         </div>
@@ -62,6 +61,26 @@
         <h2 class="section-title">Project Repositories</h2>
 
         <div class="projects-grid">
+
+            <!-- Unreal Engine 5 Project: The Unseen -->
+            <div class="project-card architecture-focus">
+                <div class="card-status active-tag">FEATURE COMPLETE</div>
+                <div class="project-info">
+                    <span class="project-tech">Unreal Engine 5 / C++ / Systems</span>
+                    <h3>The Unseen</h3>
+                    <p>Designed and built a modular, node-based interaction puzzle system alongside performance-conscious compile-time debug logging utilities inside Unreal Engine C++.</p>
+
+                    <div class="tech-breakdown">
+                        <h4>Key Implementations:</h4>
+                        <ul>
+                            <li><strong>Board Puzzle Architecture:</strong> Programmed a decoupled system splitting puzzle logic into single-responsibility actors (`Board`, `Node`, `Link`, `Listener`) to allow infinite structural combinations in-editor.</li>
+                            <li><strong>Blueprint-Safe Listeners:</strong> Broadcasted custom interaction sequencing updates safely into Blueprint event layers without adding direct references or tight C++ coupling.</li>
+                            <li><strong>Zero-Overhead Debug Suite:</strong> Engineered a custom type-safe `DebugUtility` tool using variadic templates that auto-handles engine strings and drops completely out of release configurations (`UE_BUILD_SHIPPING`).</li>
+                        </ul>
+                    </div>
+                    <a href="projects/the_unseen.html" class="project-link">View Case Study &rarr;</a>
+                </div>
+            </div>
 
             <!-- Unity Group Project: USS Calliope -->
             <div class="project-card architecture-focus">
@@ -103,26 +122,6 @@
                 </div>
             </div>
 
-            <!-- Unreal Engine 5 Group Project -->
-            <div class="project-card ongoing">
-                <div class="card-status active-tag">IN DEVELOPMENT</div>
-                <div class="project-info">
-                    <span class="project-tech">Unreal Engine 5 / C++</span>
-                    <h3>Unannounced 3D Project</h3>
-                    <p>An ongoing team development project aimed at learning the Unreal Engine 5 framework, API architecture, and standard gameplay patterns.</p>
-
-                    <div class="tech-breakdown">
-                        <h4>My Responsibilities:</h4>
-                        <ul>
-                            <li>Writing and exposing fundamental movement components cleanly from C++ to Blueprints.</li>
-                            <li>Setting up simple enemy AI navigation using built-in Behavior Trees and task behaviors.</li>
-                            <li>Locating and fixing runtime logical errors and performance hitches.</li>
-                        </ul>
-                    </div>
-                    <a href="https://github.com/MiloPernemarkDEV/" target="_blank" class="project-link">View Developer Log</a>
-                </div>
-            </div>
-
             <!-- Raylib Project -->
             <div class="project-card standalone">
                 <div class="card-status tech-tag">STANDALONE</div>
@@ -153,19 +152,19 @@
             <div class="skill-group">
                 <h3>Languages & Core Systems</h3>
                 <ul>
-                    <li>C++ <span>Object-oriented development, manual memory flows, basic memory layout structures</span></li>
-                    <li>Vulkan API <span>Device discovery, initialization boilerplate, graphics pipelines</span></li>
-                    <li>Systems Practice <span>Basic Entity Component System design, memory pooling, 2D vector mathematics</span></li>
-                    <li>Raylib <span>Fast unmanaged application setups, lightweight 2D prototypes</span></li>
+                    <li>C++ <span>Modern C++20 design conventions, manual memory allocation flows, type-safe structures</span></li>
+                    <li>Vulkan 1.3 <span>Logical/Physical hardware discovery, swapchain synchronization, graphics pipeline builder setup</span></li>
+                    <li>Win32 API <span>Custom engine window instantiation wrappers, window hooks, raw platform message routing</span></li>
+                    <li>Raylib & Math <span>Lightweight framework initialization, unmanaged asset flows, AABB math calculations</span></li>
                 </ul>
             </div>
             <div class="skill-group">
                 <h3>Game Engines & Frameworks</h3>
                 <ul>
-                    <li>Unreal Engine 5 <span>C++ base gameplay classes, Blueprint sub-classing, AI controllers</span></li>
-                    <li>Unity <span>C# script architecture, ScriptableObject workflows, structural inheritance layouts</span></li>
-                    <li>Gameplay Components <span>Basic raycast paths, velocity integration, mechanical state trees</span></li>
-                    <li>Editor Extensions <span>Custom Unity inspector elements and custom execution windows</span></li>
+                    <li>Unreal Engine 5 <span>Decoupled gameplay components, specialized game actors, Blueprint validation exposure</span></li>
+                    <li>Unity <span>C# script architecture, ScriptableObject workflows, custom editor configuration tools</span></li>
+                    <li>Metaprogramming <span>Compile-time optimization tricks using C++ variadic template functions</span></li>
+                    <li>Systems & Interop <span>Native plugin building, P/Invoke memory layout pinning (`LayoutKind.Sequential`)</span></li>
                 </ul>
             </div>
         </div>

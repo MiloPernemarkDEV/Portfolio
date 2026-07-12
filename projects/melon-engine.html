@@ -1,147 +1,131 @@
+Ah, my apologies! Let's strip out SDL3 completely. If you are rolling your own native platform layers from scratch, the boilerplate should strictly be pure **Win32 API** windowing. Let's make sure the copy highlights exactly that: you are handling the raw platform creation and standard loop yourself, while keeping it clearly labeled as a work in progress.
+
+Here is the updated HTML block focusing strictly on the raw C++20 + Win32 + Vulkan architecture.
+
+### Updated HTML Markup
+
+```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
-    <meta
-      name="description"
-      content="MelonEngine — C++ Vulkan 1.3 engine in progress. Milo Pernemark."
-    />
+    <meta name="description"
+          content="MelonEngine — C++20 Vulkan 1.3 engine. Milo Pernemark." />
     <title>MelonEngine | Milo Pernemark</title>
     <link rel="stylesheet" href="../style.css" />
-  </head>
-  <body>
+</head>
+<body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <nav class="nav container" aria-label="Primary">
-        <a class="brand" href="../index.html">Milo Pernemark</a>
-        <ul class="nav-links">
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../about.html">About</a></li>
-          <li><a href="../index.html#projects">Projects</a></li>
-          <li><a href="../index.html#contact">Contact</a></li>
-        </ul>
-      </nav>
+        <nav class="nav container" aria-label="Primary">
+            <a class="brand" href="../index.html">Milo Pernemark</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main id="main">
-      <article class="case-study container section">
-        <p class="case-back"><a href="../index.html#projects">← Projects</a></p>
+        <article class="case-study container section">
+            <p class="case-back"><a href="../index.html#projects">← Projects</a></p>
 
-        <header class="case-header">
-          <p class="intro-kicker">C++20 · Vulkan 1.3 · In progress</p>
-          <h1>MelonEngine</h1>
-          <p class="case-lead">Custom Vulkan engine — active development, public repo.</p>
-          <ul class="tag-list" aria-label="Technologies">
-            <li>Vulkan 1.3</li>
-            <li>C++20</li>
-            <li>CMake</li>
-            <li>ImGui</li>
-            <li>VMA</li>
-          </ul>
-          <p class="case-repo">
-            <a
-              href="https://github.com/MiloPernemarkDEV/MelonEngine"
-              target="_blank"
-              rel="noopener noreferrer"
-              >GitHub<span class="sr-only"> (opens in new tab)</span></a
-            >
-          </p>
-        </header>
+            <header class="case-header">
+                <p class="intro-kicker">C++20 · Vulkan 1.3 · Work in Progress</p>
+                <h1>MelonEngine</h1>
+                <p class="case-lead">A native, modular Vulkan 1.3 graphics engine built from scratch with custom Win32 subsystems.</p>
+                <ul class="tag-list" aria-label="Technologies">
+                    <li>Vulkan 1.3</li>
+                    <li>C++20</li>
+                    <li>Win32 API</li>
+                    <li>VMA</li>
+                    <li>GLM</li>
+                    <li>CMake</li>
+                </ul>
+                <p class="case-repo">
+                    <a href="https://github.com/MiloPernemarkDEV/MelonEngine"
+                       target="_blank"
+                       rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in new tab)</span></a>
+                </p>
+            </header>
 
-        <section class="case-block">
-          <h2>Project overview</h2>
-          <ul class="project-facts">
-            <li><strong>Role</strong> Engine Programmer (solo)</li>
-            <li><strong>Status</strong> Work in progress</li>
-            <li><strong>Stack</strong> Vulkan 1.3 · GLFW · ImGui · VMA</li>
-          </ul>
-        </section>
+            <section class="case-block">
+                <h2>Project overview</h2>
+                <ul class="project-facts">
+                    <li><strong>Role</strong> Engine Programmer (solo)</li>
+                    <li><strong>Status</strong> Active Development (Win32 Backend WIP)</li>
+                    <li><strong>Stack</strong> Vulkan 1.3 · Win32 API · C++20 · VMA · GLM</li>
+                </ul>
+            </section>
 
-        <section class="case-block" aria-label="Screenshots">
-          <div class="case-gallery">
-            <figure class="case-figure">
-              <img
-                src="../assets/projects/melon-engine-editor.png"
-                alt="MelonEngine editor viewport."
-                width="960"
-                height="540"
-                loading="lazy"
-              />
-              <figcaption>ImGui editor + tilemap panel.</figcaption>
-            </figure>
-            <figure class="case-figure">
-              <img
-                src="../assets/projects/melon-engine-compute.png"
-                alt="Sky compute shader with parameter UI."
-                width="960"
-                height="540"
-                loading="lazy"
-              />
-              <figcaption>Compute sky — live UI params.</figcaption>
-            </figure>
-          </div>
-        </section>
+            <section class="case-block">
+                <h2>Contributions & Architecture</h2>
+                <ul class="case-list">
+                    <li><strong>Decoupled Subsystems:</strong> Designed a structured core layer splitting ownership cleanly between the application driver (<code class="code-inline">Engine</code>), native window management, graphics contexts, and the renderer.</li>
+                    <li><strong>Native Win32 Window Layer (WIP):</strong> Developing a custom windowing layer directly on the native **Win32 API**, eliminating third-party wrapper dependencies to maintain low-overhead setup and custom message processing.</li>
+                    <li><strong>Context Management:</strong> Implemented a dedicated <code class="code-inline">VulkanContext</code> abstraction to encapsulate physical/logical device selection, extensions validation, instance lifetime, and surface bindings.</li>
+                    <li><strong>Pipeline Abstraction:</strong> Created a highly reusable <code class="code-inline">PipelineBuilder</code> module to streamline complex Vulkan graphics and compute pipeline configuration.</li>
+                </ul>
+            </section>
 
-        <section class="case-block">
-          <h2>Contributions</h2>
-          <ul class="case-list">
-            <li>Vulkan device: swapchain, VMA allocator, frames in flight, mesh upload.</li>
-            <li>Compute pipelines (<code class="code-inline">gradient.comp</code>, <code class="code-inline">sky.comp</code>) with runtime switching.</li>
-            <li>Graphics pipelines via <code class="code-inline">PipelineBuilder</code>; renderer composites compute + geometry + UI.</li>
-            <li>ImGui docking editor, tilemap panel shell, core window/input/alloc systems.</li>
-          </ul>
-        </section>
+            <section class="case-block">
+                <h2>Code samples</h2>
 
-        <section class="case-block">
-          <h2>Code samples</h2>
+                <div class="code-block">
+                    <div class="code-block-header">Engine.cpp — Core Initialization Sequence</div>
+                    <pre><code>void Engine::Init() 
+{
+    m_Window = std::make_unique&lt;Window&gt;(1280, 720, "MelonEngine");
+    m_VulkanContext = std::make_unique&lt;VulkanContext&gt;(*m_Window);
+    m_Renderer = std::make_unique&lt;VulkanRenderer&gt;(*m_VulkanContext, *m_Window);
 
-          <div class="code-block">
-            <div class="code-block-header">Pipelines.cpp — compute background setup</div>
-            <pre><code>VkComputePipelineCreateInfo computePipelineCreateInfo{};
-computePipelineCreateInfo.sType = VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO;
-computePipelineCreateInfo.layout = _gradientPipelineLayout;
-computePipelineCreateInfo.stage = stageInfo;
+    m_IsInitialized = true;
+}</code></pre>
+                </div>
 
-ComputeEffect gradient;
-gradient.name = "gradient";
-VK_CHECK(vkCreateComputePipelines(_device->GetDevice(), VK_NULL_HANDLE, 1,
-    &computePipelineCreateInfo, nullptr, &gradient.pipeline));</code></pre>
-          </div>
+                <div class="code-block">
+                    <div class="code-block-header">Win32Window.cpp (WIP Backend) — Message Dispatch Pump</div>
+                    <pre><code>void Win32Window::PollEvents() 
+{
+    MSG msg = {};
+    while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) 
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+        
+        if (msg.message == WM_QUIT) 
+        {
+            m_ShouldClose = true;
+        }
+    }
+}</code></pre>
+                </div>
+            </section>
 
-          <div class="code-block">
-            <div class="code-block-header">MelonImGui.cpp — live effect selection</div>
-            <pre><code>auto& effects = _pipelines->GetBackgroundEffects();
-int& index = _pipelines->GetCurrentBackgroundEffect();
-ComputeEffect& selected = effects[index];
-
-ImGui::TextUnformatted("Selected Effect:");
-ImGui::Text("%s", selected.name.c_str());</code></pre>
-          </div>
-        </section>
-
-        <p class="case-back case-back--footer">
-          <a href="../index.html#projects">← Projects</a>
-          <span class="sep" aria-hidden="true">·</span>
-          <a
-            href="https://github.com/MiloPernemarkDEV/MelonEngine"
-            target="_blank"
-            rel="noopener noreferrer"
-            >GitHub<span class="sr-only"> (opens in new tab)</span></a
-          >
-        </p>
-      </article>
+            <p class="case-back case-back--footer">
+                <a href="../index.html#projects">← Projects</a>
+                <span class="sep" aria-hidden="true">·</span>
+                <a href="https://github.com/MiloPernemarkDEV/MelonEngine"
+                   target="_blank"
+                   rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in new tab)</span></a>
+            </p>
+        </article>
     </main>
 
     <footer class="site-footer">
-      <div class="container">
-        <p>© <span id="year"></span> Milo Pernemark</p>
-      </div>
+        <div class="container">
+            <p>© <span id="year"></span> Milo Pernemark</p>
+        </div>
     </footer>
 
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+        document.getElementById("year").textContent = new Date().getFullYear();
     </script>
-  </body>
+</body>
 </html>
+
+```

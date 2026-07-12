@@ -1,10 +1,3 @@
-To match the cleaner, professional, and grounded tone of your updated text, the CSS needs to move away from the dark "hacker terminal" vibe and transition into a crisp, modern, **tech-professional aesthetic**.
-
-This updated stylesheet introduces a bright, high-contrast theme using clean off-whites, professional slate grays, and vivid but elegant accent colors (**Teal** and **Coral**). It removes the dark neon styles, replaces the glitch layouts with refined modern spacing, and focuses purely on high scannability so hiring managers can find your skills instantly.
-
-### The Upgraded Stylesheet (`style.css`)
-
-```css
 /* --- Global Overrides & Professional Typography --- */
 * {
     margin: 0;
@@ -14,14 +7,14 @@ This updated stylesheet introduces a bright, high-contrast theme using clean off
 }
 
 :root {
-    --bg-main: #f8f9fa;
-    --bg-card: #ffffff;
+    --bg-main: #ffffff; /* Crisp, pure white background */
+    --bg-card: #ffffff; /* Pure white cards */
     --primary-tech: #007a87; /* Deep Professional Teal */
     --accent-coral: #e05345; /* Clean, motivating Coral */
     --text-primary: #1a1d20; /* Crisp, legible near-black */
     --text-muted: #5a626a; /* Soft dark gray for body details */
-    --border-clean: #e3e6e8; /* Subtle divider lines */
-    --tag-bg: #eff2f5; /* Light contrast pill background */
+    --border-clean: #e2e8f0; /* Sharp, clean borders */
+    --tag-bg: #f1f5f9; /* Slate-tinted pill background */
 }
 
 html {
@@ -31,26 +24,33 @@ html {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Subtly dynamic focus states for an engine-like snappy response */
+*:focus-visible {
+    outline: 2px dashed var(--primary-tech);
+    outline-offset: 4px;
+}
+
 /* --- Clean Navigation Layout --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 10%;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid var(--border-clean);
+    border-bottom: 2px solid var(--text-primary); /* Bold framing line */
 }
 
 .logo {
-    font-weight: 700;
-    font-size: 1.1rem;
-    letter-spacing: 0.5px;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: -0.5px;
     color: var(--text-primary);
+    text-transform: uppercase;
 }
 
     .logo span {
@@ -60,59 +60,96 @@ html {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
     .nav-links a {
         color: var(--text-muted);
         text-decoration: none;
         font-size: 0.9rem;
-        font-weight: 500;
-        transition: color 0.15s ease;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        transition: color 0.1s ease;
+        position: relative;
     }
 
         .nav-links a:hover {
-            color: var(--primary-tech);
+            color: var(--text-primary);
+        }
+
+        /* A snappy under-line anchor mimicking a UI selector */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-coral);
+            transition: width 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
 /* --- Welcoming Hero Section --- */
 .hero {
-    height: 85vh;
+    height: 80vh;
     display: flex;
     align-items: center;
     padding: 0 10%;
-    background: linear-gradient(135deg, #f1f5f9 0%, var(--bg-main) 100%);
+    background: var(--bg-main);
+    /* Subtle engine viewport grid lines faintly layered on the white background */
+    background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
     border-bottom: 1px solid var(--border-clean);
     margin-top: 60px;
+    position: relative;
 }
+
+    /* Engine crosshairs in the hero corners for flavor */
+    .hero::before {
+        content: '[ + ]';
+        position: absolute;
+        bottom: 20px;
+        right: 10%;
+        font-family: monospace;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        opacity: 0.5;
+    }
 
 .terminal-loader {
     color: var(--accent-coral);
     margin-bottom: 0.75rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: monospace;
+    text-transform: uppercase;
 }
 
 .glitch-text {
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 1.2rem;
-    letter-spacing: -0.5px;
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
     color: var(--text-primary);
 }
 
     .glitch-text span {
         color: var(--primary-tech);
+        position: relative;
     }
 
 .hero-sub {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--text-muted);
     max-width: 680px;
     margin-bottom: 2.5rem;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .hero-btns {
@@ -121,41 +158,46 @@ html {
     flex-wrap: wrap;
 }
 
+/* Geometric, snappy buttons */
 .btn-primary, .btn-secondary {
-    padding: 0.8rem 1.6rem;
+    padding: 0.85rem 1.8rem;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.85rem;
-    border-radius: 4px;
-    transition: all 0.15s ease;
+    letter-spacing: 0.5px;
+    border-radius: 0px; /* Sharp, game-engine UI geometry */
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
 }
 
 .btn-primary {
-    background: var(--primary-tech);
+    background: var(--text-primary);
     color: #ffffff;
-    border: 1px solid var(--primary-tech);
+    border: 2px solid var(--text-primary);
 }
 
     .btn-primary:hover {
-        background: #00626a;
-        border-color: #00626a;
+        background: var(--primary-tech);
+        border-color: var(--primary-tech);
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0px var(--text-primary);
     }
 
 .btn-secondary {
     background: transparent;
-    border: 1px solid #cbd5e1;
-    color: var(--text-muted);
+    border: 2px solid var(--border-clean);
+    color: var(--text-primary);
 }
 
     .btn-secondary:hover {
         border-color: var(--text-primary);
-        color: var(--text-primary);
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0px var(--primary-tech);
     }
 
 /* --- Sandbox / Custom Engine Layout --- */
 .engine-section {
     padding: 6rem 10%;
-    background: #ffffff;
+    background: var(--bg-main);
     border-bottom: 1px solid var(--border-clean);
 }
 
@@ -167,139 +209,157 @@ html {
 }
 
 .tag {
-    color: var(--primary-tech);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+    color: var(--accent-coral);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
     display: block;
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-family: monospace;
 }
 
 .engine-text h2 {
-    font-size: 2.2rem;
-    font-weight: 700;
+    font-size: 2.4rem;
+    font-weight: 800;
     margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
 }
 
 .engine-desc {
     color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 1.8rem;
+    font-size: 1.05rem;
 }
 
 .engine-features {
     list-style: none;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
     .engine-features li {
         margin-bottom: 0.8rem;
         position: relative;
-        padding-left: 1.2rem;
+        padding-left: 1.5rem;
         color: var(--text-primary);
         font-size: 0.95rem;
+        font-weight: 500;
     }
 
+        /* Custom bullet mimicking vector plot points */
         .engine-features li::before {
-            content: "•";
+            content: "";
             position: absolute;
             left: 0;
-            color: var(--primary-tech);
-            font-weight: bold;
+            top: 7px;
+            width: 6px;
+            height: 6px;
+            background: var(--primary-tech);
         }
 
 .btn-text {
     color: var(--primary-tech);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.95rem;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+    transition: border 0.1s ease;
 }
 
     .btn-text:hover {
-        text-decoration: underline;
+        border-bottom-color: var(--primary-tech);
     }
 
 /* --- Clean Projects Matrix --- */
 .projects-section {
     padding: 6rem 10%;
+    background: var(--bg-main);
 }
 
 .section-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 3.5rem;
     color: var(--text-primary);
+    letter-spacing: -0.5px;
+    position: relative;
 }
 
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
+/* Sharp framing, completely white card backgrounds */
 .project-card {
     background: var(--bg-card);
-    border: 1px solid var(--border-clean);
-    border-radius: 6px;
-    padding: 2rem;
+    border: 2px solid var(--text-primary);
+    border-radius: 0px; /* Mechanical, crisp edges */
+    padding: 2.25rem;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.12s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
     .project-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+        transform: translate(-4px, -4px);
+        box-shadow: 6px 6px 0px var(--primary-tech);
     }
 
 .card-status {
     position: absolute;
-    top: 1.5rem;
+    top: -12px;
     right: 1.5rem;
-    font-size: 0.7rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 3px;
-    font-weight: 700;
-    background: var(--tag-bg);
-    color: var(--text-muted);
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+    font-weight: 800;
+    background: var(--text-primary);
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: monospace;
 }
 
 .project-tech {
     color: var(--primary-tech);
     font-size: 0.8rem;
     display: block;
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
-    font-weight: 600;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: monospace;
 }
 
 .project-card h3 {
-    font-size: 1.35rem;
-    font-weight: 700;
+    font-size: 1.4rem;
+    font-weight: 800;
     margin-bottom: 0.8rem;
     color: var(--text-primary);
 }
 
 .project-card p {
     color: var(--text-muted);
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.6;
     margin-bottom: 1.5rem;
 }
 
 .tech-breakdown {
-    border-top: 1px solid var(--border-clean);
+    border-top: 1px dashed var(--border-clean);
     padding-top: 1.25rem;
     margin-bottom: 1.5rem;
 }
 
     .tech-breakdown h4 {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         text-transform: uppercase;
         color: var(--text-primary);
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.6rem;
         letter-spacing: 0.5px;
     }
 
@@ -310,7 +370,7 @@ html {
     .tech-breakdown li {
         font-size: 0.85rem;
         color: var(--text-muted);
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.4rem;
         line-height: 1.4;
     }
 
@@ -320,34 +380,41 @@ html {
 
 .project-link {
     color: var(--accent-coral);
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
 }
 
     .project-link:hover {
-        text-decoration: underline;
+        color: var(--text-primary);
     }
 
 /* --- Skills / CV Spec Sheet --- */
 .skills-section {
     padding: 6rem 10%;
-    background: #ffffff;
+    background: var(--bg-main);
     border-top: 1px solid var(--border-clean);
 }
 
 .skills-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3.5rem;
+    gap: 4rem;
 }
 
 .skill-group h3 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--text-primary);
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid var(--primary-tech);
-    padding-bottom: 0.4rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 2px solid var(--text-primary);
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 800;
 }
 
 .skill-group ul {
@@ -355,45 +422,46 @@ html {
 }
 
 .skill-group li {
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 700;
 }
 
     .skill-group li span {
         color: var(--text-muted);
         font-size: 0.85rem;
         display: block;
-        margin-top: 0.15rem;
+        margin-top: 0.25rem;
         font-weight: 400;
-        line-height: 1.4;
+        line-height: 1.5;
     }
 
 /* --- Footer --- */
 footer {
     text-align: center;
-    padding: 2.5rem;
+    padding: 3rem;
     color: var(--text-muted);
     font-size: 0.8rem;
-    border-top: 1px solid var(--border-clean);
-    background: var(--bg-card);
+    border-top: 2px solid var(--text-primary);
+    background: var(--bg-main);
+    font-family: monospace;
 }
 
 /* --- Responsiveness Engines --- */
 @media (max-width: 968px) {
     .engine-container, .skills-grid, .projects-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 3rem;
     }
 
     .glitch-text {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
 
     .hero {
         height: auto;
-        padding: 4rem 10%;
+        padding: 6rem 10% 4rem 10%;
     }
 }
 
@@ -406,5 +474,3 @@ footer {
         padding: 4rem 6%;
     }
 }
-
-```
