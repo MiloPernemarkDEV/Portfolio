@@ -8,12 +8,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-white transition-shadow hover:shadow-md">
       <div className="aspect-video overflow-hidden bg-surface">
-        <img
-          src={project.image}
-          alt={project.imageAlt}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-          loading="lazy"
-        />
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.imageAlt ?? project.title}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            loading="lazy"
+          />
+        ) : null}
       </div>
 
       <div className="flex flex-1 flex-col p-6 lg:p-8">

@@ -58,60 +58,43 @@ export interface Project {
   description: string;
   technologies: string[];
   highlights: string[];
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
   links: { label: string; href: string }[];
 }
 
 export const projects: Project[] = [
   {
-    id: "heatmapper",
-    title: "Heatmapper",
+    id: "melon-engine",
+    title: "Melon Engine",
     description:
-      "Telemetry visualization tool that collects Unreal Engine gameplay data and displays interactive heatmaps.",
-    technologies: [
-      "C++",
-      "OpenGL",
-      "ImGui",
-      "Unreal Engine",
-      "Firebase Firestore",
-      "REST API",
-    ],
+      "A modular Vulkan 1.3 graphics engine written from scratch in modern C++. Built to gain a deep, practical understanding of low-level hardware initialization, OS interaction, and the Win32 API.",
+    technologies: ["C++20", "Vulkan 1.3", "Win32 API", "Rust FFI", "CMake"],
     highlights: [
-      "Custom C++ application",
-      "OpenGL renderer",
-      "ImGui interface",
-      "Backend communication",
-      "Data visualization",
+      "Native Win32 window layer for window instantiation and renderer utilities",
+      "FFI bridge for writing renderer code in both Rust and C++",
+      "Decoupled architecture with layered static libraries",
+      "Explicit Vulkan contexts, swapchains, and pipeline abstractions",
     ],
     image: "/assets/projects/melon-engine-editor.png",
-    imageAlt: "Heatmapper telemetry visualization interface",
+    imageAlt: "Melon Engine editor viewport",
     links: [
       {
         label: "GitHub",
-        href: "https://github.com/MiloPernemarkDEV",
+        href: "https://github.com/MiloPernemarkDEV/MelonEngine",
       },
     ],
   },
   {
-    id: "unreal-ai",
-    title: "Unreal Engine AI System",
+    id: "the-unseen",
+    title: "The Unseen",
     description:
-      "Modular AI system built with Unreal Engine C++ architecture.",
-    technologies: [
-      "C++",
-      "Unreal Engine 5",
-      "Behavior Trees",
-      "AI Perception",
-    ],
+      "A modular, node-based interaction puzzle system alongside compile-time debug utilities built using Unreal Engine C++.",
+    technologies: ["Unreal Engine 5", "C++", "Systems", "Blueprints"],
     highlights: [
-      "AI systems",
-      "Event-driven architecture",
-      "Behavior trees",
-      "Custom gameplay components",
+      "Decoupled puzzle architecture with Board, Node, and Link actors",
+      "Type-safe DebugUtility using variadic templates, stripped from shipping builds",
     ],
-    image: "/assets/projects/calliope-final.png",
-    imageAlt: "Unreal Engine AI system gameplay screenshot",
     links: [
       {
         label: "GitHub",
@@ -120,26 +103,57 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "graphics-engine",
-    title: "Graphics / Engine Projects",
+    id: "uss-calliope",
+    title: "USS Calliope",
     description:
-      "Low-level projects exploring rendering, engine architecture, and performance.",
-    technologies: ["C++", "OpenGL", "Vulkan", "CMake"],
+      "A collaborative 5-player group project where I developed core weapon ballistics, data-driven item management via ScriptableObjects, and workflow tools for designers.",
+    technologies: ["Unity", "C#", "ScriptableObjects", "Editor Tools"],
     highlights: [
-      "Vulkan rendering pipeline",
-      "Modular engine architecture",
-      "Cross-language FFI bridge",
-      "Performance-focused design",
+      "Box–Muller transforms for realistic weapon spread patterns",
+      "Data-driven weapons using modular ScriptableObject configurations",
+      "Custom EditorWindow utility with unique ID generator for assets",
     ],
-    image: "/assets/projects/melon-engine-compute.png",
-    imageAlt: "Graphics engine compute shader visualization",
+    image: "/assets/projects/calliope-final.png",
+    imageAlt: "USS Calliope late-production vertical slice with HUD",
     links: [
       {
-        label: "Melon Engine",
-        href: "https://github.com/MiloPernemarkDEV/MelonEngine",
+        label: "View Script Source",
+        href: "https://github.com/MiloPernemarkDEV/PortfolioPage",
       },
+    ],
+  },
+  {
+    id: "vectormath-pong",
+    title: "Native Math Library & Pong Clone",
+    description:
+      "A technical exercise in cross-language communication, featuring a custom 2D math and physics library written in unmanaged C++ running inside Unity via DLL plugins.",
+    technologies: ["C++", "C#", "Unity", "P/Invoke", "Native Plugins"],
+    highlights: [
+      "DllImport to expose raw C++ structures to Unity's managed environment",
+      "LayoutKind.Sequential formatting for zero-copy structure passing",
+      "AABB collision and reflection vectors handled entirely in the C++ backend",
+    ],
+    links: [
       {
-        label: "All Repositories",
+        label: "View Plugin Source",
+        href: "https://github.com/MiloPernemarkDEV/Vectormath_and_pong",
+      },
+    ],
+  },
+  {
+    id: "raylib-arcade",
+    title: "Native 2D Arcade Project",
+    description:
+      "A self-contained arcade application built using Raylib to practice core architectural patterns without relying on an all-in-one editor interface.",
+    technologies: ["C++", "Raylib"],
+    highlights: [
+      "Explicit state machine for clean screen lifecycle transitions",
+      "Manual bounding box intersection checks for actor overlaps",
+      "Explicit resource lifecycle with manual texture and audio allocation",
+    ],
+    links: [
+      {
+        label: "View Raylib Source",
         href: "https://github.com/MiloPernemarkDEV?tab=repositories",
       },
     ],
