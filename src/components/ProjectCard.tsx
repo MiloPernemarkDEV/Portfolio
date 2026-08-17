@@ -49,19 +49,21 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </ul>
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-4 border-t border-border pt-5">
-          {project.links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-accent transition-colors hover:text-accent-hover"
-            >
-              {link.label} →
-            </a>
-          ))}
-        </div>
+        {project.links.length > 0 ? (
+          <div className="mt-6 flex flex-wrap gap-4 border-t border-border pt-5">
+            {project.links.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-accent transition-colors hover:text-accent-hover"
+              >
+                {link.label} →
+              </a>
+            ))}
+          </div>
+        ) : null}
       </div>
     </article>
   );

@@ -31,7 +31,7 @@ export const about = {
 } as const;
 
 export const skills = {
-  languages: ["C++", "C", "C#", "Python", "Rust", "Odin"],
+  languages: ["C++", "C", "C#"],
   technologies: [
     "Unreal Engine",
     "Unity",
@@ -40,7 +40,6 @@ export const skills = {
     "Git",
     "CMake",
     "SQLite",
-    "Firebase",
   ],
   concepts: [
     "OOP",
@@ -94,7 +93,7 @@ export const projects: Project[] = [
     links: [
       {
         label: "GitHub",
-        href: "https://github.com/Forsbergs-Skola/HeliconUnrealOne",
+        href: "https://github.com/Forsbergs-Skola/HeliconUnrealOne/tree/main",
       },
     ],
   },
@@ -109,12 +108,7 @@ export const projects: Project[] = [
       "Data-driven weapons using modular ScriptableObject configurations",
       "Custom EditorWindow utility with unique ID generator for assets",
     ],
-    links: [
-      {
-        label: "View Script Source",
-        href: "https://github.com/MiloPernemarkDEV/PortfolioPage",
-      },
-    ],
+    links: [],
   },
   {
     id: "vectormath-pong",
@@ -129,7 +123,7 @@ export const projects: Project[] = [
     ],
     links: [
       {
-        label: "View Plugin Source",
+        label: "GitHub",
         href: "https://github.com/MiloPernemarkDEV/Vectormath_and_pong",
       },
     ],
@@ -147,8 +141,8 @@ export const projects: Project[] = [
     ],
     links: [
       {
-        label: "View Raylib Source",
-        href: "https://github.com/MiloPernemarkDEV?tab=repositories",
+        label: "GitHub",
+        href: "https://github.com/MiloPernemarkDEV/mojo_picon_zombieHunter",
       },
     ],
   },
