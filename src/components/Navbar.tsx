@@ -12,15 +12,8 @@ export function Navbar() {
       >
         <a
           href="#"
-          className="flex items-center gap-2.5 text-sm font-semibold tracking-tight text-text transition-colors hover:text-accent"
+          className="text-sm font-semibold tracking-tight text-text transition-colors hover:text-accent"
         >
-          <img
-            src="/favicon.svg"
-            alt=""
-            width={32}
-            height={32}
-            className="h-8 w-8 shrink-0"
-          />
           {site.name}
         </a>
 
