@@ -58,8 +58,6 @@ export interface Project {
   description: string;
   technologies: string[];
   highlights: string[];
-  image?: string;
-  imageAlt?: string;
   links: { label: string; href: string }[];
 }
 
@@ -76,8 +74,6 @@ export const projects: Project[] = [
       "Decoupled architecture with layered static libraries",
       "Explicit Vulkan contexts, swapchains, and pipeline abstractions",
     ],
-    image: "/assets/projects/melon-engine-editor.png",
-    imageAlt: "Melon Engine editor viewport",
     links: [
       {
         label: "GitHub",
@@ -113,8 +109,6 @@ export const projects: Project[] = [
       "Data-driven weapons using modular ScriptableObject configurations",
       "Custom EditorWindow utility with unique ID generator for assets",
     ],
-    image: "/assets/projects/calliope-final.png",
-    imageAlt: "USS Calliope late-production vertical slice with HUD",
     links: [
       {
         label: "View Script Source",

@@ -52,3 +52,32 @@ body {
 .animate-fade-up-delay-3 {
   animation: fade-up 0.6s ease-out 0.3s both;
 }
+
+@keyframes drift-down {
+  from {
+    transform: translate3d(0, -8px, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(18px, 28px, 0);
+    opacity: 0.35;
+  }
+}
+
+.hero-flake {
+  animation: drift-down 7s ease-in-out infinite;
+}
+
+.hero-flake-delay {
+  animation: drift-down 9s ease-in-out 1.4s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-flake,
+  .hero-flake-delay {
+    animation: none;
+  }
+}

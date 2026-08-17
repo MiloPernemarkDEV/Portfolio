@@ -6,10 +6,12 @@ import { InternshipBanner } from "./components/InternshipBanner";
 import { Navbar } from "./components/Navbar";
 import { Projects } from "./components/Projects";
 import { Skills } from "./components/Skills";
+import { Snowfall } from "./components/Snowfall";
 
 export default function App() {
   return (
     <>
+      <Snowfall />
       <Navbar />
       <main>
         <Hero />
