@@ -1,17 +1,30 @@
 import { internship } from "../data/site";
 
+function Cloud({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 220 110"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M54 90c-22 0-40-16-40-36 0-18 14-33 32-36 6-18 24-30 44-30 22 0 41 14 47 34 8-4 16-6 26-6 28 0 50 20 50 46 0 4 0 8-1 12 14 4 24 16 24 30 0 18-16 32-36 32H54Z"
+        fill="#eef3ef"
+        stroke="#3d5c47"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function InternshipBanner() {
   return (
     <section className="relative overflow-hidden border-b border-border bg-[#b7c6b8] py-16 lg:py-20">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.18]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, #2c4334 1.15px, transparent 0)",
-          backgroundSize: "18px 18px",
-        }}
-        aria-hidden="true"
-      />
+      <Cloud className="pointer-events-none absolute -top-6 -left-10 w-44 opacity-90 sm:w-52 lg:w-64" />
+      <Cloud className="pointer-events-none absolute -right-8 -bottom-8 w-40 opacity-90 sm:w-48 lg:w-56" />
+
       <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="mb-2 text-sm font-medium tracking-wide text-accent uppercase">
