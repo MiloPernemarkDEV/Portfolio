@@ -19,27 +19,6 @@ export function Hero() {
         }}
         aria-hidden="true"
       />
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(22,163,74,0.08),transparent_55%)]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute top-24 right-10 hidden h-40 w-40 lg:block"
-        aria-hidden="true"
-      >
-        <span className="hero-flake absolute top-6 right-10 h-2 w-2 rounded-full bg-accent/40" />
-        <span className="hero-flake-delay absolute top-16 right-24 h-1.5 w-1 rounded-full bg-slate-400/50" />
-        <span className="hero-flake absolute top-28 right-6 h-1 w-1 rounded-full bg-accent/30" />
-        <svg
-          className="hero-flake-delay absolute top-2 right-2 h-8 w-8 text-accent/25"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.4"
-        >
-          <path d="M12 2v20M4.9 6.5l14.2 11M4.9 17.5l14.2-11" />
-        </svg>
-      </div>
       <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="animate-fade-up mb-4 text-sm font-medium tracking-wide text-accent uppercase">

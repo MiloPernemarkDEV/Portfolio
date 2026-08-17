@@ -18,10 +18,10 @@ function createParticle(width: number, height: number, scatter: boolean): Partic
     x: Math.random() * width,
     y: scatter ? Math.random() * height : -8,
     size: kind === "droplet" ? 1.4 + Math.random() * 1.8 : 1.2 + Math.random() * 2.6,
-    speed: kind === "droplet" ? 0.9 + Math.random() * 1.6 : 0.35 + Math.random() * 0.9,
-    drift: (Math.random() - 0.5) * 0.45,
+    speed: kind === "droplet" ? 0.7 + Math.random() * 1.2 : 0.28 + Math.random() * 0.7,
+    drift: (Math.random() - 0.5) * 0.4,
     phase: Math.random() * Math.PI * 2,
-    opacity: 0.18 + Math.random() * 0.38,
+    opacity: 0.22 + Math.random() * 0.42,
     kind,
   };
 }
@@ -32,6 +32,9 @@ export function Snowfall() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    const parent = canvas.parentElement;
+    if (!parent) return;
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (motionQuery.matches) return;
@@ -47,21 +50,22 @@ export function Snowfall() {
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
+      const bounds = parent.getBoundingClientRect();
+      width = Math.max(1, Math.floor(bounds.width));
+      height = Math.max(1, Math.floor(bounds.height));
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.round(Math.min(90, Math.max(42, width / 18)));
+      const count = Math.round(Math.min(55, Math.max(22, width / 22)));
       particles = Array.from({ length: count }, () => createParticle(width, height, true));
     };
 
     const drawFlake = (p: Particle) => {
       ctx.beginPath();
-      ctx.fillStyle = `rgba(22, 163, 74, ${p.opacity})`;
+      ctx.fillStyle = `rgba(55, 65, 81, ${p.opacity})`;
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       ctx.fill();
 
@@ -69,7 +73,7 @@ export function Snowfall() {
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.rotate(p.phase * 0.15);
-        ctx.strokeStyle = `rgba(22, 163, 74, ${p.opacity * 0.7})`;
+        ctx.strokeStyle = `rgba(31, 41, 55, ${p.opacity * 0.75})`;
         ctx.lineWidth = 0.7;
         ctx.beginPath();
         ctx.moveTo(-p.size * 1.6, 0);
@@ -83,12 +87,12 @@ export function Snowfall() {
 
     const drawDroplet = (p: Particle) => {
       ctx.beginPath();
-      ctx.fillStyle = `rgba(100, 116, 139, ${p.opacity + 0.08})`;
+      ctx.fillStyle = `rgba(75, 85, 99, ${p.opacity + 0.08})`;
       ctx.ellipse(p.x, p.y, p.size * 0.55, p.size * 1.35, 0, 0, Math.PI * 2);
       ctx.fill();
 
       ctx.beginPath();
-      ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity * 0.9})`;
+      ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity * 0.85})`;
       ctx.ellipse(
         p.x - p.size * 0.12,
         p.y - p.size * 0.35,
@@ -138,15 +142,16 @@ export function Snowfall() {
       }
     };
 
+    const observer = new ResizeObserver(resize);
+    observer.observe(parent);
     resize();
     frame = window.requestAnimationFrame(tick);
-    window.addEventListener("resize", resize);
     document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
       running = false;
       window.cancelAnimationFrame(frame);
-      window.removeEventListener("resize", resize);
+      observer.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
@@ -154,7 +159,7 @@ export function Snowfall() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-[60]"
+      className="pointer-events-none absolute inset-0 z-0"
       aria-hidden="true"
     />
   );
