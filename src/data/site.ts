@@ -72,7 +72,7 @@ export const projects: Project[] = [
     id: "telemetry-for-dummies",
     title: "Telemetry For Dummies",
     description:
-      "An Unreal Engine 5 playtest plugin that records session events, with a dog AI that writes its actions into the same log.",
+      "School project with an external studio: a UE5 plugin package that records session events for an undisclosed game.",
     technologies: [
       "Unreal Engine 5",
       "C++",
@@ -83,13 +83,13 @@ export const projects: Project[] = [
     highlights: [],
     caseStudy: {
       overview:
-        "Our Unreal Engine 5 team needed a playtest tool that recorded session events without every game hard-wiring its own logging. I worked on Telemetry For Dummies, a plugin that records those events for analytics.",
-      role: "I built the dog AI in the playtest level and ported the telemetry that already lived in the game into a reusable plugin.",
+        "This was a school project in Unreal Engine 5. We collaborated with an external studio working on an undisclosed game to build Telemetry For Dummies, a plugin package that records session events for analytics.",
+      role: "I built the dog AI in our playtest level and ported the telemetry that already lived in the game into the plugin package we made with the studio.",
       built: "The dog runs on an AI Controller with Perception sight, a Behavior Tree, and a blackboard target. It notices thrown meat, reacts, and I write those AI actions into the telemetry log. I then moved the game's telemetry into a UE plugin with a world subsystem so a project can record a session from one place.",
       approach:
         "I made tracking modular. Player and actor positions are sampled automatically from project settings: class, tags, and the possessed pawn. Games do not attach tracking to each actor. AI events and position samples go through the same recorder.",
       outcome:
-        "The playtest could run the dog and record a session from the plugin. Other maps can enable sampling in settings and keep the same event log.",
+        "Our playtest could run the dog and record a session from the plugin. The studio can enable sampling from project settings instead of wiring tracking onto every actor.",
     },
     links: [],
   },
