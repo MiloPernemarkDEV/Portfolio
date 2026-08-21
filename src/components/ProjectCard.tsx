@@ -12,9 +12,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {project.title}
         </h3>
 
-        <p className="mt-3 leading-relaxed text-text-muted">
-          {project.description}
-        </p>
+        {project.caseStudy ? null : (
+          <p className="mt-3 leading-relaxed text-text-muted">
+            {project.description}
+          </p>
+        )}
 
         <div className="mt-5">
           <p className="mb-2 text-xs font-medium tracking-wide text-text-muted uppercase">
@@ -32,22 +34,43 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
         </div>
 
-        <div className="mt-5">
-          <p className="mb-2 text-xs font-medium tracking-wide text-text-muted uppercase">
-            Technical highlights
-          </p>
-          <ul className="space-y-1.5">
-            {project.highlights.map((highlight) => (
-              <li
-                key={highlight}
-                className="flex items-start gap-2 text-sm text-text-muted"
-              >
-                <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                {highlight}
-              </li>
+        {project.caseStudy ? (
+          <div className="mt-6 space-y-5">
+            {(
+              [
+                ["Overview", project.caseStudy.overview],
+                ["My role", project.caseStudy.role],
+                ["What I built", project.caseStudy.built],
+                ["Technical approach", project.caseStudy.approach],
+                ["Outcome", project.caseStudy.outcome],
+              ] as const
+            ).map(([heading, body]) => (
+              <div key={heading}>
+                <p className="mb-2 text-xs font-medium tracking-wide text-text-muted uppercase">
+                  {heading}
+                </p>
+                <p className="leading-relaxed text-text-muted">{body}</p>
+              </div>
             ))}
-          </ul>
-        </div>
+          </div>
+        ) : (
+          <div className="mt-5">
+            <p className="mb-2 text-xs font-medium tracking-wide text-text-muted uppercase">
+              Technical highlights
+            </p>
+            <ul className="space-y-1.5">
+              {project.highlights.map((highlight) => (
+                <li
+                  key={highlight}
+                  className="flex items-start gap-2 text-sm text-text-muted"
+                >
+                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {project.links.length > 0 ? (
           <div className="mt-6 flex flex-wrap gap-4 border-t border-border pt-5">
