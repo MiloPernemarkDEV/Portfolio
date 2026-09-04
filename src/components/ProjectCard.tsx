@@ -122,22 +122,18 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
               muted
               playsInline
               aria-label={project.imageAlt ?? project.title}
-              className="h-full w-full object-cover"
+              className={`h-full w-full object-cover ${
+                project.id === "telemetry-for-dummies" ? "scale-[1.35]" : ""
+              }`}
             />
           ) : (
             <img
               src={assetUrl(project.image)}
               alt={project.imageAlt ?? project.title}
-              className={
-                project.imageContain
-                  ? "h-full w-full bg-black object-contain"
-                  : "h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-              }
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
           )}
-          {project.imageContain ? null : (
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-card/30" />
-          )}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-card/30" />
         </div>
       ) : featured ? (
         <div className="h-1.5 w-full shrink-0 bg-gradient-to-r from-accent via-pink to-violet" />

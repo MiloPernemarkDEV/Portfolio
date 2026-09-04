@@ -75,7 +75,6 @@ export interface Project {
   highlights: string[];
   image?: string;
   imageAlt?: string;
-  imageContain?: boolean;
   links: { label: string; href: string }[];
 }
 
@@ -139,7 +138,7 @@ export const projects: Project[] = [
     status: "School × studio",
     featured: true,
     description:
-      "School project with an external studio on an undisclosed Unreal title. I built the playtest dog AI and turned in-game telemetry into a reusable plugin package.",
+      "School project with an external studio on an undisclosed Unreal title. The important part of my work was making the telemetry subsystem modular so other projects could use it, with automatic actor tracking and a designer-friendly setup.",
     technologies: [
       "Unreal Engine 5",
       "C++",
@@ -148,14 +147,13 @@ export const projects: Project[] = [
       "Plugins",
     ],
     highlights: [
-      "Dog AI: AI Controller, Perception sight, Behavior Tree, blackboard target, reacts to thrown meat",
-      "AI actions written into the same telemetry log as the rest of the session",
-      "Ported game telemetry into a UE plugin with a World Subsystem",
-      "Automatic player and actor position sampling from project settings (class, tags, possessed pawn)",
+      "World Subsystem packaged as a plugin, built to drop into other Unreal projects",
+      "Auto-tracks actor positions from project settings using class, tags, or the possessed pawn",
+      "Designer-friendly config so logging can be enabled without writing code",
+      "Playtest dog AI writes into the same telemetry log as the rest of the session",
     ],
-    image: "/assets/projects/telemetry-for-dummies.png",
-    imageAlt: "Telemetry Plugin title card",
-    imageContain: true,
+    image: "/assets/projects/telemetry.mp4",
+    imageAlt: "Telemetry Analytics Viewer showing player movement paths and event markers",
     links: [],
   },
   {
