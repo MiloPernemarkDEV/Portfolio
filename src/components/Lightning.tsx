@@ -112,6 +112,8 @@ export function Lightning() {
     let height = 0;
     let bolts: Bolt[] = [];
     let nextStrike = 200;
+    let flash = 0;
+    let flashColor = "34, 211, 238";
     let frame = 0;
     let running = true;
     let elapsed = 0;
@@ -129,8 +131,16 @@ export function Lightning() {
     };
 
     const strike = () => {
-      bolts.push(createBolt(width, height));
+      const bolt = createBolt(width, height);
+      bolts.push(bolt);
       if (Math.random() < 0.35) bolts.push(createBolt(width, height));
+      flashColor =
+        bolt.color === "#ff4ecd"
+          ? "255, 78, 205"
+          : bolt.color === "#7cf29a"
+            ? "124, 242, 154"
+            : "34, 211, 238";
+      flash = 0.08;
       nextStrike = 900 + Math.random() * 1600;
     };
 
@@ -164,6 +174,14 @@ export function Lightning() {
       if (nextStrike <= 0) strike();
 
       ctx.clearRect(0, 0, width, height);
+
+      if (flash > 0.004) {
+        ctx.fillStyle = `rgba(${flashColor}, ${flash})`;
+        ctx.fillRect(0, 0, width, height);
+        flash *= 0.78;
+      } else {
+        flash = 0;
+      }
 
       bolts = bolts.filter((bolt) => {
         bolt.life += 1;
