@@ -1,6 +1,7 @@
 import { About } from "./components/About";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
+import { Hero } from "./components/Hero";
 import { InternshipBanner } from "./components/InternshipBanner";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { Navbar } from "./components/Navbar";
@@ -13,6 +14,7 @@ export default function App() {
       <LoadingScreen />
       <Navbar />
       <main>
+        <Hero />
         <Projects />
         <InternshipBanner />
         <Skills />

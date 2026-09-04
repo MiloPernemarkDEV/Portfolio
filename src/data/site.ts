@@ -1,6 +1,10 @@
 export const site = {
   name: "Milo Pernemark",
   role: "Game Programmer",
+  heroGreeting: "Hi, I'm Milo.",
+  heroPrefix: "Game programmer",
+  heroAccent: "ready to spread my wings",
+  heroInvite: "Have a look around :)",
   title: "C++ | C# | Gameplay Systems | AI | Engine Technology",
   description:
     "I write gameplay systems, AI, simulation, and engine code in C++ and C#. I care about how the pieces fit together under the engine, not just the feature on top.",
