@@ -39,16 +39,28 @@ function zigzag(start: Point, end: Point, jag: number): Point[] {
   return points;
 }
 
+function edgePoint(width: number, height: number, edge: number): Point {
+  switch (edge) {
+    case 0:
+      return { x: width * Math.random(), y: -10 };
+    case 1:
+      return { x: width + 10, y: height * Math.random() };
+    case 2:
+      return { x: width * Math.random(), y: height + 10 };
+    default:
+      return { x: -10, y: height * Math.random() };
+  }
+}
+
 function createBolt(width: number, height: number): Bolt {
-  const fromLeft = Math.random() < 0.5;
-  const start: Point = {
-    x: fromLeft ? width * Math.random() * 0.35 : width * (0.65 + Math.random() * 0.35),
-    y: -8,
-  };
-  const end: Point = {
-    x: width * (0.15 + Math.random() * 0.7),
-    y: height * (0.55 + Math.random() * 0.4),
-  };
+  const startEdge = Math.floor(Math.random() * 4);
+  let endEdge = Math.floor(Math.random() * 4);
+  if (endEdge === startEdge) {
+    endEdge = (startEdge + 1 + Math.floor(Math.random() * 3)) % 4;
+  }
+
+  const start = edgePoint(width, height, startEdge);
+  const end = edgePoint(width, height, endEdge);
 
   const main = zigzag(start, end, 42);
   const forks: Point[][] = [];
@@ -102,6 +114,8 @@ export function Lightning() {
     const parent = canvas.parentElement;
     if (!parent) return;
 
+    const keepoutEl = parent.querySelector("[data-lightning-keepout]");
+
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (motionQuery.matches) return;
 
@@ -110,6 +124,7 @@ export function Lightning() {
 
     let width = 0;
     let height = 0;
+    let keepout: { x: number; y: number; w: number; h: number } | null = null;
     let bolts: Bolt[] = [];
     let nextStrike = 200;
     let flash = 0;
@@ -117,6 +132,37 @@ export function Lightning() {
     let frame = 0;
     let running = true;
     let elapsed = 0;
+
+    const measureKeepout = () => {
+      if (!(keepoutEl instanceof HTMLElement)) {
+        keepout = null;
+        return;
+      }
+
+      const parentRect = parent.getBoundingClientRect();
+      const rect = keepoutEl.getBoundingClientRect();
+      const padX = 40;
+      const padY = 32;
+      keepout = {
+        x: rect.left - parentRect.left - padX,
+        y: rect.top - parentRect.top - padY,
+        w: rect.width + padX * 2,
+        h: rect.height + padY * 2,
+      };
+    };
+
+    const punchKeepout = () => {
+      if (!keepout) return;
+
+      ctx.save();
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.filter = "blur(18px)";
+      ctx.fillStyle = "#000";
+      ctx.beginPath();
+      ctx.roundRect(keepout.x, keepout.y, keepout.w, keepout.h, 28);
+      ctx.fill();
+      ctx.restore();
+    };
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -128,6 +174,7 @@ export function Lightning() {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      measureKeepout();
     };
 
     const strike = () => {
@@ -190,6 +237,8 @@ export function Lightning() {
         return true;
       });
 
+      punchKeepout();
+
       frame = window.requestAnimationFrame(tick);
     };
 
@@ -209,6 +258,7 @@ export function Lightning() {
 
     const observer = new ResizeObserver(resize);
     observer.observe(parent);
+    if (keepoutEl instanceof HTMLElement) observer.observe(keepoutEl);
     resize();
     const firstStrike = window.setTimeout(strike, 200);
     frame = window.requestAnimationFrame(tick);

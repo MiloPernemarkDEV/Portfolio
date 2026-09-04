@@ -2,8 +2,6 @@ export const site = {
   name: "Milo Pernemark",
   role: "Game Programmer",
   heroGreeting: "Hi, I'm Milo.",
-  heroPrefix: "Game programmer",
-  heroAccent: "ready to spread my wings",
   heroInvite: "Have a look around :)",
   title: "C++ | C# | Gameplay Systems | AI | Engine Technology",
   description:
@@ -14,7 +12,13 @@ export const site = {
   resume: "/resume.pdf",
   school: "Forsbergs Skola",
   schoolUrl: "https://www.forsbergsskola.se/",
+  photo: "/assets/milo.jpg",
 } as const;
+
+export const heroLines = [
+  "ready to spread my wings.",
+  "but not without that coffee.",
+] as const;
 
 export const internship = {
   headline:

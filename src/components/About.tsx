@@ -1,10 +1,15 @@
 import { about, site } from "../data/site";
 
+function assetUrl(path: string) {
+  const base = import.meta.env.BASE_URL;
+  return `${base}${path.replace(/^\//, "")}`;
+}
+
 export function About() {
   return (
     <section id="about" className="border-b border-border bg-bg py-20 lg:py-28">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="max-w-3xl border-l-2 border-cyan pl-6">
+      <div className="mx-auto grid max-w-6xl items-stretch gap-8 px-6 md:grid-cols-[minmax(0,1fr)_15rem] lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-12 lg:px-8">
+        <div className="border-l-2 border-cyan pl-6">
           <p className="mb-2 font-mono text-sm font-medium tracking-wide text-cyan uppercase">
             About
           </p>
@@ -25,6 +30,12 @@ export function About() {
           </p>
           <p className="mt-4 text-lg leading-relaxed text-text-muted">{about.extra}</p>
         </div>
+
+        <img
+          src={assetUrl(site.photo)}
+          alt={site.name}
+          className="aspect-square h-44 w-44 rounded-2xl border border-accent/40 object-cover object-center md:h-full md:w-full md:aspect-auto"
+        />
       </div>
     </section>
   );

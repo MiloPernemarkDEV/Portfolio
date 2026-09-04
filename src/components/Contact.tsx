@@ -8,12 +8,12 @@ export function Contact() {
         <div className="relative overflow-hidden rounded-2xl border border-cyan/25 bg-surface px-6 py-16 text-center lg:px-16 lg:py-20">
           <Lightning />
 
-          <div className="relative z-10">
+          <div className="relative z-10 mx-auto w-fit max-w-full" data-lightning-keepout>
             <p className="mb-2 font-mono text-sm font-medium tracking-wide text-pink uppercase">
               Contact
             </p>
             <h2 className="font-display text-3xl font-bold tracking-tight text-text sm:text-4xl">
-              Ask me about anything, or give me a job.
+              Reach me here!
             </h2>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
