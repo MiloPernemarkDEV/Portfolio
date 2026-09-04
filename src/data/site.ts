@@ -33,7 +33,7 @@ export const about = {
   education:
     "Alongside class work I'm building a Unity settlement sim and a Vulkan engine from scratch.",
   extra:
-    "Apart from the technical work, I like to bring good energy to the people around me, and I'm a strong communicator.",
+    "Apart from the technical work, I like to bring good energy to the people around me, and I love working in team projects.",
 } as const;
 
 export const skills = {

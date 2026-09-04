@@ -3,77 +3,93 @@ import { useEffect, useRef } from "react";
 type Point = { x: number; y: number };
 
 type Bolt = {
-  trunks: Point[][];
+  main: Point[];
+  forks: Point[][];
   color: string;
   life: number;
   maxLife: number;
-  width: number;
+  core: number;
 };
 
-type Spark = {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  life: number;
-  color: string;
-};
-
-const COLORS = ["#22d3ee", "#ff4ecd", "#7cf29a"];
+const COLORS = ["#22d3ee", "#7dd3fc", "#ff4ecd", "#7cf29a"];
 
 function pickColor() {
   return COLORS[Math.floor(Math.random() * COLORS.length)];
 }
 
-function buildBranch(start: Point, height: number, depth: number): Point[][] {
+function zigzag(start: Point, end: Point, jag: number): Point[] {
   const points: Point[] = [start];
-  let x = start.x;
-  let y = start.y;
-  const target = start.y + height * (0.45 + Math.random() * 0.4);
-  const trunks: Point[][] = [];
+  const dx = end.x - start.x;
+  const dy = end.y - start.y;
+  const dist = Math.hypot(dx, dy) || 1;
+  const steps = Math.max(8, Math.floor(dist / 16));
 
-  while (y < target && y < height - 8) {
-    x += (Math.random() - 0.5) * (28 + depth * 8);
-    y += 10 + Math.random() * 18;
-    points.push({ x, y });
-
-    if (depth < 2 && Math.random() < 0.18) {
-      trunks.push(
-        ...buildBranch({ x, y }, height * (0.18 + Math.random() * 0.2), depth + 1),
-      );
-    }
+  for (let i = 1; i < steps; i += 1) {
+    const t = i / steps;
+    const nx = -dy / dist;
+    const ny = dx / dist;
+    const offset = (Math.random() - 0.5) * jag * (1 - Math.abs(t - 0.5) * 0.4);
+    points.push({
+      x: start.x + dx * t + nx * offset,
+      y: start.y + dy * t + ny * offset,
+    });
   }
 
-  trunks.unshift(points);
-  return trunks;
+  points.push(end);
+  return points;
 }
 
 function createBolt(width: number, height: number): Bolt {
-  const start = { x: width * (0.12 + Math.random() * 0.76), y: -4 };
+  const fromLeft = Math.random() < 0.5;
+  const start: Point = {
+    x: fromLeft ? width * Math.random() * 0.35 : width * (0.65 + Math.random() * 0.35),
+    y: -8,
+  };
+  const end: Point = {
+    x: width * (0.15 + Math.random() * 0.7),
+    y: height * (0.55 + Math.random() * 0.4),
+  };
+
+  const main = zigzag(start, end, 42);
+  const forks: Point[][] = [];
+
+  for (let i = 3; i < main.length - 2; i += 1) {
+    if (Math.random() > 0.28) continue;
+    const origin = main[i];
+    const forkEnd: Point = {
+      x: origin.x + (Math.random() - 0.5) * 120,
+      y: origin.y + 30 + Math.random() * 90,
+    };
+    forks.push(zigzag(origin, forkEnd, 22));
+  }
+
   return {
-    trunks: buildBranch(start, height, 0),
+    main,
+    forks,
     color: pickColor(),
     life: 1,
-    maxLife: 10 + Math.floor(Math.random() * 8),
-    width: 1.2 + Math.random() * 1.4,
+    maxLife: 28 + Math.floor(Math.random() * 18),
+    core: 1.6 + Math.random() * 1.2,
   };
 }
 
-function spawnSparks(bolt: Bolt, sparks: Spark[]) {
-  const last = bolt.trunks[0][bolt.trunks[0].length - 1];
-  if (!last) return;
-
-  const count = 8 + Math.floor(Math.random() * 10);
-  for (let i = 0; i < count; i += 1) {
-    sparks.push({
-      x: last.x + (Math.random() - 0.5) * 18,
-      y: last.y,
-      vx: (Math.random() - 0.5) * 3.2,
-      vy: -0.4 + Math.random() * 2.4,
-      life: 18 + Math.random() * 16,
-      color: bolt.color,
-    });
+function strokePath(
+  ctx: CanvasRenderingContext2D,
+  points: Point[],
+  color: string,
+  width: number,
+  alpha: number,
+) {
+  if (points.length < 2) return;
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+  for (let i = 1; i < points.length; i += 1) {
+    ctx.lineTo(points[i].x, points[i].y);
   }
+  ctx.strokeStyle = color;
+  ctx.globalAlpha = alpha;
+  ctx.lineWidth = width;
+  ctx.stroke();
 }
 
 export function Lightning() {
@@ -95,9 +111,7 @@ export function Lightning() {
     let width = 0;
     let height = 0;
     let bolts: Bolt[] = [];
-    let sparks: Spark[] = [];
-    let flash = 0;
-    let nextStrike = 400;
+    let nextStrike = 200;
     let frame = 0;
     let running = true;
     let elapsed = 0;
@@ -115,37 +129,26 @@ export function Lightning() {
     };
 
     const strike = () => {
-      const bolt = createBolt(width, height);
-      bolts.push(bolt);
-      spawnSparks(bolt, sparks);
-      flash = 0.16;
-      nextStrike = 700 + Math.random() * 2200;
+      bolts.push(createBolt(width, height));
+      if (Math.random() < 0.35) bolts.push(createBolt(width, height));
+      nextStrike = 900 + Math.random() * 1600;
     };
 
     const drawBolt = (bolt: Bolt) => {
-      const alpha = Math.max(0, bolt.life / bolt.maxLife);
-      ctx.lineJoin = "round";
-      ctx.lineCap = "round";
+      const t = bolt.life / bolt.maxLife;
+      const flicker = 0.75 + Math.random() * 0.25;
+      const alpha = Math.min(1, t * 1.6) * flicker;
 
-      for (const trunk of bolt.trunks) {
-        ctx.beginPath();
-        ctx.moveTo(trunk[0].x, trunk[0].y);
-        for (let i = 1; i < trunk.length; i += 1) {
-          ctx.lineTo(trunk[i].x, trunk[i].y);
-        }
-        ctx.strokeStyle = bolt.color;
-        ctx.globalAlpha = alpha * 0.35;
-        ctx.lineWidth = bolt.width + 4;
-        ctx.stroke();
+      ctx.lineJoin = "miter";
+      ctx.lineCap = "square";
 
-        ctx.globalAlpha = alpha * 0.9;
-        ctx.lineWidth = bolt.width;
-        ctx.stroke();
+      strokePath(ctx, bolt.main, bolt.color, bolt.core + 5, alpha * 0.22);
+      strokePath(ctx, bolt.main, bolt.color, bolt.core + 1.4, alpha * 0.85);
+      strokePath(ctx, bolt.main, "#ffffff", Math.max(0.7, bolt.core * 0.4), alpha);
 
-        ctx.strokeStyle = "#ffffff";
-        ctx.globalAlpha = alpha * 0.55;
-        ctx.lineWidth = Math.max(0.6, bolt.width * 0.35);
-        ctx.stroke();
+      for (const fork of bolt.forks) {
+        strokePath(ctx, fork, bolt.color, bolt.core * 0.7, alpha * 0.7);
+        strokePath(ctx, fork, "#ffffff", 0.6, alpha * 0.55);
       }
 
       ctx.globalAlpha = 1;
@@ -162,33 +165,10 @@ export function Lightning() {
 
       ctx.clearRect(0, 0, width, height);
 
-      if (flash > 0) {
-        ctx.fillStyle = `rgba(34, 211, 238, ${flash})`;
-        ctx.fillRect(0, 0, width, height);
-        flash *= 0.82;
-        if (flash < 0.01) flash = 0;
-      }
-
       bolts = bolts.filter((bolt) => {
-        bolt.life -= 1;
-        if (bolt.life <= 0) return false;
+        bolt.life += 1;
+        if (bolt.life > bolt.maxLife) return false;
         drawBolt(bolt);
-        return true;
-      });
-
-      sparks = sparks.filter((spark) => {
-        spark.life -= 1;
-        spark.x += spark.vx;
-        spark.y += spark.vy;
-        spark.vy += 0.06;
-        if (spark.life <= 0) return false;
-
-        ctx.beginPath();
-        ctx.fillStyle = spark.color;
-        ctx.globalAlpha = Math.max(0, spark.life / 28);
-        ctx.arc(spark.x, spark.y, 1.3, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
         return true;
       });
 
@@ -212,7 +192,7 @@ export function Lightning() {
     const observer = new ResizeObserver(resize);
     observer.observe(parent);
     resize();
-    const firstStrike = window.setTimeout(strike, 280);
+    const firstStrike = window.setTimeout(strike, 200);
     frame = window.requestAnimationFrame(tick);
     document.addEventListener("visibilitychange", onVisibility);
 
