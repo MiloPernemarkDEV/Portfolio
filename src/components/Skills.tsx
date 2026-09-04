@@ -44,7 +44,7 @@ export function Skills() {
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className={`rounded-md border px-3 py-2 text-sm font-medium ${group.accent}`}
+                    className={`rounded-md border px-3 py-2 font-chip text-sm font-semibold ${group.accent}`}
                   >
                     {item}
                   </li>

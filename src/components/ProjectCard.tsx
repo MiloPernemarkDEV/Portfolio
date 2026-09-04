@@ -35,7 +35,7 @@ const TECH_STYLES: Record<string, string> = {
 function TechBadge({ tech }: { tech: string }) {
   return (
     <span
-      className={`rounded-md border px-2.5 py-1 font-mono text-[11px] font-medium ${
+      className={`rounded-md border px-2.5 py-1 font-chip text-[11px] font-semibold ${
         TECH_STYLES[tech] ?? "border-border bg-surface text-text-muted"
       }`}
     >
@@ -95,10 +95,10 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
             <span
               className={
                 project.status === "In progress"
-                  ? "rounded-full border border-pink/50 bg-pink/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-pink"
+                  ? "rounded-full border border-pink/50 bg-pink/10 px-2.5 py-0.5 font-chip text-[11px] font-semibold text-pink"
                   : project.status === "5-person team"
-                    ? "rounded-full border border-cyan/50 bg-cyan/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-cyan"
-                    : "rounded-full border border-violet/50 bg-violet/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-violet"
+                    ? "rounded-full border border-cyan/50 bg-cyan/10 px-2.5 py-0.5 font-chip text-[11px] font-semibold text-cyan"
+                    : "rounded-full border border-violet/50 bg-violet/10 px-2.5 py-0.5 font-chip text-[11px] font-semibold text-violet"
               }
             >
               {project.status}

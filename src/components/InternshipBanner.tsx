@@ -51,10 +51,10 @@ export function InternshipBanner() {
                 key={area}
                 className={
                   index % 3 === 0
-                    ? "rounded-full border border-accent/50 bg-bg/40 px-4 py-2 text-sm font-medium text-accent"
+                    ? "rounded-full border border-accent/50 bg-bg/40 px-4 py-2 font-chip text-sm font-semibold text-accent"
                     : index % 3 === 1
-                      ? "rounded-full border border-cyan/50 bg-bg/40 px-4 py-2 text-sm font-medium text-cyan"
-                      : "rounded-full border border-pink/50 bg-bg/40 px-4 py-2 text-sm font-medium text-pink"
+                      ? "rounded-full border border-cyan/50 bg-bg/40 px-4 py-2 font-chip text-sm font-semibold text-cyan"
+                      : "rounded-full border border-pink/50 bg-bg/40 px-4 py-2 font-chip text-sm font-semibold text-pink"
                 }
               >
                 {area}
