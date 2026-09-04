@@ -1,12 +1,12 @@
 import { site } from "../data/site";
-import { Snowfall } from "./Snowfall";
+import { Lightning } from "./Lightning";
 
 export function Contact() {
   return (
     <section id="contact" className="bg-bg py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-2xl border border-cyan/25 bg-surface px-6 py-16 text-center lg:px-16 lg:py-20">
-          <Snowfall />
+          <Lightning />
 
           <div className="relative z-10">
             <p className="mb-2 font-mono text-sm font-medium tracking-wide text-pink uppercase">

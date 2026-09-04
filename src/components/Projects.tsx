@@ -9,7 +9,7 @@ export function Projects() {
     <section id="projects" className="border-b border-border bg-bg py-12 lg:py-16">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mb-8 text-center">
-          <h2 className="font-mono text-base font-medium tracking-wide text-accent uppercase sm:text-lg">
+          <h2 className="font-mono text-2xl font-medium tracking-wide text-accent uppercase sm:text-3xl lg:text-4xl">
             Projects
           </h2>
         </div>
