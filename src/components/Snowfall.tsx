@@ -65,7 +65,7 @@ export function Snowfall() {
 
     const drawFlake = (p: Particle) => {
       ctx.beginPath();
-      ctx.fillStyle = `rgba(55, 65, 81, ${p.opacity})`;
+      ctx.fillStyle = `rgba(232, 238, 244, ${p.opacity * 0.55})`;
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       ctx.fill();
 
@@ -73,7 +73,10 @@ export function Snowfall() {
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.rotate(p.phase * 0.15);
-        ctx.strokeStyle = `rgba(31, 41, 55, ${p.opacity * 0.75})`;
+        ctx.strokeStyle =
+          p.phase % 2 < 1
+            ? `rgba(34, 211, 238, ${p.opacity * 0.65})`
+            : `rgba(255, 78, 205, ${p.opacity * 0.55})`;
         ctx.lineWidth = 0.7;
         ctx.beginPath();
         ctx.moveTo(-p.size * 1.6, 0);
@@ -87,7 +90,7 @@ export function Snowfall() {
 
     const drawDroplet = (p: Particle) => {
       ctx.beginPath();
-      ctx.fillStyle = `rgba(75, 85, 99, ${p.opacity + 0.08})`;
+      ctx.fillStyle = `rgba(34, 211, 238, ${p.opacity * 0.5})`;
       ctx.ellipse(p.x, p.y, p.size * 0.55, p.size * 1.35, 0, 0, Math.PI * 2);
       ctx.fill();
 

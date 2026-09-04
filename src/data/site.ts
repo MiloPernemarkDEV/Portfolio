@@ -1,8 +1,9 @@
 export const site = {
   name: "Milo Pernemark",
-  title: "Software Engineer | C++ | Systems & Game Technology",
+  role: "Game Programmer",
+  title: "C++ | C# | Gameplay Systems | AI | Engine Technology",
   description:
-    "I build high-performance software, game systems, and developer tools using C++, C#, and modern software engineering practices.",
+    "I write gameplay systems, AI, simulation, and engine code in C++ and C#. I care about how the pieces fit together under the engine, not just the feature on top.",
   email: "milosnya@gmail.com",
   github: "https://github.com/MiloPernemarkDEV",
   linkedin: "https://www.linkedin.com/in/milopernemark",
@@ -13,21 +14,26 @@ export const site = {
 
 export const internship = {
   headline:
-    "Seeking a 40-week Software Engineering Internship starting February 1st, 2027.",
+    "Seeking a 40-week Game Programming Internship starting February 1st, 2027.",
+  detail:
+    "I'm studying Game Programming at Forsbergs and looking for an internship on real production systems — gameplay, AI, engine, tools — with the chance to continue into employment afterward.",
   focusAreas: [
-    "C++ Software Engineering",
+    "Gameplay Programming",
     "Systems Programming",
-    "Engine Programming",
+    "AI & Simulation",
+    "C++ / C# Programming",
+    "Engine & Tools Programming",
     "Graphics Programming",
-    "Backend Development",
-    "Developer Tools",
   ],
 } as const;
 
 export const about = {
-  text: "I am a software engineer focused on C++, systems programming, and interactive technology. My interests include engine architecture, graphics programming, backend systems, developer tools, and performance optimization.",
+  heading: "A bit about me",
+  text: "My name is Milo Pernemark. I'm 22, I live in Stockholm, and I'm from both Sweden/Finland and Spain.",
   education:
-    "Currently studying Game Programming at Forsbergs, building a foundation in software engineering, engine systems, and interactive technology.",
+    "Alongside class work I'm building a Unity settlement sim, Unreal C++ plugins, and a Vulkan engine from scratch.",
+  extra:
+    "Apart from the technical work, I like to bring good energy to the people around me, and I'm a strong communicator.",
 } as const;
 
 export const skills = {
@@ -35,19 +41,19 @@ export const skills = {
   technologies: [
     "Unreal Engine",
     "Unity",
-    "OpenGL",
     "Vulkan",
-    "Git",
+    "OpenGL",
     "CMake",
+    "Git",
     "SQLite",
   ],
   concepts: [
-    "OOP",
-    "Data Structures",
+    "Gameplay Systems",
+    "AI & Behavior Trees",
+    "Data-driven Design",
+    "Memory Management",
     "Algorithms",
     "Debugging",
-    "Software Architecture",
-    "Memory Management",
   ],
 } as const;
 
@@ -55,56 +61,53 @@ export interface Project {
   id: string;
   title: string;
   description: string;
+  status?: string;
+  featured?: boolean;
   technologies: string[];
   highlights: string[];
-  caseStudy?: {
-    overview: string;
-    role: string;
-    built: string;
-    approach: string;
-    outcome: string;
-  };
+  image?: string;
+  imageAlt?: string;
   links: { label: string; href: string }[];
 }
 
 export const projects: Project[] = [
   {
-    id: "telemetry-for-dummies",
-    title: "Telemetry For Dummies",
+    id: "goblin-settlement-sim",
+    title: "Goblin Settlement Sim",
+    status: "In progress",
+    featured: true,
     description:
-      "School project with an external studio: a UE5 plugin package that records session events for an undisclosed game.",
-    technologies: [
-      "Unreal Engine 5",
-      "C++",
-      "AI Controller",
-      "Behavior Tree",
-      "Plugins",
+      "Unity simulation game still in development. I'm building the technical foundation myself to explore how AI and settlement gameplay can scale.",
+    technologies: ["Unity", "C#", "AI", "Behavior Tree", "Simulation"],
+    highlights: [
+      "Custom AI framework inspired by Unreal's AI architecture",
+      "Custom Behavior Tree, Blackboard, and node/execution system",
+      "Event-driven gameplay through an EventRelay",
+      "Simulation systems, UI plumbing, and data-driven setup",
     ],
-    highlights: [],
-    caseStudy: {
-      overview:
-        "This was a school project in Unreal Engine 5. We collaborated with an external studio working on an undisclosed game to build Telemetry For Dummies, a plugin package that records session events for analytics.",
-      role: "I built the dog AI in our playtest level and ported the telemetry that already lived in the game into the plugin package we made with the studio.",
-      built: "The dog runs on an AI Controller with Perception sight, a Behavior Tree, and a blackboard target. It notices thrown meat, reacts, and I write those AI actions into the telemetry log. I then moved the game's telemetry into a UE plugin with a world subsystem so a project can record a session from one place.",
-      approach:
-        "I made tracking modular. Player and actor positions are sampled automatically from project settings: class, tags, and the possessed pawn. Games do not attach tracking to each actor. AI events and position samples go through the same recorder.",
-      outcome:
-        "Our playtest could run the dog and record a session from the plugin. The studio can enable sampling from project settings instead of wiring tracking onto every actor.",
-    },
-    links: [],
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/MiloPernemarkDEV/GoblinSettlementSimGame",
+      },
+    ],
   },
   {
     id: "melon-engine",
     title: "Melon Engine",
+    status: "In progress",
+    featured: true,
     description:
-      "A modular Vulkan 1.3 graphics engine written from scratch in modern C++. Built to gain a deep, practical understanding of low-level hardware initialization, OS interaction, and the Win32 API.",
-    technologies: ["C++20", "Vulkan 1.3", "Win32 API", "Rust FFI", "CMake"],
+      "Custom game engine written from scratch in C++. Unfinished does not mean abandoned — I use it to work through engine architecture, Vulkan rendering, and Win32.",
+    technologies: ["C++23", "Vulkan", "Win32 API", "VMA", "Rust FFI", "CMake"],
     highlights: [
-      "Native Win32 window layer for window instantiation and renderer utilities",
-      "FFI bridge for writing renderer code in both Rust and C++",
-      "Decoupled architecture with layered static libraries",
-      "Explicit Vulkan contexts, swapchains, and pipeline abstractions",
+      "Native Win32 window layer for window creation, events, and Vulkan surface extensions",
+      "Vulkan instance and device setup, with VMA for GPU memory",
+      "Core engine pieces: arena allocator, job system, math, ImGui",
+      "FFI bridge so renderer code can be written in Rust or C++",
     ],
+    image: "/assets/projects/melon-engine-editor.png",
+    imageAlt: "Melon Engine editor viewport",
     links: [
       {
         label: "GitHub",
@@ -113,11 +116,51 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "uss-calliope",
+    title: "USS Calliope",
+    status: "5-person team",
+    featured: true,
+    description:
+      "Unity team project. I owned the combat system: data-driven weapons, ballistics, hit chance, combat feedback, plus player audio and animation.",
+    technologies: ["Unity", "C#", "ScriptableObjects", "Gameplay"],
+    highlights: [
+      "Data-driven combat via ScriptableObject weapon and attack configs",
+      "Ballistics with Box–Muller Gaussian spread",
+      "Hit chance system and combat feedback",
+      "Player audio and animation",
+      "Custom EditorWindow with a unique ID generator for assets",
+    ],
+    image: "/assets/projects/calliope-final.png",
+    imageAlt: "USS Calliope late-production vertical slice with HUD",
+    links: [],
+  },
+  {
+    id: "telemetry-for-dummies",
+    title: "Telemetry For Dummies",
+    status: "School × studio",
+    description:
+      "School project with an external studio on an undisclosed Unreal title. I built the playtest dog AI and turned in-game telemetry into a reusable plugin package.",
+    technologies: [
+      "Unreal Engine 5",
+      "C++",
+      "AI",
+      "Behavior Tree",
+      "Plugins",
+    ],
+    highlights: [
+      "Dog AI: AI Controller, Perception sight, Behavior Tree, blackboard target, reacts to thrown meat",
+      "AI actions written into the same telemetry log as the rest of the session",
+      "Ported game telemetry into a UE plugin with a World Subsystem",
+      "Automatic player and actor position sampling from project settings (class, tags, possessed pawn)",
+    ],
+    links: [],
+  },
+  {
     id: "the-unseen",
     title: "The Unseen",
     description:
-      "A modular, node-based interaction puzzle system alongside compile-time debug utilities built using Unreal Engine C++.",
-    technologies: ["Unreal Engine 5", "C++", "Systems", "Blueprints"],
+      "Unreal C++ systems work: a node-based interaction puzzle architecture and compile-time debug utilities.",
+    technologies: ["Unreal Engine 5", "C++", "Blueprints"],
     highlights: [
       "Decoupled puzzle architecture with Board, Node, and Link actors",
       "Type-safe DebugUtility using variadic templates, stripped from shipping builds",
@@ -130,28 +173,15 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "uss-calliope",
-    title: "USS Calliope",
-    description:
-      "A collaborative 5-player group project where I developed core weapon ballistics, data-driven item management via ScriptableObjects, and workflow tools for designers.",
-    technologies: ["Unity", "C#", "ScriptableObjects", "Editor Tools"],
-    highlights: [
-      "Box–Muller transforms for realistic weapon spread patterns",
-      "Data-driven weapons using modular ScriptableObject configurations",
-      "Custom EditorWindow utility with unique ID generator for assets",
-    ],
-    links: [],
-  },
-  {
     id: "vectormath-pong",
-    title: "Native Math Library & Pong Clone",
+    title: "Native Math Library & Pong",
     description:
-      "A technical exercise in cross-language communication, featuring a custom 2D math and physics library written in unmanaged C++ running inside Unity via DLL plugins.",
-    technologies: ["C++", "C#", "Unity", "P/Invoke", "Native Plugins"],
+      "Unmanaged C++ math and physics running inside Unity through a DLL — low-level code talking to C# without copies.",
+    technologies: ["C++", "C#", "Unity", "P/Invoke"],
     highlights: [
-      "DllImport to expose raw C++ structures to Unity's managed environment",
-      "LayoutKind.Sequential formatting for zero-copy structure passing",
-      "AABB collision and reflection vectors handled entirely in the C++ backend",
+      "DllImport exposing raw C++ structures to Unity",
+      "LayoutKind.Sequential for zero-copy structure passing",
+      "AABB collision and reflection handled entirely in the C++ backend",
     ],
     links: [
       {
@@ -162,14 +192,14 @@ export const projects: Project[] = [
   },
   {
     id: "raylib-arcade",
-    title: "Native 2D Arcade Project",
+    title: "Native 2D Arcade",
     description:
-      "A self-contained arcade application built using Raylib to practice core architectural patterns without relying on an all-in-one editor interface.",
+      "Self-contained C++ arcade app in Raylib — screen flow, collisions, and resources written by hand without an editor.",
     technologies: ["C++", "Raylib"],
     highlights: [
-      "Explicit state machine for clean screen lifecycle transitions",
-      "Manual bounding box intersection checks for actor overlaps",
-      "Explicit resource lifecycle with manual texture and audio allocation",
+      "Explicit state machine for screen lifecycle",
+      "Manual bounding-box intersection for actor overlaps",
+      "Manual texture and audio allocation and teardown",
     ],
     links: [
       {
@@ -181,8 +211,8 @@ export const projects: Project[] = [
 ];
 
 export const navLinks = [
-  { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ] as const;
