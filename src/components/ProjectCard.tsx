@@ -28,6 +28,7 @@ const TECH_STYLES: Record<string, string> = {
   Gameplay: "border-accent/40 bg-accent/10 text-accent",
   Plugins: "border-amber/40 bg-amber/10 text-amber",
   Blueprints: "border-amber/40 bg-amber/10 text-amber",
+  Niagara: "border-sky/40 bg-sky/10 text-sky",
   "P/Invoke": "border-violet/40 bg-violet/10 text-violet",
   Raylib: "border-sky/40 bg-sky/10 text-sky",
 };
@@ -52,6 +53,37 @@ function GitHubIcon() {
   );
 }
 
+function PlayIcon() {
+  return (
+    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14Z" />
+    </svg>
+  );
+}
+
+function PdfIcon() {
+  return (
+    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9l-5-6Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 3v6h5M8.5 14.5h7M8.5 17.5h4.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function isVideo(path: string) {
+  return /\.(mp4|webm)$/i.test(path);
+}
+
 function assetUrl(path: string) {
   const base = import.meta.env.BASE_URL;
   return `${base}${path.replace(/^\//, "")}`;
@@ -59,7 +91,14 @@ function assetUrl(path: string) {
 
 export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const github = project.links.find((link) => link.label === "GitHub");
-  const otherLinks = project.links.filter((link) => link.label !== "GitHub");
+  const pdf = project.links.find((link) => link.label === "Contributions");
+  const playthrough = project.links.find((link) => link.label === "Playthrough");
+  const otherLinks = project.links.filter(
+    (link) =>
+      link.label !== "GitHub" &&
+      link.label !== "Contributions" &&
+      link.label !== "Playthrough",
+  );
 
   return (
     <article
@@ -75,12 +114,30 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
             featured ? "aspect-[16/10] lg:w-[42%] lg:aspect-auto" : "aspect-[16/9]"
           }`}
         >
-          <img
-            src={assetUrl(project.image)}
-            alt={project.imageAlt ?? project.title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-card/30" />
+          {isVideo(project.image) ? (
+            <video
+              src={assetUrl(project.image)}
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label={project.imageAlt ?? project.title}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <img
+              src={assetUrl(project.image)}
+              alt={project.imageAlt ?? project.title}
+              className={
+                project.imageContain
+                  ? "h-full w-full bg-black object-contain"
+                  : "h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              }
+            />
+          )}
+          {project.imageContain ? null : (
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-card/30" />
+          )}
         </div>
       ) : featured ? (
         <div className="h-1.5 w-full shrink-0 bg-gradient-to-r from-accent via-pink to-violet" />
@@ -133,6 +190,27 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
               >
                 <GitHubIcon />
                 GitHub
+              </a>
+            ) : null}
+            {pdf ? (
+              <a
+                href={assetUrl(pdf.href)}
+                download="USS-Calliope-Contributions.pdf"
+                className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
+              >
+                <PdfIcon />
+                Contributions
+              </a>
+            ) : null}
+            {playthrough ? (
+              <a
+                href={playthrough.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium text-text transition-colors hover:border-pink/60 hover:text-pink"
+              >
+                <PlayIcon />
+                Playthrough
               </a>
             ) : null}
             {otherLinks.map((link) => (

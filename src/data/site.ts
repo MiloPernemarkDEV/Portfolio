@@ -75,10 +75,89 @@ export interface Project {
   highlights: string[];
   image?: string;
   imageAlt?: string;
+  imageContain?: boolean;
   links: { label: string; href: string }[];
 }
 
 export const projects: Project[] = [
+  {
+    id: "the-unseen",
+    title: "The Unseen",
+    featured: true,
+    description:
+      "Unreal C++ systems work: a node-based interaction puzzle architecture, a dynamic weather system with Niagara rain, and compile-time debug utilities.",
+    technologies: ["Unreal Engine 5", "C++", "Blueprints", "Niagara"],
+    highlights: [
+      "Decoupled puzzle architecture with Board, Node, and Link actors",
+      "Dynamic weather system and Niagara rain",
+      "Type-safe DebugUtility using variadic templates, stripped from shipping builds",
+    ],
+    image: "/assets/projects/unseen.mp4",
+    imageAlt: "The Unseen gameplay clip",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/Forsbergs-Skola/HeliconUnrealOne/tree/main",
+      },
+      {
+        label: "Playthrough",
+        href: "https://www.youtube.com/watch?v=0Rc8_kRZEK0",
+      },
+    ],
+  },
+  {
+    id: "uss-calliope",
+    title: "USS Calliope",
+    status: "5-person team",
+    featured: true,
+    description:
+      "Unity team project. I owned the combat system: data-driven weapons, ballistics, hit chance, combat feedback, plus player audio and animation.",
+    technologies: ["Unity", "C#", "ScriptableObjects", "Gameplay"],
+    highlights: [
+      "Data-driven combat via ScriptableObject weapon and attack configs",
+      "Ballistics with Box-Muller Gaussian spread",
+      "Hit chance system and combat feedback",
+      "Player audio and animation",
+      "Custom EditorWindow with a unique ID generator for assets",
+    ],
+    image: "/assets/projects/uss-calliope.mp4",
+    imageAlt: "USS Calliope gameplay clip",
+    links: [
+      {
+        label: "Contributions",
+        href: "/assets/projects/uss-calliope-contributions.pdf",
+      },
+      {
+        label: "Playthrough",
+        href: "https://www.youtube.com/watch?v=EgMWL9ezOO0",
+      },
+    ],
+  },
+  {
+    id: "telemetry-for-dummies",
+    title: "Telemetry Plugin",
+    status: "School × studio",
+    featured: true,
+    description:
+      "School project with an external studio on an undisclosed Unreal title. I built the playtest dog AI and turned in-game telemetry into a reusable plugin package.",
+    technologies: [
+      "Unreal Engine 5",
+      "C++",
+      "AI",
+      "Behavior Tree",
+      "Plugins",
+    ],
+    highlights: [
+      "Dog AI: AI Controller, Perception sight, Behavior Tree, blackboard target, reacts to thrown meat",
+      "AI actions written into the same telemetry log as the rest of the session",
+      "Ported game telemetry into a UE plugin with a World Subsystem",
+      "Automatic player and actor position sampling from project settings (class, tags, possessed pawn)",
+    ],
+    image: "/assets/projects/telemetry-for-dummies.png",
+    imageAlt: "Telemetry Plugin title card",
+    imageContain: true,
+    links: [],
+  },
   {
     id: "goblin-settlement-sim",
     title: "Goblin Settlement Sim",
@@ -120,63 +199,6 @@ export const projects: Project[] = [
       {
         label: "GitHub",
         href: "https://github.com/MiloPernemarkDEV/MelonEngine",
-      },
-    ],
-  },
-  {
-    id: "uss-calliope",
-    title: "USS Calliope",
-    status: "5-person team",
-    featured: true,
-    description:
-      "Unity team project. I owned the combat system: data-driven weapons, ballistics, hit chance, combat feedback, plus player audio and animation.",
-    technologies: ["Unity", "C#", "ScriptableObjects", "Gameplay"],
-    highlights: [
-      "Data-driven combat via ScriptableObject weapon and attack configs",
-      "Ballistics with Box-Muller Gaussian spread",
-      "Hit chance system and combat feedback",
-      "Player audio and animation",
-      "Custom EditorWindow with a unique ID generator for assets",
-    ],
-    image: "/assets/projects/calliope-final.png",
-    imageAlt: "USS Calliope late-production vertical slice with HUD",
-    links: [],
-  },
-  {
-    id: "telemetry-for-dummies",
-    title: "Telemetry For Dummies",
-    status: "School × studio",
-    description:
-      "School project with an external studio on an undisclosed Unreal title. I built the playtest dog AI and turned in-game telemetry into a reusable plugin package.",
-    technologies: [
-      "Unreal Engine 5",
-      "C++",
-      "AI",
-      "Behavior Tree",
-      "Plugins",
-    ],
-    highlights: [
-      "Dog AI: AI Controller, Perception sight, Behavior Tree, blackboard target, reacts to thrown meat",
-      "AI actions written into the same telemetry log as the rest of the session",
-      "Ported game telemetry into a UE plugin with a World Subsystem",
-      "Automatic player and actor position sampling from project settings (class, tags, possessed pawn)",
-    ],
-    links: [],
-  },
-  {
-    id: "the-unseen",
-    title: "The Unseen",
-    description:
-      "Unreal C++ systems work: a node-based interaction puzzle architecture and compile-time debug utilities.",
-    technologies: ["Unreal Engine 5", "C++", "Blueprints"],
-    highlights: [
-      "Decoupled puzzle architecture with Board, Node, and Link actors",
-      "Type-safe DebugUtility using variadic templates, stripped from shipping builds",
-    ],
-    links: [
-      {
-        label: "GitHub",
-        href: "https://github.com/Forsbergs-Skola/HeliconUnrealOne/tree/main",
       },
     ],
   },
