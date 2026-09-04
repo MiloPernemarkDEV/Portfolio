@@ -31,7 +31,7 @@ export const about = {
   heading: "A bit about me",
   text: "My name is Milo Pernemark. I'm 22, I live in Stockholm, and I'm from both Sweden/Finland and Spain.",
   education:
-    "Alongside class work I'm building a Unity settlement sim, Unreal C++ plugins, and a Vulkan engine from scratch.",
+    "Alongside class work I'm building a Unity settlement sim and a Vulkan engine from scratch.",
   extra:
     "Apart from the technical work, I like to bring good energy to the people around me, and I'm a strong communicator.",
 } as const;
