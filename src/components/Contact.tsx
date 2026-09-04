@@ -13,11 +13,8 @@ export function Contact() {
               Contact
             </p>
             <h2 className="font-display text-3xl font-bold tracking-tight text-text sm:text-4xl">
-              Let&apos;s connect
+              Ask me about anything, or give me a job.
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-text-muted">
-              Open to a game programming internship and technical collaboration.
-            </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
               <a

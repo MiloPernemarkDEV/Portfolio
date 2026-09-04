@@ -16,7 +16,7 @@ export const internship = {
   headline:
     "Seeking a 40-week Game Programming Internship starting February 1st, 2027.",
   detail:
-    "I'm studying Game Programming at Forsbergs and looking for an internship on real production systems — gameplay, AI, engine, tools — with the chance to continue into employment afterward.",
+    "I'm studying Game Programming at Forsbergs and looking for an internship on real production systems like gameplay, AI, engine, and tools, with the chance to continue into employment afterward.",
   focusAreas: [
     "Gameplay Programming",
     "Systems Programming",
@@ -98,7 +98,7 @@ export const projects: Project[] = [
     status: "In progress",
     featured: true,
     description:
-      "Custom game engine written from scratch in C++. Unfinished does not mean abandoned — I use it to work through engine architecture, Vulkan rendering, and Win32.",
+      "Custom game engine written from scratch in C++. Unfinished does not mean abandoned. I use it to work through engine architecture, Vulkan rendering, and Win32.",
     technologies: ["C++23", "Vulkan", "Win32 API", "VMA", "Rust FFI", "CMake"],
     highlights: [
       "Native Win32 window layer for window creation, events, and Vulkan surface extensions",
@@ -125,7 +125,7 @@ export const projects: Project[] = [
     technologies: ["Unity", "C#", "ScriptableObjects", "Gameplay"],
     highlights: [
       "Data-driven combat via ScriptableObject weapon and attack configs",
-      "Ballistics with Box–Muller Gaussian spread",
+      "Ballistics with Box-Muller Gaussian spread",
       "Hit chance system and combat feedback",
       "Player audio and animation",
       "Custom EditorWindow with a unique ID generator for assets",
@@ -176,7 +176,7 @@ export const projects: Project[] = [
     id: "vectormath-pong",
     title: "Native Math Library & Pong",
     description:
-      "Unmanaged C++ math and physics running inside Unity through a DLL — low-level code talking to C# without copies.",
+      "Unmanaged C++ math and physics running inside Unity through a DLL. Low-level code talking to C# without copies.",
     technologies: ["C++", "C#", "Unity", "P/Invoke"],
     highlights: [
       "DllImport exposing raw C++ structures to Unity",
@@ -194,7 +194,7 @@ export const projects: Project[] = [
     id: "raylib-arcade",
     title: "Native 2D Arcade",
     description:
-      "Self-contained C++ arcade app in Raylib — screen flow, collisions, and resources written by hand without an editor.",
+      "Self-contained C++ arcade app in Raylib. Screen flow, collisions, and resources written by hand without an editor.",
     technologies: ["C++", "Raylib"],
     highlights: [
       "Explicit state machine for screen lifecycle",
