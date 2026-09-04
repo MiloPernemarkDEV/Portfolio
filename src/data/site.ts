@@ -6,7 +6,7 @@ export const site = {
     "I write gameplay systems, AI, simulation, and engine code in C++ and C#. I care about how the pieces fit together under the engine, not just the feature on top.",
   email: "milosnya@gmail.com",
   github: "https://github.com/MiloPernemarkDEV",
-  linkedin: "https://www.linkedin.com/in/milopernemark",
+  linkedin: "https://www.linkedin.com/in/milo-pernemark-a78235274/",
   resume: "/resume.pdf",
   school: "Forsbergs Skola",
   schoolUrl: "https://www.forsbergsskola.se/",
