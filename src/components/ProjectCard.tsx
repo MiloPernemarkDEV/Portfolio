@@ -92,12 +92,12 @@ function assetUrl(path: string) {
 export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const github = project.links.find((link) => link.label === "GitHub");
   const pdf = project.links.find((link) => link.label === "Contributions");
-  const playthrough = project.links.find((link) => link.label === "Playthrough");
+  const showcaseVideo = project.links.find((link) => link.label === "Showcase Video");
   const otherLinks = project.links.filter(
     (link) =>
       link.label !== "GitHub" &&
       link.label !== "Contributions" &&
-      link.label !== "Playthrough",
+      link.label !== "Showcase Video",
   );
 
   return (
@@ -202,15 +202,15 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
                 Contributions
               </a>
             ) : null}
-            {playthrough ? (
+            {showcaseVideo ? (
               <a
-                href={playthrough.href}
+                href={showcaseVideo.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium text-text transition-colors hover:border-pink/60 hover:text-pink"
               >
                 <PlayIcon />
-                Playthrough
+                Showcase Video
               </a>
             ) : null}
             {otherLinks.map((link) => (

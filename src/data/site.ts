@@ -100,7 +100,7 @@ export const projects: Project[] = [
         href: "https://github.com/Forsbergs-Skola/HeliconUnrealOne/tree/main",
       },
       {
-        label: "Playthrough",
+        label: "Showcase Video",
         href: "https://www.youtube.com/watch?v=0Rc8_kRZEK0",
       },
     ],
@@ -128,7 +128,7 @@ export const projects: Project[] = [
         href: "/assets/projects/uss-calliope-contributions.pdf",
       },
       {
-        label: "Playthrough",
+        label: "Showcase Video",
         href: "https://www.youtube.com/watch?v=EgMWL9ezOO0",
       },
     ],
