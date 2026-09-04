@@ -4,19 +4,19 @@ const skillGroups = [
   {
     title: "Languages",
     items: skills.languages,
-    accent: "text-cyan border-cyan/40 bg-cyan/10 shadow-[0_0_12px_rgba(34,211,238,0.08)]",
+    accent: "text-cyan border-cyan/40 bg-cyan/10",
     heading: "text-cyan",
   },
   {
     title: "Technologies",
     items: skills.technologies,
-    accent: "text-pink border-pink/40 bg-pink/10 shadow-[0_0_12px_rgba(255,78,205,0.08)]",
+    accent: "text-pink border-pink/40 bg-pink/10",
     heading: "text-pink",
   },
   {
     title: "Concepts",
     items: skills.concepts,
-    accent: "text-accent border-accent/40 bg-accent/10 shadow-[0_0_12px_rgba(124,242,154,0.08)]",
+    accent: "text-accent border-accent/40 bg-accent/10",
     heading: "text-accent",
   },
 ] as const;
@@ -26,7 +26,7 @@ export function Skills() {
     <section id="skills" className="border-b border-border bg-surface py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mb-14 max-w-2xl">
-          <p className="mb-2 font-mono text-sm font-medium tracking-wide text-cyan uppercase neon-cyan">
+          <p className="mb-2 font-mono text-sm font-medium tracking-wide text-cyan uppercase">
             Skills
           </p>
           <h2 className="font-display text-3xl font-bold tracking-tight text-text sm:text-4xl">

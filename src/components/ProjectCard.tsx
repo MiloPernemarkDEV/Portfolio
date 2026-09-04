@@ -65,8 +65,8 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
     <article
       className={`group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 ${
         featured && project.image
-          ? "hover:border-cyan/35 hover:shadow-[0_0_28px_rgba(34,211,238,0.08)] lg:flex-row"
-          : "hover:border-pink/30 hover:shadow-[0_0_24px_rgba(255,78,205,0.08)]"
+          ? "hover:border-cyan/35 lg:flex-row"
+          : "hover:border-pink/30"
       }`}
     >
       {project.image ? (
@@ -95,9 +95,9 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
             <span
               className={
                 project.status === "In progress"
-                  ? "rounded-full border border-pink/50 bg-pink/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-pink shadow-[0_0_12px_rgba(255,78,205,0.25)]"
+                  ? "rounded-full border border-pink/50 bg-pink/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-pink"
                   : project.status === "5-person team"
-                    ? "rounded-full border border-cyan/50 bg-cyan/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-cyan shadow-[0_0_12px_rgba(34,211,238,0.25)]"
+                    ? "rounded-full border border-cyan/50 bg-cyan/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-cyan"
                     : "rounded-full border border-violet/50 bg-violet/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-violet"
               }
             >
@@ -129,7 +129,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
                 href={github.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg transition-all hover:bg-accent-hover hover:shadow-[0_0_20px_rgba(124,242,154,0.3)]"
+                className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
               >
                 <GitHubIcon />
                 GitHub

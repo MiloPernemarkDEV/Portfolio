@@ -39,18 +39,6 @@ body {
   color: var(--color-text);
 }
 
-.neon-lime {
-  text-shadow: 0 0 14px color-mix(in oklab, var(--color-accent) 55%, transparent);
-}
-
-.neon-cyan {
-  text-shadow: 0 0 14px color-mix(in oklab, var(--color-cyan) 55%, transparent);
-}
-
-.neon-pink {
-  text-shadow: 0 0 14px color-mix(in oklab, var(--color-pink) 55%, transparent);
-}
-
 @keyframes fade-up {
   from {
     opacity: 0;

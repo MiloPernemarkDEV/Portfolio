@@ -30,7 +30,7 @@ export function InternshipBanner() {
 
       <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         <div className="max-w-3xl">
-          <p className="mb-2 font-mono text-sm font-medium tracking-wide text-accent uppercase neon-lime">
+          <p className="mb-2 font-mono text-sm font-medium tracking-wide text-accent uppercase">
             Internship
           </p>
           <h2 className="font-display text-2xl font-bold tracking-tight text-text sm:text-3xl">
@@ -51,10 +51,10 @@ export function InternshipBanner() {
                 key={area}
                 className={
                   index % 3 === 0
-                    ? "rounded-full border border-accent/50 bg-bg/40 px-4 py-2 text-sm font-medium text-accent shadow-[0_0_16px_rgba(124,242,154,0.18)]"
+                    ? "rounded-full border border-accent/50 bg-bg/40 px-4 py-2 text-sm font-medium text-accent"
                     : index % 3 === 1
-                      ? "rounded-full border border-cyan/50 bg-bg/40 px-4 py-2 text-sm font-medium text-cyan shadow-[0_0_16px_rgba(34,211,238,0.18)]"
-                      : "rounded-full border border-pink/50 bg-bg/40 px-4 py-2 text-sm font-medium text-pink shadow-[0_0_16px_rgba(255,78,205,0.18)]"
+                      ? "rounded-full border border-cyan/50 bg-bg/40 px-4 py-2 text-sm font-medium text-cyan"
+                      : "rounded-full border border-pink/50 bg-bg/40 px-4 py-2 text-sm font-medium text-pink"
                 }
               >
                 {area}

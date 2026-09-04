@@ -22,7 +22,7 @@ export function Navbar() {
         <div>
           <a
             href="#"
-            className="font-mono text-xs font-medium tracking-wide text-accent uppercase neon-lime transition-colors hover:text-accent-hover"
+            className="font-mono text-xs font-medium tracking-wide text-accent uppercase transition-colors hover:text-accent-hover"
           >
             {site.name}
           </a>
@@ -55,7 +55,7 @@ export function Navbar() {
                   : {})}
                 className={
                   link.label === "Contact"
-                    ? "inline-flex items-center rounded-lg bg-pink px-4 py-2 text-sm font-semibold text-bg transition-all hover:bg-pink/80 hover:shadow-[0_0_18px_rgba(255,78,205,0.35)]"
+                    ? "inline-flex items-center rounded-lg bg-pink px-4 py-2 text-sm font-semibold text-bg transition-colors hover:bg-pink/80"
                     : link.label === "GitHub"
                       ? "inline-flex items-center rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-text transition-all hover:border-cyan/60 hover:text-cyan"
                       : link.label === "LinkedIn"
