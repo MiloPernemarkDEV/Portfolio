@@ -19,8 +19,6 @@ function LinkedInIcon() {
 
 const sectionLinks = navLinks.filter((link) => link.label !== "Contact");
 
-const sectionLinks = navLinks.filter((link) => link.label !== "Contact");
-
 export function Navbar() {
   const [open, setOpen] = useState(false);
 
