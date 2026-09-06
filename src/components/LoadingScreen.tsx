@@ -4,7 +4,7 @@ import { site } from "../data/site";
 const LINES = [
   "INIT RUNTIME",
   "LOAD GAMEPLAY SYSTEMS",
-  "SPAWN GOBLINS",
+  "SPAWN AGENTS",
   "READY",
 ] as const;
 

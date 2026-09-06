@@ -39,7 +39,7 @@ export const about = {
   heading: "A bit about me",
   text: "My name is Milo Pernemark. I'm 22, I live in Stockholm, and I'm from both Sweden/Finland and Spain.",
   education:
-    "Alongside class work I'm building a Unity settlement sim and a Vulkan engine from scratch.",
+    "Alongside class work I'm building a Unity AI behavior framework and a Vulkan engine from scratch.",
   extra:
     "Apart from the technical work, I like to bring good energy to the people around me, and I love working in team projects.",
 } as const;
@@ -157,23 +157,25 @@ export const projects: Project[] = [
     links: [],
   },
   {
-    id: "goblin-settlement-sim",
-    title: "Goblin Settlement Sim",
+    id: "unity-ai-behavior-framework",
+    title: "Unity AI Behavior Framework",
     status: "In progress",
     featured: true,
     description:
-      "Unity simulation game still in development. I'm building the technical foundation myself to explore how AI and settlement gameplay can scale.",
-    technologies: ["Unity", "C#", "AI", "Behavior Tree", "Simulation"],
+      "A playground for bringing Unreal Engine's AI framework into Unity: Blackboards, Behavior Trees, and Behavior Tree Nodes. Currently rendering 5 thousand NavMeshAgents with simple behavior at 60 fps.",
+    technologies: ["Unity", "C#", "AI", "Behavior Tree", "Blackboard", "NavMesh"],
     highlights: [
-      "Custom AI framework inspired by Unreal's AI architecture",
-      "Custom Behavior Tree, Blackboard, and node/execution system",
-      "Event-driven gameplay through an EventRelay",
-      "Simulation systems, UI plumbing, and data-driven setup",
+      "Unreal-style AI architecture implemented in Unity",
+      "Blackboard backed by a heterogeneous map so keys can hold different value types",
+      "Behavior Trees and custom Behavior Tree nodes",
+      "5 thousand NavMeshAgents with simple behavior at 60 fps",
     ],
+    image: "/assets/projects/unity-ai-behavior-framework.mp4",
+    imageAlt: "Unity AI Behavior Framework with thousands of NavMeshAgents",
     links: [
       {
         label: "GitHub",
-        href: "https://github.com/MiloPernemarkDEV/GoblinSettlementSimGame",
+        href: "https://github.com/MiloPernemarkDEV/UnityAIBehaviorFramework",
       },
     ],
   },
