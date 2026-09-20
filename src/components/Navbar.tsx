@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { navLinks, site } from "../data/site";
+import { publicUrl, navLinks, site } from "../data/site";
 
 function GitHubIcon() {
   return (
@@ -23,7 +23,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="relative sticky top-0 z-50 bg-bg/90 backdrop-blur-md after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-accent after:via-cyan after:to-pink">
+    <header className="sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur-md">
       <nav
         className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-3 lg:px-8"
         aria-label="Primary"
@@ -60,7 +60,7 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="inline-flex items-center justify-center rounded-lg p-2 text-text transition-colors hover:text-cyan"
+              className="inline-flex items-center justify-center rounded-lg p-2 text-text transition-colors hover:text-accent"
             >
               <GitHubIcon />
             </a>
@@ -69,13 +69,20 @@ export function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="inline-flex items-center justify-center rounded-lg p-2 text-text transition-colors hover:text-pink"
+              className="inline-flex items-center justify-center rounded-lg p-2 text-text transition-colors hover:text-amber"
             >
               <LinkedInIcon />
             </a>
             <a
+              href={publicUrl(site.resume)}
+              download="Milo_Pernemark_CV.pdf"
+              className="text-sm font-medium text-text-muted transition-colors hover:text-accent"
+            >
+              Resume
+            </a>
+            <a
               href="#contact"
-              className="ml-1 inline-flex items-center rounded-lg bg-pink px-4 py-2 text-sm font-semibold text-bg transition-colors hover:bg-pink/80"
+              className="ml-1 inline-flex items-center rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
             >
               Contact
             </a>
@@ -150,8 +157,16 @@ export function Navbar() {
               <LinkedInIcon />
             </a>
             <a
+              href={publicUrl(site.resume)}
+              download="Milo_Pernemark_CV.pdf"
+              className="inline-flex rounded-lg border border-border px-4 py-2 text-sm font-medium text-text"
+              onClick={() => setOpen(false)}
+            >
+              Resume
+            </a>
+            <a
               href="#contact"
-              className="inline-flex rounded-lg bg-pink px-4 py-2 text-sm font-semibold text-bg"
+              className="inline-flex rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg"
               onClick={() => setOpen(false)}
             >
               Contact

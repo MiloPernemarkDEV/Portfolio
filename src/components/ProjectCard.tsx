@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import type { Project } from "../data/site";
 
 interface ProjectCardProps {
@@ -23,6 +24,8 @@ const TECH_STYLES: Record<string, string> = {
   CMake: "border-text-muted/40 bg-surface text-text-muted",
   AI: "border-violet/40 bg-violet/10 text-violet",
   "Behavior Tree": "border-violet/40 bg-violet/10 text-violet",
+  Blackboard: "border-violet/40 bg-violet/10 text-violet",
+  NavMesh: "border-accent/40 bg-accent/10 text-accent",
   Simulation: "border-accent/40 bg-accent/10 text-accent",
   ScriptableObjects: "border-cyan/40 bg-cyan/10 text-cyan",
   Gameplay: "border-accent/40 bg-accent/10 text-accent",
@@ -36,7 +39,7 @@ const TECH_STYLES: Record<string, string> = {
 function TechBadge({ tech }: { tech: string }) {
   return (
     <span
-      className={`rounded-md border px-2.5 py-1 font-chip text-[11px] font-semibold ${
+      className={`rounded-md border px-3 py-1.5 font-chip text-xs font-semibold ${
         TECH_STYLES[tech] ?? "border-border bg-surface text-text-muted"
       }`}
     >
@@ -80,6 +83,53 @@ function PdfIcon() {
   );
 }
 
+function ProjectVideo({
+  src,
+  label,
+  zoomed,
+}: {
+  src: string;
+  label: string;
+  zoomed?: boolean;
+}) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motion.matches) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          void video.play();
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.4 },
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      src={src}
+      loop
+      muted
+      playsInline
+      preload="metadata"
+      aria-label={label}
+      className={`h-full w-full object-cover ${zoomed ? "scale-[1.35]" : ""}`}
+    />
+  );
+}
+
 function isVideo(path: string) {
   return /\.(mp4|webm)$/i.test(path);
 }
@@ -102,29 +152,17 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 
   return (
     <article
-      className={`group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 ${
-        featured && project.image
-          ? "hover:border-cyan/35 lg:flex-row"
-          : "hover:border-pink/30"
+      className={`group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 ${
+        featured ? "hover:border-accent/40" : "hover:border-amber/35"
       }`}
     >
       {project.image ? (
-        <div
-          className={`relative overflow-hidden bg-surface ${
-            featured ? "aspect-[16/10] lg:w-[42%] lg:aspect-auto" : "aspect-[16/9]"
-          }`}
-        >
+        <div className="relative aspect-[16/10] min-h-[13.5rem] overflow-hidden bg-surface lg:min-h-[16.5rem]">
           {isVideo(project.image) ? (
-            <video
+            <ProjectVideo
               src={assetUrl(project.image)}
-              autoPlay
-              loop
-              muted
-              playsInline
-              aria-label={project.imageAlt ?? project.title}
-              className={`h-full w-full object-cover ${
-                project.id === "telemetry-for-dummies" ? "scale-[1.35]" : ""
-              }`}
+              label={project.imageAlt ?? project.title}
+              zoomed={project.id === "telemetry-for-dummies"}
             />
           ) : (
             <img
@@ -133,22 +171,22 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
           )}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-card/30" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
         </div>
       ) : featured ? (
-        <div className="h-1.5 w-full shrink-0 bg-gradient-to-r from-accent via-pink to-violet" />
+        <div className="h-1.5 w-full shrink-0 bg-gradient-to-r from-accent to-amber" />
       ) : null}
 
-      <div className="flex flex-1 flex-col p-6 lg:p-8">
+      <div className="flex flex-1 flex-col p-7 lg:p-8">
         <div className="flex flex-wrap items-center gap-3">
-          <h3 className="font-display text-xl font-bold tracking-tight text-text lg:text-2xl">
+          <h3 className="font-display text-2xl font-bold tracking-tight text-text lg:text-3xl">
             {project.title}
           </h3>
           {project.status ? (
             <span
               className={
                 project.status === "In progress"
-                  ? "rounded-full border border-pink/50 bg-pink/10 px-2.5 py-0.5 font-chip text-[11px] font-semibold text-pink"
+                  ? "rounded-full border border-amber/50 bg-amber/10 px-2.5 py-0.5 font-chip text-[11px] font-semibold text-amber"
                   : project.status === "5-person team"
                     ? "rounded-full border border-cyan/50 bg-cyan/10 px-2.5 py-0.5 font-chip text-[11px] font-semibold text-cyan"
                     : "rounded-full border border-violet/50 bg-violet/10 px-2.5 py-0.5 font-chip text-[11px] font-semibold text-violet"
@@ -159,15 +197,23 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           ) : null}
         </div>
 
-        <p className="mt-3 leading-relaxed text-text-muted">{project.description}</p>
+        {(project.role || project.engine || project.platform) ? (
+          <p className="mt-2 font-mono text-xs tracking-wide text-accent">
+            {[project.role, project.engine, project.platform]
+              .filter(Boolean)
+              .join(" · ")}
+          </p>
+        ) : null}
 
-        <div className="mt-5 flex flex-wrap gap-1.5">
+        <p className="mt-4 text-[1.05rem] leading-relaxed text-text-muted">{project.description}</p>
+
+        <div className="mt-6 flex flex-wrap gap-2">
           {project.technologies.map((tech) => (
             <TechBadge key={tech} tech={tech} />
           ))}
         </div>
 
-        <p className="mt-5 text-sm leading-relaxed text-text-muted">
+        <p className="mt-6 leading-relaxed text-text-muted">
           {project.highlights
             .map((highlight) =>
               highlight.endsWith(".") ? highlight : `${highlight}.`,
@@ -176,13 +222,13 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
         </p>
 
         {project.links.length > 0 ? (
-          <div className="mt-6 flex flex-wrap gap-3 pt-1">
+          <div className="mt-auto flex flex-wrap gap-3 pt-8">
             {github ? (
               <a
                 href={github.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
+                className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
               >
                 <GitHubIcon />
                 GitHub
@@ -192,7 +238,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
               <a
                 href={assetUrl(pdf.href)}
                 download="USS-Calliope-Contributions.pdf"
-                className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
+                className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
               >
                 <PdfIcon />
                 Contributions
@@ -203,7 +249,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
                 href={showcaseVideo.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium text-text transition-colors hover:border-pink/60 hover:text-pink"
+                className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-text transition-colors hover:border-amber/60 hover:text-amber"
               >
                 <PlayIcon />
                 Showcase Video
@@ -215,7 +261,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-lg border border-border px-4 py-2 text-sm font-medium text-text transition-colors hover:border-accent/60 hover:text-accent"
+                className="inline-flex items-center rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-text transition-colors hover:border-accent/60 hover:text-accent"
               >
                 {link.label}
               </a>

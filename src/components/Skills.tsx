@@ -10,8 +10,8 @@ const skillGroups = [
   {
     title: "Technologies",
     items: skills.technologies,
-    accent: "text-pink border-pink/40 bg-pink/10",
-    heading: "text-pink",
+    accent: "text-amber border-amber/40 bg-amber/10",
+    heading: "text-amber",
   },
   {
     title: "Concepts",
@@ -26,11 +26,11 @@ export function Skills() {
     <section id="skills" className="border-b border-border bg-surface py-20 lg:py-28">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mb-14 max-w-2xl">
-          <p className="mb-2 font-mono text-sm font-medium tracking-wide text-cyan uppercase">
+          <p className="mb-2 font-mono text-sm font-medium tracking-wide text-accent uppercase">
             Skills
           </p>
           <h2 className="font-display text-3xl font-bold tracking-tight text-text sm:text-4xl">
-            What I work in
+            Languages, engines, and systems
           </h2>
         </div>
 

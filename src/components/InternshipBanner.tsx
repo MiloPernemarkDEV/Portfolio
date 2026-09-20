@@ -2,7 +2,7 @@ import { internship } from "../data/site";
 
 export function InternshipBanner() {
   return (
-    <section className="border-b border-border bg-accent-dim py-16 lg:py-20">
+    <section id="internship" className="border-b border-border bg-accent-dim py-16 lg:py-20">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="mb-2 font-mono text-sm font-medium tracking-wide text-accent uppercase">
@@ -29,7 +29,7 @@ export function InternshipBanner() {
                     ? "rounded-full border border-accent/50 bg-bg/40 px-4 py-2 font-chip text-sm font-semibold text-accent"
                     : index % 3 === 1
                       ? "rounded-full border border-cyan/50 bg-bg/40 px-4 py-2 font-chip text-sm font-semibold text-cyan"
-                      : "rounded-full border border-pink/50 bg-bg/40 px-4 py-2 font-chip text-sm font-semibold text-pink"
+                      : "rounded-full border border-amber/50 bg-bg/40 px-4 py-2 font-chip text-sm font-semibold text-amber"
                 }
               >
                 {area}

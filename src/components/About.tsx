@@ -9,8 +9,8 @@ export function About() {
   return (
     <section id="about" className="border-b border-border bg-bg py-20 lg:py-28">
       <div className="mx-auto grid max-w-6xl items-stretch gap-8 px-6 md:grid-cols-[minmax(0,1fr)_15rem] lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-12 lg:px-8">
-        <div className="border-l-2 border-cyan pl-6">
-          <p className="mb-2 font-mono text-sm font-medium tracking-wide text-cyan uppercase">
+        <div className="border-l-2 border-accent pl-6">
+          <p className="mb-2 font-mono text-sm font-medium tracking-wide text-accent uppercase">
             About
           </p>
           <h2 className="font-display text-3xl font-bold tracking-tight text-text sm:text-4xl">

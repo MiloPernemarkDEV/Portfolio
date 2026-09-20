@@ -2,10 +2,12 @@ export const site = {
   name: "Milo Pernemark",
   role: "Game Programmer",
   heroGreeting: "Hi, I'm Milo.",
-  heroInvite: "Have a look around :)",
-  title: "C++ | C# | Gameplay Systems | AI | Engine Technology",
+  heroFocus: "I build gameplay.",
+  heroInvite:
+    "C++ and C# for engines, graphics, AI, and tools — usually with a coffee within reach.",
+  title: "C++ · C# · Unreal · Unity · Engine Technology",
   description:
-    "I write gameplay systems, AI, simulation, and engine code in C++ and C#. I care about how the pieces fit together under the engine, not just the feature on top.",
+    "Gameplay programmer working in C++ and C#. I build gameplay systems, AI, graphics, and engine code, and I care how it feels in the player's hands.",
   email: "milosnya@gmail.com",
   github: "https://github.com/MiloPernemarkDEV",
   linkedin: "https://www.linkedin.com/in/milo-pernemark-a78235274/",
@@ -15,16 +17,15 @@ export const site = {
   photo: "/assets/milo.jpg",
 } as const;
 
-export const heroLines = [
-  "ready to spread my wings.",
-  "but not without that coffee.",
-] as const;
+export function publicUrl(path: string) {
+  return `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+}
 
 export const internship = {
   headline:
-    "Seeking a 40-week Game Programming Internship starting February 1st, 2027.",
+    "Looking for a 40-week game programming internship from 1 February 2027.",
   detail:
-    "I'm studying Game Programming at Forsbergs and looking for an internship on real production systems like gameplay, AI, engine, and tools, with the chance to continue into employment afterward.",
+    "I'm studying Game Programming at Forsbergs and want a production seat — gameplay, AI, engine, tools, or graphics — with a path to employment after.",
   focusAreas: [
     "Gameplay Programming",
     "Systems Programming",
@@ -36,12 +37,12 @@ export const internship = {
 } as const;
 
 export const about = {
-  heading: "A bit about me",
-  text: "My name is Milo Pernemark. I'm 22, I live in Stockholm, and I'm from both Sweden/Finland and Spain.",
+  heading: "About",
+  text: "I'm a game programmer in Stockholm. I care about systems that feel right in the player's hands: combat and interaction, AI, graphics, and the engine code underneath.",
   education:
-    "Alongside class work I'm building a Unity AI behavior framework and a Vulkan engine from scratch.",
+    "Alongside class I'm building a Unity AI behavior framework and a Vulkan engine from scratch.",
   extra:
-    "Apart from the technical work, I like to bring good energy to the people around me, and I love working in team projects.",
+    "I like shipping in a team. Coffee is usually within reach.",
 } as const;
 
 export const skills = {
@@ -69,6 +70,9 @@ export interface Project {
   id: string;
   title: string;
   description: string;
+  role?: string;
+  engine?: string;
+  platform?: string;
   status?: string;
   featured?: boolean;
   technologies: string[];
@@ -83,8 +87,11 @@ export const projects: Project[] = [
     id: "the-unseen",
     title: "The Unseen",
     featured: true,
+    role: "Gameplay Programmer",
+    engine: "Unreal Engine 5",
+    platform: "PC",
     description:
-      "Unreal C++ systems work: a node-based interaction puzzle architecture, a dynamic weather system with Niagara rain, and compile-time debug utilities.",
+      "Unreal C++. I built the node-based interaction puzzle architecture, a Niagara weather system, and compile-time debug utilities.",
     technologies: ["Unreal Engine 5", "C++", "Blueprints", "Niagara"],
     highlights: [
       "Decoupled puzzle architecture with Board, Node, and Link actors",
@@ -109,8 +116,11 @@ export const projects: Project[] = [
     title: "USS Calliope",
     status: "5-person team",
     featured: true,
+    role: "Combat Programmer",
+    engine: "Unity",
+    platform: "PC",
     description:
-      "Unity team project. I owned the combat system: data-driven weapons, ballistics, hit chance, combat feedback, plus player audio and animation.",
+      "Unity team project. I owned combat: data-driven weapons, ballistics, hit chance, feedback, plus player audio and animation.",
     technologies: ["Unity", "C#", "ScriptableObjects", "Gameplay"],
     highlights: [
       "Data-driven combat via ScriptableObject weapon and attack configs",
@@ -137,8 +147,11 @@ export const projects: Project[] = [
     title: "Telemetry Plugin",
     status: "School × studio",
     featured: true,
+    role: "Gameplay / Tools",
+    engine: "Unreal Engine 5",
+    platform: "PC",
     description:
-      "School project with an external studio on an undisclosed Unreal title. The important part of my work was making the telemetry subsystem modular so other projects could use it, with automatic actor tracking and a designer-friendly setup.",
+      "Studio collaboration on an undisclosed Unreal title. I shipped telemetry as a reusable plugin with automatic actor tracking so design could enable logging without writing code.",
     technologies: [
       "Unreal Engine 5",
       "C++",
@@ -161,8 +174,11 @@ export const projects: Project[] = [
     title: "Unity AI Behavior Framework",
     status: "In progress",
     featured: true,
+    role: "AI / Systems",
+    engine: "Unity",
+    platform: "PC",
     description:
-      "A playground for bringing Unreal Engine's AI framework into Unity: Blackboards, Behavior Trees, and Behavior Tree Nodes. Currently rendering 5 thousand NavMeshAgents with simple behavior at 60 fps.",
+      "Unreal-style AI in Unity: blackboards, behavior trees, and custom nodes. Stress-tested at 5,000 NavMeshAgents at 60 fps.",
     technologies: ["Unity", "C#", "AI", "Behavior Tree", "Blackboard", "NavMesh"],
     highlights: [
       "Unreal-style AI architecture implemented in Unity",
@@ -184,8 +200,11 @@ export const projects: Project[] = [
     title: "Melon Engine",
     status: "In progress",
     featured: true,
+    role: "Engine Programmer",
+    engine: "Custom / Vulkan",
+    platform: "PC",
     description:
-      "Custom game engine written from scratch in C++. Unfinished does not mean abandoned. I use it to work through engine architecture, Vulkan rendering, and Win32.",
+      "Custom C++ engine. Vulkan rendering, Win32, memory, and jobs — unfinished on purpose, used to stay sharp on engine architecture.",
     technologies: ["C++23", "Vulkan", "Win32 API", "VMA", "Rust FFI", "CMake"],
     highlights: [
       "Native Win32 window layer for window creation, events, and Vulkan surface extensions",
@@ -205,6 +224,9 @@ export const projects: Project[] = [
   {
     id: "vectormath-pong",
     title: "Native Math Library & Pong",
+    role: "Engine / Interop",
+    engine: "Unity + C++",
+    platform: "PC",
     description:
       "Unmanaged C++ math and physics running inside Unity through a DLL. Low-level code talking to C# without copies.",
     technologies: ["C++", "C#", "Unity", "P/Invoke"],
@@ -223,6 +245,9 @@ export const projects: Project[] = [
   {
     id: "raylib-arcade",
     title: "Native 2D Arcade",
+    role: "Gameplay Programmer",
+    engine: "Raylib",
+    platform: "PC",
     description:
       "Self-contained C++ arcade app in Raylib. Screen flow, collisions, and resources written by hand without an editor.",
     technologies: ["C++", "Raylib"],
