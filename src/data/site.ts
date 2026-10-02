@@ -84,7 +84,7 @@ export const projects: Project[] = [
     engine: "Unity URP",
     platform: "PC",
     description:
-      "Custom URP dissolve shader in HLSL. A noise texture drives a looping cutoff, with a glowing edge that tracks the dissolve front.",
+      "Custom URP dissolve shader in HLSL.",
     technologies: ["HLSL", "Unity", "URP", "Shaders"],
     highlights: [
       "Dissolve shader using a noise texture and HLSL clip() to discard fragments based on a dynamic threshold.",
