@@ -60,7 +60,7 @@ export const projects: Project[] = [
     highlights: [
       "Dynamic Niagara rain, spirits and weather",
       "Decoupled puzzle architecture with Board, Node, and Link actors",
-      "Type-safe DebugUtility using variadic templates, stripped from shipping builds",
+      "Type safe screen logs using variadic templates, stripped from shipping builds",
     ],
     image: "/assets/projects/unseen.mp4",
     imageAlt: "The Unseen gameplay clip, including Niagara weather",
