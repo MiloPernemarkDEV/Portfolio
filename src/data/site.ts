@@ -84,7 +84,7 @@ export const projects: Project[] = [
     engine: "C++ / Vulkan",
     platform: "PC",
     description:
-      "From-scratch Vulkan renderer built to understand low-level GPU rendering and serve as a foundation for hardware-accelerated ray tracing.",
+      "From scratch Vulkan renderer built to understand low level GPU rendering.",
     technologies: ["C++", "Vulkan", "GPU Rendering", "CMake"],
     highlights: [
       "GPU Device setup and mangement",
