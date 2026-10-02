@@ -51,7 +51,7 @@ export const projects: Project[] = [
     prominent: true,
     engine: "Unreal Engine 5",
     description:
-      "Unreal C++ project where I built the node-based interaction puzzle architecture, a dynamic Niagara weather system with rain and volumetric clouds, compile-time debug utilities and the glowing spirits.",
+      "Unreal Engine 5 project where I built the node-based interaction puzzle in C++, a dynamic Niagara weather system with rain and volumetric clouds, compile-time debug utilities and glowing spirits VFX.",
     callout: {
       label: "VFX / Technical Art",
       text: "Niagara rain and dynamic weather effects",
