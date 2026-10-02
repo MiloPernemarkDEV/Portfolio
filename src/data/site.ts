@@ -2,12 +2,11 @@ export const site = {
   name: "Milo Pernemark",
   role: "Game Programmer",
   heroGreeting: "Hi, I'm Milo.",
-  heroFocus: "I build gameplay.",
+  heroFocus: "Game programmer focused on graphics and game technology.",
   heroInvite:
-    "C++ and C# for engines, graphics, AI, and tools — usually with a coffee within reach.",
-  title: "C++ · C# · Unreal · Unity · Engine Technology",
+    "I work across gameplay, engine systems, rendering, and technical tools, with a growing focus on the intersection of graphics and VFX.",
   description:
-    "Gameplay programmer working in C++ and C#. I build gameplay systems, AI, graphics, and engine code, and I care how it feels in the player's hands.",
+    "Game programmer focused on C++, graphics, and game technology. Gameplay, engine systems, rendering, and technical tools, including Unreal, Niagara, and Vulkan.",
   email: "milosnya@gmail.com",
   github: "https://github.com/MiloPernemarkDEV",
   linkedin: "https://www.linkedin.com/in/milo-pernemark-a78235274/",
@@ -21,49 +20,13 @@ export function publicUrl(path: string) {
   return `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
 }
 
-export const internship = {
-  headline:
-    "Looking for a 40-week game programming internship from 1 February 2027.",
-  detail:
-    "I'm studying Game Programming at Forsbergs and want a production seat — gameplay, AI, engine, tools, or graphics — with a path to employment after.",
-  focusAreas: [
-    "Gameplay Programming",
-    "Systems Programming",
-    "AI & Simulation",
-    "C++ / C# Programming",
-    "Engine & Tools Programming",
-    "Graphics Programming",
-  ],
-} as const;
-
 export const about = {
   heading: "About",
-  text: "I'm a game programmer in Stockholm. I care about systems that feel right in the player's hands: combat and interaction, AI, graphics, and the engine code underneath.",
+  text: "I'm a game programmer in Stockholm., I love building systems and making games look and run good.",
   education:
-    "Alongside class I'm building a Unity AI behavior framework and a Vulkan engine from scratch.",
+    "Alongside class I'm exploring shaders, VFX and graphics.",
   extra:
-    "I like shipping in a team. Coffee is usually within reach.",
-} as const;
-
-export const skills = {
-  languages: ["C++", "C", "C#"],
-  technologies: [
-    "Unreal Engine",
-    "Unity",
-    "Vulkan",
-    "OpenGL",
-    "CMake",
-    "Git",
-    "SQLite",
-  ],
-  concepts: [
-    "Gameplay Systems",
-    "AI & Behavior Trees",
-    "Data-driven Design",
-    "Memory Management",
-    "Algorithms",
-    "Debugging",
-  ],
+    "I am a calm and social person who enjoys meditation and coffee, id like to work in a team that values collaboration and creativity, and I am always eager to learn and grow as a game developer.",
 } as const;
 
 export interface Project {
@@ -77,6 +40,9 @@ export interface Project {
   featured?: boolean;
   technologies: string[];
   highlights: string[];
+  callout?: { label: string; text: string };
+  prominent?: boolean;
+  previewStart?: number;
   image?: string;
   imageAlt?: string;
   links: { label: string; href: string }[];
@@ -87,19 +53,23 @@ export const projects: Project[] = [
     id: "the-unseen",
     title: "The Unseen",
     featured: true,
-    role: "Gameplay Programmer",
+    prominent: true,
     engine: "Unreal Engine 5",
-    platform: "PC",
     description:
-      "Unreal C++. I built the node-based interaction puzzle architecture, a Niagara weather system, and compile-time debug utilities.",
-    technologies: ["Unreal Engine 5", "C++", "Blueprints", "Niagara"],
+      "Unreal C++ project where I built the node-based interaction puzzle architecture, a dynamic Niagara weather system, and compile-time debug utilities.",
+    callout: {
+      label: "VFX / Technical Art",
+      text: "Niagara rain and dynamic weather effects",
+    },
+    technologies: ["Niagara", "Unreal Engine 5", "C++", "Technical Art", "Blueprints"],
     highlights: [
+      "Dynamic Niagara rain and weather",
       "Decoupled puzzle architecture with Board, Node, and Link actors",
-      "Dynamic weather system and Niagara rain",
       "Type-safe DebugUtility using variadic templates, stripped from shipping builds",
     ],
     image: "/assets/projects/unseen.mp4",
-    imageAlt: "The Unseen gameplay clip",
+    imageAlt: "The Unseen gameplay clip, including Niagara weather",
+    previewStart: 23.5,
     links: [
       {
         label: "GitHub",
@@ -110,6 +80,81 @@ export const projects: Project[] = [
         href: "https://www.youtube.com/watch?v=0Rc8_kRZEK0",
       },
     ],
+  },
+  {
+    id: "vulkan-raytracer",
+    title: "Vulkan renderer",
+    status: "In progress",
+    featured: true,
+    engine: "C++ / Vulkan",
+    platform: "PC",
+    description:
+      "From-scratch Vulkan renderer built to understand low-level GPU rendering and serve as a foundation for hardware-accelerated ray tracing.",
+    technologies: ["C++", "Vulkan", "GPU Rendering", "Ray Tracing", "CMake"],
+    highlights: [
+      "Vulkan instance and device setup, swapchain, and command submission",
+      "Device-local GPU image allocation for an offscreen viewport, plus HLSL shaders compiled to SPIR-V",
+      "ImGui viewport tooling over a dynamic-rendering triangle",
+      "Hardware ray tracing device features are enabled; the ray tracing path itself is still ahead",
+    ],
+    image: "/assets/projects/vulkan-raytracer.png",
+    imageAlt: "Vulkan ray tracer viewport showing a colored triangle",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/MiloPernemarkDEV/VulkanRaytracer",
+      },
+    ],
+  },
+  {
+    id: "melon-engine",
+    title: "Melon Engine",
+    status: "In progress",
+    featured: true,
+    engine: "Custom / Vulkan",
+    platform: "PC",
+    description:
+      "Custom C++ engine with core engine systems in place: Vulkan rendering, a Win32 window layer, memory, and a job system.",
+    technologies: ["C++23", "Vulkan", "Win32 API", "VMA", "Rust FFI", "CMake"],
+    highlights: [
+      "Native Win32 window layer for window creation, events, and Vulkan surface extensions",
+      "Vulkan instance and device setup, with VMA for GPU memory",
+      "Core engine systems: arena allocator, job system, math, ImGui",
+      "FFI bridge so renderer code can be written in Rust or C++",
+    ],
+    image: "/assets/projects/melon-engine-editor.png",
+    imageAlt: "Melon Engine editor viewport",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/MiloPernemarkDEV/MelonEngine",
+      },
+    ],
+  },
+  {
+    id: "telemetry-for-dummies",
+    title: "Telemetry Plugin",
+    featured: true,
+    role: "Gameplay / Tools",
+    engine: "Unreal Engine 5",
+    platform: "PC",
+    description:
+      "Studio collaboration on an undisclosed Unreal title. I architected the API for easy integration and use",
+    technologies: [
+      "Unreal Engine 5",
+      "C++",
+      "AI",
+      "Behavior Tree",
+      "Plugins",
+    ],
+    highlights: [
+      "World Subsystem packaged as a plugin, built to drop into other Unreal projects",
+      "Auto tracks actor positions from project settings using class, tags, or the possessed pawn",
+      "Designer friendly config so logging can be enabled without writing code",
+    ],
+    image: "/assets/projects/telemetry.mp4",
+    imageAlt: "Telemetry Analytics Viewer showing player movement paths and event markers",
+    links: [],
   },
   {
     id: "uss-calliope",
@@ -123,7 +168,7 @@ export const projects: Project[] = [
       "Unity team project. I owned combat: data-driven weapons, ballistics, hit chance, feedback, plus player audio and animation.",
     technologies: ["Unity", "C#", "ScriptableObjects", "Gameplay"],
     highlights: [
-      "Data-driven combat via ScriptableObject weapon and attack configs",
+      "Datadriven combat via ScriptableObject weapon and attack configs",
       "Ballistics with Box-Muller Gaussian spread",
       "Hit chance system and combat feedback",
       "Player audio and animation",
@@ -143,33 +188,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "telemetry-for-dummies",
-    title: "Telemetry Plugin",
-    status: "School × studio",
-    featured: true,
-    role: "Gameplay / Tools",
-    engine: "Unreal Engine 5",
-    platform: "PC",
-    description:
-      "Studio collaboration on an undisclosed Unreal title. I shipped telemetry as a reusable plugin with automatic actor tracking so design could enable logging without writing code.",
-    technologies: [
-      "Unreal Engine 5",
-      "C++",
-      "AI",
-      "Behavior Tree",
-      "Plugins",
-    ],
-    highlights: [
-      "World Subsystem packaged as a plugin, built to drop into other Unreal projects",
-      "Auto-tracks actor positions from project settings using class, tags, or the possessed pawn",
-      "Designer-friendly config so logging can be enabled without writing code",
-      "Playtest dog AI writes into the same telemetry log as the rest of the session",
-    ],
-    image: "/assets/projects/telemetry.mp4",
-    imageAlt: "Telemetry Analytics Viewer showing player movement paths and event markers",
-    links: [],
-  },
-  {
     id: "unity-ai-behavior-framework",
     title: "Unity AI Behavior Framework",
     status: "In progress",
@@ -178,10 +196,10 @@ export const projects: Project[] = [
     engine: "Unity",
     platform: "PC",
     description:
-      "Unreal-style AI in Unity: blackboards, behavior trees, and custom nodes. Stress-tested at 5,000 NavMeshAgents at 60 fps.",
-    technologies: ["Unity", "C#", "AI", "Behavior Tree", "Blackboard", "NavMesh"],
+      "Unreal style AI in Unity: blackboards, behavior trees, and custom nodes",
+    technologies: ["Unity", "C#", "AI", "Behavior Tree", "Blackboard"],
     highlights: [
-      "Unreal-style AI architecture implemented in Unity",
+      "Unreal style AI architecture implemented in Unity",
       "Blackboard backed by a heterogeneous map so keys can hold different value types",
       "Behavior Trees and custom Behavior Tree nodes",
       "5 thousand NavMeshAgents with simple behavior at 60 fps",
@@ -196,39 +214,13 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "melon-engine",
-    title: "Melon Engine",
-    status: "In progress",
-    featured: true,
-    role: "Engine Programmer",
-    engine: "Custom / Vulkan",
-    platform: "PC",
-    description:
-      "Custom C++ engine. Vulkan rendering, Win32, memory, and jobs — unfinished on purpose, used to stay sharp on engine architecture.",
-    technologies: ["C++23", "Vulkan", "Win32 API", "VMA", "Rust FFI", "CMake"],
-    highlights: [
-      "Native Win32 window layer for window creation, events, and Vulkan surface extensions",
-      "Vulkan instance and device setup, with VMA for GPU memory",
-      "Core engine pieces: arena allocator, job system, math, ImGui",
-      "FFI bridge so renderer code can be written in Rust or C++",
-    ],
-    image: "/assets/projects/melon-engine-editor.png",
-    imageAlt: "Melon Engine editor viewport",
-    links: [
-      {
-        label: "GitHub",
-        href: "https://github.com/MiloPernemarkDEV/MelonEngine",
-      },
-    ],
-  },
-  {
     id: "vectormath-pong",
     title: "Native Math Library & Pong",
     role: "Engine / Interop",
     engine: "Unity + C++",
     platform: "PC",
     description:
-      "Unmanaged C++ math and physics running inside Unity through a DLL. Low-level code talking to C# without copies.",
+      "Native C++ math library used as a plugin in Unity to make a pong clone.",
     technologies: ["C++", "C#", "Unity", "P/Invoke"],
     highlights: [
       "DllImport exposing raw C++ structures to Unity",
@@ -252,9 +244,8 @@ export const projects: Project[] = [
       "Self-contained C++ arcade app in Raylib. Screen flow, collisions, and resources written by hand without an editor.",
     technologies: ["C++", "Raylib"],
     highlights: [
-      "Explicit state machine for screen lifecycle",
-      "Manual bounding-box intersection for actor overlaps",
-      "Manual texture and audio allocation and teardown",
+      "Data oriented design for efficient memory management",
+      "Simple AI state machine",
     ],
     links: [
       {
@@ -267,7 +258,6 @@ export const projects: Project[] = [
 
 export const navLinks = [
   { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ] as const;

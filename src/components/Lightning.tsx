@@ -11,7 +11,7 @@ type Bolt = {
   core: number;
 };
 
-const COLORS = ["#4ae3c0", "#f5b544", "#88acd0", "#d4ddf0"];
+const COLORS = ["#a14a38", "#7a4e24", "#3f6670", "#8a3c2e"];
 
 function pickColor() {
   return COLORS[Math.floor(Math.random() * COLORS.length)];
@@ -182,11 +182,11 @@ export function Lightning() {
       bolts.push(bolt);
       if (Math.random() < 0.35) bolts.push(createBolt(width, height));
       flashColor =
-        bolt.color === "#f5b544"
-          ? "245, 181, 68"
-          : bolt.color === "#88acd0"
-            ? "136, 172, 208"
-            : "74, 227, 192";
+        bolt.color === "#7a4e24"
+          ? "122, 78, 36"
+          : bolt.color === "#3f6670"
+            ? "63, 102, 112"
+            : "161, 74, 56";
       flash = 0.08;
       nextStrike = 900 + Math.random() * 1600;
     };

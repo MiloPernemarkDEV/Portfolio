@@ -20,6 +20,7 @@ const TECH_STYLES: Record<string, string> = {
   VMA: "border-accent/40 bg-accent/10 text-accent",
   OpenGL: "border-cyan/40 bg-cyan/10 text-cyan",
   "Win32 API": "border-text-muted/40 bg-surface text-text-muted",
+  HLSL: "border-violet/40 bg-violet/10 text-violet",
   "Rust FFI": "border-amber/40 bg-amber/10 text-amber",
   CMake: "border-text-muted/40 bg-surface text-text-muted",
   AI: "border-violet/40 bg-violet/10 text-violet",
@@ -32,6 +33,9 @@ const TECH_STYLES: Record<string, string> = {
   Plugins: "border-amber/40 bg-amber/10 text-amber",
   Blueprints: "border-amber/40 bg-amber/10 text-amber",
   Niagara: "border-sky/40 bg-sky/10 text-sky",
+  "Technical Art": "border-sky/40 bg-sky/10 text-sky",
+  "GPU Rendering": "border-accent/40 bg-accent/10 text-accent",
+  "Ray Tracing": "border-accent/40 bg-accent/10 text-accent",
   "P/Invoke": "border-violet/40 bg-violet/10 text-violet",
   Raylib: "border-sky/40 bg-sky/10 text-sky",
 };
@@ -87,10 +91,12 @@ function ProjectVideo({
   src,
   label,
   zoomed,
+  startAt,
 }: {
   src: string;
   label: string;
   zoomed?: boolean;
+  startAt?: number;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
 
@@ -99,11 +105,29 @@ function ProjectVideo({
     if (!video) return;
 
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (motion.matches) return;
+    let cued = false;
+
+    const cue = () => {
+      if (cued || startAt == null) return;
+      cued = true;
+      if (Math.abs(video.currentTime - startAt) > 0.35) {
+        video.currentTime = startAt;
+      }
+    };
+
+    if (startAt != null) {
+      if (video.readyState >= 2) cue();
+      else video.addEventListener("loadeddata", cue);
+    }
+
+    if (motion.matches) {
+      return () => video.removeEventListener("loadeddata", cue);
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          cue();
           void video.play();
         } else {
           video.pause();
@@ -113,8 +137,11 @@ function ProjectVideo({
     );
 
     observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("loadeddata", cue);
+    };
+  }, [startAt]);
 
   return (
     <video
@@ -154,15 +181,22 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
     <article
       className={`group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 ${
         featured ? "hover:border-accent/40" : "hover:border-amber/35"
-      }`}
+      } ${project.prominent ? "md:col-span-2 md:grid md:grid-cols-2" : ""}`}
     >
       {project.image ? (
-        <div className="relative aspect-[16/10] min-h-[13.5rem] overflow-hidden bg-surface lg:min-h-[16.5rem]">
+        <div
+          className={`relative overflow-hidden bg-surface ${
+            project.prominent
+              ? "aspect-[16/10] min-h-[13.5rem] md:aspect-auto md:h-full md:min-h-[20rem]"
+              : "aspect-[16/10] min-h-[13.5rem] lg:min-h-[16.5rem]"
+          }`}
+        >
           {isVideo(project.image) ? (
             <ProjectVideo
               src={assetUrl(project.image)}
               label={project.imageAlt ?? project.title}
               zoomed={project.id === "telemetry-for-dummies"}
+              startAt={project.previewStart}
             />
           ) : (
             <img
@@ -171,7 +205,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
           )}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
         </div>
       ) : featured ? (
         <div className="h-1.5 w-full shrink-0 bg-gradient-to-r from-accent to-amber" />
@@ -202,6 +236,13 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
             {[project.role, project.engine, project.platform]
               .filter(Boolean)
               .join(" · ")}
+          </p>
+        ) : null}
+
+        {project.callout ? (
+          <p className="mt-4 rounded-lg border border-sky/40 bg-sky/10 px-3 py-2 text-sm leading-relaxed text-text">
+            <span className="font-semibold text-sky">{project.callout.label}:</span>{" "}
+            {project.callout.text}
           </p>
         ) : null}
 

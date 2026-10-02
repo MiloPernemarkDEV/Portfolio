@@ -13,9 +13,6 @@ export function Hero() {
         <p className="mt-4 max-w-3xl text-lg leading-relaxed text-text-muted sm:text-xl">
           {site.heroInvite}
         </p>
-        <p className="mt-3 font-mono text-xs tracking-wide text-text-muted uppercase sm:text-sm">
-          {site.title}
-        </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
           <a
@@ -30,12 +27,6 @@ export function Hero() {
             className="inline-flex items-center rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-text transition-colors hover:border-accent/60 hover:text-accent"
           >
             Resume
-          </a>
-          <a
-            href="#internship"
-            className="inline-flex items-center rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-text transition-colors hover:border-amber/60 hover:text-amber"
-          >
-            Internship
           </a>
         </div>
       </div>
