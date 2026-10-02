@@ -10,15 +10,10 @@ export const site = {
   email: "milosnya@gmail.com",
   github: "https://github.com/MiloPernemarkDEV",
   linkedin: "https://www.linkedin.com/in/milo-pernemark-a78235274/",
-  resume: "/resume.pdf",
   school: "Forsbergs Skola",
   schoolUrl: "https://www.forsbergsskola.se/",
   photo: "/assets/milo.jpg",
 } as const;
-
-export function publicUrl(path: string) {
-  return `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
-}
 
 export const about = {
   heading: "About",
@@ -56,7 +51,7 @@ export const projects: Project[] = [
     prominent: true,
     engine: "Unreal Engine 5",
     description:
-      "Unreal C++ project where I built the node-based interaction puzzle architecture, a dynamic Niagara weather system, and compile-time debug utilities.",
+      "Unreal C++ project where I built the node-based interaction puzzle architecture, a dynamic Niagara weather system with rain and volumetric clouds, and compile-time debug utilities.",
     callout: {
       label: "VFX / Technical Art",
       text: "Niagara rain and dynamic weather effects",

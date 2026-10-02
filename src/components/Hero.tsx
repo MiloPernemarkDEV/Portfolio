@@ -1,4 +1,4 @@
-import { publicUrl, site } from "../data/site";
+import { site } from "../data/site";
 
 export function Hero() {
   return (
@@ -20,13 +20,6 @@ export function Hero() {
             className="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
           >
             View projects
-          </a>
-          <a
-            href={publicUrl(site.resume)}
-            download="Milo_Pernemark_CV.pdf"
-            className="inline-flex items-center rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-text transition-colors hover:border-accent/60 hover:text-accent"
-          >
-            Resume
           </a>
         </div>
       </div>

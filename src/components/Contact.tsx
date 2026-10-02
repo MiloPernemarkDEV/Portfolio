@@ -1,5 +1,5 @@
 import { Lightning } from "./Lightning";
-import { publicUrl, site } from "../data/site";
+import { site } from "../data/site";
 
 export function Contact() {
   return (
@@ -22,13 +22,6 @@ export function Contact() {
                 className="inline-flex items-center rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
               >
                 Email me
-              </a>
-              <a
-                href={publicUrl(site.resume)}
-                download="Milo_Pernemark_CV.pdf"
-                className="inline-flex items-center rounded-lg border border-border bg-card px-6 py-3 text-sm font-medium text-text transition-colors hover:border-accent/60 hover:text-accent"
-              >
-                Resume
               </a>
               <a
                 href={site.github}

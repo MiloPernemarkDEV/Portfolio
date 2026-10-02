@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { publicUrl, navLinks, site } from "../data/site";
+import { navLinks, site } from "../data/site";
 
 function GitHubIcon() {
   return (
@@ -72,13 +72,6 @@ export function Navbar() {
               className="inline-flex items-center justify-center rounded-lg p-2 text-text transition-colors hover:text-amber"
             >
               <LinkedInIcon />
-            </a>
-            <a
-              href={publicUrl(site.resume)}
-              download="Milo_Pernemark_CV.pdf"
-              className="text-sm font-medium text-text-muted transition-colors hover:text-accent"
-            >
-              Resume
             </a>
             <a
               href="#contact"
@@ -155,14 +148,6 @@ export function Navbar() {
               onClick={() => setOpen(false)}
             >
               <LinkedInIcon />
-            </a>
-            <a
-              href={publicUrl(site.resume)}
-              download="Milo_Pernemark_CV.pdf"
-              className="inline-flex rounded-lg border border-border px-4 py-2 text-sm font-medium text-text"
-              onClick={() => setOpen(false)}
-            >
-              Resume
             </a>
             <a
               href="#contact"
