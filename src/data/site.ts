@@ -77,6 +77,24 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "dissolve-shader",
+    title: "Dissolve Shader",
+    featured: true,
+    role: "Graphics / Shaders",
+    engine: "Unity URP",
+    platform: "PC",
+    description:
+      "Custom URP dissolve shader in HLSL. A noise texture drives a looping cutoff, with a glowing edge that tracks the dissolve front.",
+    technologies: ["HLSL", "Unity", "URP", "Shaders"],
+    highlights: [
+      "Dissolve shader using a noise texture and HLSL clip() to discard fragments based on a dynamic threshold.",
+      "Can easily be used and triggered from game code to dissolve any mesh",
+    ],
+    image: "/assets/projects/dissolve-shader.mp4",
+    imageAlt: "Unity dissolve shader eating through a mesh with a glowing edge",
+    links: [],
+  },
+  {
     id: "vulkan-raytracer",
     title: "Vulkan renderer",
     status: "In progress",

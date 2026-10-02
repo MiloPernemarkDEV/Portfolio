@@ -13,6 +13,8 @@ const TECH_STYLES: Record<string, string> = {
   C: "border-sky/40 bg-sky/10 text-sky",
   "C#": "border-violet/40 bg-violet/10 text-violet",
   Unity: "border-cyan/40 bg-cyan/10 text-cyan",
+  URP: "border-cyan/40 bg-cyan/10 text-cyan",
+  Shaders: "border-sky/40 bg-sky/10 text-sky",
   "Unreal Engine 5": "border-amber/40 bg-amber/10 text-amber",
   "Unreal Engine": "border-amber/40 bg-amber/10 text-amber",
   "Vulkan": "border-accent/40 bg-accent/10 text-accent",
