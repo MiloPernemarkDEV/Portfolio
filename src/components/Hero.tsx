@@ -13,15 +13,6 @@ export function Hero() {
         <p className="mt-4 max-w-3xl text-lg leading-relaxed text-text-muted sm:text-xl">
           {site.heroInvite}
         </p>
-
-        <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href="#projects"
-            className="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
-          >
-            View projects
-          </a>
-        </div>
       </div>
     </section>
   );
