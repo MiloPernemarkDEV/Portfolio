@@ -90,12 +90,11 @@ export const projects: Project[] = [
     platform: "PC",
     description:
       "From-scratch Vulkan renderer built to understand low-level GPU rendering and serve as a foundation for hardware-accelerated ray tracing.",
-    technologies: ["C++", "Vulkan", "GPU Rendering", "Ray Tracing", "CMake"],
+    technologies: ["C++", "Vulkan", "GPU Rendering", "CMake"],
     highlights: [
-      "Vulkan instance and device setup, swapchain, and command submission",
-      "Device-local GPU image allocation for an offscreen viewport, plus HLSL shaders compiled to SPIR-V",
-      "ImGui viewport tooling over a dynamic-rendering triangle",
-      "Hardware ray tracing device features are enabled; the ray tracing path itself is still ahead",
+      "GPU Device setup and mangement",
+      "HLSL shaders compiled to SPIR-V with DXC",
+      "ImGui viewport tooling over a triangle",
     ],
     image: "/assets/projects/vulkan-raytracer.png",
     imageAlt: "Vulkan ray tracer viewport showing a colored triangle",
@@ -109,17 +108,15 @@ export const projects: Project[] = [
   {
     id: "melon-engine",
     title: "Melon Engine",
-    status: "In progress",
     featured: true,
     engine: "Custom / Vulkan",
     platform: "PC",
     description:
-      "Custom C++ engine with core engine systems in place: Vulkan rendering, a Win32 window layer, memory, and a job system.",
+      "A open library for exploring core engine systems",
     technologies: ["C++23", "Vulkan", "Win32 API", "VMA", "Rust FFI", "CMake"],
     highlights: [
-      "Native Win32 window layer for window creation, events, and Vulkan surface extensions",
-      "Vulkan instance and device setup, with VMA for GPU memory",
-      "Core engine systems: arena allocator, job system, math, ImGui",
+      "Win32 platform layer for window and utilities",
+      "Arena allocator, logger, ",
       "FFI bridge so renderer code can be written in Rust or C++",
     ],
     image: "/assets/projects/melon-engine-editor.png",
@@ -133,7 +130,7 @@ export const projects: Project[] = [
   },
   {
     id: "telemetry-for-dummies",
-    title: "Telemetry Plugin",
+    title: "Telemetry Gathering Plugin",
     featured: true,
     role: "Gameplay / Tools",
     engine: "Unreal Engine 5",
