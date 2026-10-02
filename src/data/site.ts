@@ -51,16 +51,17 @@ export const projects: Project[] = [
     prominent: true,
     engine: "Unreal Engine 5",
     description:
-      "Unreal Engine 5 project where I built the node-based interaction puzzle in C++, a dynamic Niagara weather system with rain and volumetric clouds, compile-time debug utilities and glowing spirits VFX.",
+      "Unreal Engine 5 Physcological Puzzle Game made by a team of me and 4 other students.",
     callout: {
       label: "VFX / Technical Art",
       text: "Niagara rain and dynamic weather effects",
     },
     technologies: ["Niagara", "Unreal Engine 5", "C++", "Technical Art", "Blueprints"],
     highlights: [
-      "Dynamic Niagara rain, spirits and weather",
+      "I made the dynamic weather system using Niagara and C++",
       "Decoupled puzzle architecture with Board, Node, and Link actors",
       "Type safe screen logs using variadic templates, stripped from shipping builds",
+      "Glowing spirits VFX using Niagara",
     ],
     image: "/assets/projects/unseen.mp4",
     imageAlt: "The Unseen gameplay clip, including Niagara weather",
