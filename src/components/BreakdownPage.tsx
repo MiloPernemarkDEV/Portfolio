@@ -1,7 +1,12 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Markdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { breakdownById, breakdowns } from "../data/breakdowns";
+import {
+  breakdownIds,
+  cachedMarkdown,
+  hasBreakdown,
+  loadBreakdown,
+} from "../data/breakdowns";
 import { projects, site } from "../data/site";
 import { AppLink } from "../router";
 
@@ -83,6 +88,8 @@ const markdownComponents: Components = {
       <img
         src={resolved}
         alt={alt ?? ""}
+        loading="lazy"
+        decoding="async"
         className="mt-4 w-full rounded-2xl border border-border"
       />
     );
@@ -135,9 +142,10 @@ function BreakdownMarkdown({ markdown }: { markdown: string }) {
   );
 }
 
-export function BreakdownPage({ id }: { id: string }) {
+export default function BreakdownPage({ id }: { id: string }) {
   const project = projects.find((item) => item.id === id);
-  const breakdown = breakdownById(id);
+  const exists = hasBreakdown(id);
+  const [markdown, setMarkdown] = useState<string | undefined>(() => cachedMarkdown(id));
 
   useEffect(() => {
     const previous = document.title;
@@ -149,7 +157,23 @@ export function BreakdownPage({ id }: { id: string }) {
     };
   }, [project]);
 
-  if (!project || !breakdown) {
+  useEffect(() => {
+    if (!exists) return;
+    const cached = cachedMarkdown(id);
+    if (cached != null) {
+      setMarkdown(cached);
+      return;
+    }
+    let cancel = false;
+    void loadBreakdown(id).then((value) => {
+      if (!cancel && value != null) setMarkdown(value);
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [exists, id]);
+
+  if (!project || !exists) {
     return (
       <main className="mx-auto max-w-3xl px-6 py-16 lg:px-8">
         <h2 className="font-display text-3xl font-bold tracking-tight text-text">
@@ -190,20 +214,20 @@ export function BreakdownPage({ id }: { id: string }) {
         </p>
 
         <div className="mt-6 flex flex-wrap gap-2">
-          {breakdowns.map((item) => {
-            const linked = projects.find((entry) => entry.id === item.id);
-            const current = item.id === id;
+          {breakdownIds.map((itemId) => {
+            const linked = projects.find((entry) => entry.id === itemId);
+            const current = itemId === id;
             return (
               <AppLink
-                key={item.id}
-                to={`/breakdown/${item.id}`}
+                key={itemId}
+                to={`/breakdown/${itemId}`}
                 className={`rounded-full border px-3 py-1 font-chip text-xs font-semibold ${
                   current
                     ? "border-accent bg-accent text-bg"
                     : "border-border text-text-muted hover:border-accent/60 hover:text-accent"
                 }`}
               >
-                {linked?.title ?? item.id}
+                {linked?.title ?? itemId}
               </AppLink>
             );
           })}
@@ -219,19 +243,21 @@ export function BreakdownPage({ id }: { id: string }) {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 aria-label={project.imageAlt ?? project.title}
               />
             ) : (
               <img
                 src={assetUrl(project.image)}
                 alt={project.imageAlt ?? project.title}
+                decoding="async"
                 className="aspect-video w-full object-cover"
               />
             )}
           </div>
         ) : null}
 
-        <BreakdownMarkdown markdown={breakdown.markdown} />
+        {markdown ? <BreakdownMarkdown markdown={markdown} /> : null}
       </article>
     </main>
   );

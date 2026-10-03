@@ -130,7 +130,9 @@ export function Lightning() {
     let flash = 0;
     let flashColor = "34, 211, 238";
     let frame = 0;
+    let idleTimer = 0;
     let running = true;
+    let visible = false;
     let elapsed = 0;
 
     const measureKeepout = () => {
@@ -211,8 +213,13 @@ export function Lightning() {
       ctx.globalAlpha = 1;
     };
 
+    const stopLoop = () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(idleTimer);
+    };
+
     const tick = (now: number) => {
-      if (!running) return;
+      if (!running || !visible) return;
 
       const dt = Math.min(32, now - elapsed || 16);
       elapsed = now;
@@ -222,10 +229,12 @@ export function Lightning() {
 
       ctx.clearRect(0, 0, width, height);
 
+      let drew = false;
       if (flash > 0.004) {
         ctx.fillStyle = `rgba(${flashColor}, ${flash})`;
         ctx.fillRect(0, 0, width, height);
         flash *= 0.78;
+        drew = true;
       } else {
         flash = 0;
       }
@@ -234,41 +243,75 @@ export function Lightning() {
         bolt.life += 1;
         if (bolt.life > bolt.maxLife) return false;
         drawBolt(bolt);
+        drew = true;
         return true;
       });
 
-      punchKeepout();
+      if (drew) punchKeepout();
 
+      const active = flash > 0.004 || bolts.length > 0;
+      if (active) {
+        frame = window.requestAnimationFrame(tick);
+        return;
+      }
+
+      idleTimer = window.setTimeout(() => {
+        nextStrike = 0;
+        elapsed = performance.now();
+        frame = window.requestAnimationFrame(tick);
+      }, Math.max(0, nextStrike));
+    };
+
+    const start = () => {
+      if (!running || !visible) return;
+      stopLoop();
+      elapsed = performance.now();
+      if (bolts.length === 0 && flash <= 0.004 && nextStrike > 32) {
+        idleTimer = window.setTimeout(() => {
+          nextStrike = 0;
+          elapsed = performance.now();
+          frame = window.requestAnimationFrame(tick);
+        }, nextStrike);
+        return;
+      }
       frame = window.requestAnimationFrame(tick);
     };
 
     const onVisibility = () => {
-      if (document.hidden) {
-        running = false;
-        window.cancelAnimationFrame(frame);
+      running = !document.hidden;
+      if (!running) {
+        stopLoop();
         return;
       }
-
-      if (!running) {
-        running = true;
-        elapsed = performance.now();
-        frame = window.requestAnimationFrame(tick);
-      }
+      start();
     };
 
-    const observer = new ResizeObserver(resize);
-    observer.observe(parent);
-    if (keepoutEl instanceof HTMLElement) observer.observe(keepoutEl);
+    const onView: IntersectionObserverCallback = ([entry]) => {
+      visible = entry.isIntersecting;
+      if (!visible) {
+        stopLoop();
+        bolts = [];
+        flash = 0;
+        ctx.clearRect(0, 0, width, height);
+        return;
+      }
+      start();
+    };
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(parent);
+    if (keepoutEl instanceof HTMLElement) resizeObserver.observe(keepoutEl);
+    const viewObserver = new IntersectionObserver(onView);
+    viewObserver.observe(parent);
     resize();
-    const firstStrike = window.setTimeout(strike, 200);
-    frame = window.requestAnimationFrame(tick);
     document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
       running = false;
-      window.cancelAnimationFrame(frame);
-      window.clearTimeout(firstStrike);
-      observer.disconnect();
+      visible = false;
+      stopLoop();
+      resizeObserver.disconnect();
+      viewObserver.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);

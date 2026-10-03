@@ -15,8 +15,8 @@ export function Projects() {
         </div>
 
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:gap-10">
-          {featured.map((project) => (
-            <ProjectCard key={project.id} project={project} featured />
+          {featured.map((project, index) => (
+            <ProjectCard key={project.id} project={project} featured priority={index === 0} />
           ))}
         </div>
 

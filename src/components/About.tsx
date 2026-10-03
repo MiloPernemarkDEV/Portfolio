@@ -34,6 +34,8 @@ export function About() {
         <img
           src={assetUrl(site.photo)}
           alt={site.name}
+          loading="lazy"
+          decoding="async"
           className="aspect-square h-44 w-44 rounded-2xl border border-accent/40 object-cover object-center md:h-full md:w-full md:aspect-auto"
         />
       </div>

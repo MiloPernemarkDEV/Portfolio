@@ -1,19 +1,30 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { About } from "./components/About";
-import { BreakdownPage } from "./components/BreakdownPage";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { Navbar } from "./components/Navbar";
 import { Projects } from "./components/Projects";
+import { prefetchAllBreakdowns } from "./data/breakdowns";
 import { RouteProvider, useRoute } from "./router";
+
+const BreakdownPage = lazy(() => import("./components/BreakdownPage"));
 
 function Page() {
   const { path } = useRoute();
   const [shown, setShown] = useState(path);
   const [phase, setPhase] = useState<"in" | "out">("in");
   const first = useRef(true);
+
+  useEffect(() => {
+    const id = window.requestIdleCallback(() => prefetchAllBreakdowns(), { timeout: 2500 });
+    return () => window.cancelIdleCallback(id);
+  }, []);
+
+  useEffect(() => {
+    if (path.startsWith("/breakdown/")) prefetchAllBreakdowns();
+  }, [path]);
 
   useEffect(() => {
     if (path === shown) return;
@@ -59,7 +70,9 @@ function Page() {
       }`}
     >
       {breakdownId ? (
-        <BreakdownPage id={decodeURIComponent(breakdownId)} />
+        <Suspense fallback={null}>
+          <BreakdownPage id={decodeURIComponent(breakdownId)} />
+        </Suspense>
       ) : (
         <main>
           <Hero />

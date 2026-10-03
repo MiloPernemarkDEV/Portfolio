@@ -132,7 +132,7 @@ export const projects: Project[] = [
     links: [
       {
         label: "GitHub",
-        href: "https://github.com/MiloPernemarkDEV/VulkanRaytracer",
+        href: "https://github.com/MiloPernemarkDEV/VulkanRenderer",
       },
     ],
   },

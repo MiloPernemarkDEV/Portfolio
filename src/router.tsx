@@ -69,11 +69,15 @@ export function AppLink({
   className,
   children,
   onClick,
+  onMouseEnter,
+  onFocus,
 }: {
   to: string;
   className?: string;
   children: ReactNode;
   onClick?: () => void;
+  onMouseEnter?: () => void;
+  onFocus?: () => void;
 }) {
   const { path, navigate } = useRoute();
   const target = to.startsWith("#") ? `/${to}` : to;
@@ -83,6 +87,8 @@ export function AppLink({
     <a
       href={stayOnPage ? to : toHref(target)}
       className={className}
+      onMouseEnter={onMouseEnter}
+      onFocus={onFocus}
       onClick={(event) => {
         onClick?.();
         if (

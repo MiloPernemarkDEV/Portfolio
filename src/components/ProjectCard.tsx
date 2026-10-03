@@ -1,11 +1,12 @@
-import { useEffect, useRef } from "react";
-import { breakdownById } from "../data/breakdowns";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { hasBreakdown, prefetchBreakdown } from "../data/breakdowns";
 import type { Project } from "../data/site";
 import { AppLink } from "../router";
 
 interface ProjectCardProps {
   project: Project;
   featured?: boolean;
+  priority?: boolean;
 }
 
 const TECH_STYLES: Record<string, string> = {
@@ -96,15 +97,41 @@ function ProjectVideo({
   label,
   zoomed,
   startAt,
+  eager = false,
 }: {
   src: string;
   label: string;
   zoomed?: boolean;
   startAt?: number;
+  eager?: boolean;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
+  const [armed, setArmed] = useState(eager);
+
+  useLayoutEffect(() => {
+    const video = ref.current;
+    if (!video || armed) return;
+    const rect = video.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 640 && rect.bottom > -640) {
+      setArmed(true);
+    }
+  }, [armed]);
 
   useEffect(() => {
+    const video = ref.current;
+    if (!video || armed) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setArmed(true);
+      },
+      { rootMargin: "640px 0px" },
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [armed]);
+
+  useEffect(() => {
+    if (!armed) return;
     const video = ref.current;
     if (!video) return;
 
@@ -124,37 +151,42 @@ function ProjectVideo({
       else video.addEventListener("loadeddata", cue);
     }
 
-    if (motion.matches) {
-      return () => video.removeEventListener("loadeddata", cue);
-    }
+    let onScreen = false;
+    const sync = (playing: boolean) => {
+      if (!playing || document.hidden || motion.matches) {
+        video.pause();
+        return;
+      }
+      cue();
+      void video.play();
+    };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          cue();
-          void video.play();
-        } else {
-          video.pause();
-        }
+        onScreen = entry.isIntersecting;
+        sync(onScreen);
       },
       { threshold: 0.4 },
     );
+    const onVisibility = () => sync(onScreen);
 
     observer.observe(video);
+    document.addEventListener("visibilitychange", onVisibility);
     return () => {
       observer.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
       video.removeEventListener("loadeddata", cue);
     };
-  }, [startAt]);
+  }, [armed, startAt]);
 
   return (
     <video
       ref={ref}
-      src={src}
+      src={armed ? src : undefined}
       loop
       muted
       playsInline
-      preload="metadata"
+      preload={armed ? "metadata" : "none"}
       aria-label={label}
       className={`h-full w-full object-cover ${zoomed ? "scale-[1.35]" : ""}`}
     />
@@ -170,7 +202,7 @@ function assetUrl(path: string) {
   return `${base}${path.replace(/^\//, "")}`;
 }
 
-export function ProjectCard({ project, featured = false }: ProjectCardProps) {
+export function ProjectCard({ project, featured = false, priority = false }: ProjectCardProps) {
   const github = project.links.find((link) => link.label === "GitHub");
   const pdf = project.links.find((link) => link.label === "Contributions");
   const showcaseVideo = project.links.find((link) => link.label === "Showcase Video");
@@ -180,11 +212,11 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
       link.label !== "Contributions" &&
       link.label !== "Showcase Video",
   );
-  const breakdown = breakdownById(project.id);
+  const breakdown = hasBreakdown(project.id);
 
   return (
     <article
-      className={`group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-300 ${
+      className={`group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card transition-colors duration-300 ${
         featured ? "hover:border-accent/40" : "hover:border-amber/35"
       } ${project.prominent ? "md:col-span-2 md:grid md:grid-cols-2" : ""}`}
     >
@@ -202,11 +234,15 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
               label={project.imageAlt ?? project.title}
               zoomed={project.id === "telemetry-for-dummies"}
               startAt={project.previewStart}
+              eager={priority}
             />
           ) : (
             <img
               src={assetUrl(project.image)}
               alt={project.imageAlt ?? project.title}
+              loading={priority ? "eager" : "lazy"}
+              decoding="async"
+              fetchPriority={priority ? "high" : "low"}
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
           )}
@@ -304,6 +340,8 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
             {breakdown ? (
               <AppLink
                 to={`/breakdown/${project.id}`}
+                onMouseEnter={() => prefetchBreakdown(project.id)}
+                onFocus={() => prefetchBreakdown(project.id)}
                 className={
                   github || pdf
                     ? "inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-text transition-colors hover:border-accent/60 hover:text-accent"
