@@ -272,14 +272,6 @@ export function ProjectCard({ project, featured = false, priority = false }: Pro
           ) : null}
         </div>
 
-        {(project.role || project.engine || project.platform) ? (
-          <p className="mt-2 font-mono text-xs tracking-wide text-accent">
-            {[project.role, project.engine, project.platform]
-              .filter(Boolean)
-              .join(" · ")}
-          </p>
-        ) : null}
-
         {project.callout ? (
           <p className="mt-4 rounded-lg border border-sky/40 bg-sky/10 px-3 py-2 text-sm leading-relaxed text-text">
             <span className="font-semibold text-sky">{project.callout.label}:</span>{" "}

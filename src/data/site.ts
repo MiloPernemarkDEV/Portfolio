@@ -113,6 +113,31 @@ export const projects: Project[] = [
     links: [],
   },
   {
+    id: "telemetry-for-dummies",
+    title: "Telemetry Gathering Plugin",
+    featured: true,
+    role: "Gameplay / Tools",
+    engine: "Unreal Engine 5",
+    platform: "PC",
+    description:
+      "Studio collaboration on an undisclosed Unreal title. I architected the API for easy integration and use",
+    technologies: [
+      "Unreal Engine 5",
+      "C++",
+      "AI",
+      "Behavior Tree",
+      "Plugins",
+    ],
+    highlights: [
+      "World Subsystem packaged as a plugin, built to drop into other Unreal projects",
+      "Auto tracks actor positions from project settings using class, tags, or the possessed pawn",
+      "Designer friendly config so logging can be enabled without writing code",
+    ],
+    image: "/assets/projects/telemetry.mp4",
+    imageAlt: "Telemetry Analytics Viewer showing player movement paths and event markers",
+    links: [],
+  },
+  {
     id: "vulkan-raytracer",
     title: "Vulkan renderer",
     status: "In progress",
@@ -160,31 +185,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "telemetry-for-dummies",
-    title: "Telemetry Gathering Plugin",
-    featured: true,
-    role: "Gameplay / Tools",
-    engine: "Unreal Engine 5",
-    platform: "PC",
-    description:
-      "Studio collaboration on an undisclosed Unreal title. I architected the API for easy integration and use",
-    technologies: [
-      "Unreal Engine 5",
-      "C++",
-      "AI",
-      "Behavior Tree",
-      "Plugins",
-    ],
-    highlights: [
-      "World Subsystem packaged as a plugin, built to drop into other Unreal projects",
-      "Auto tracks actor positions from project settings using class, tags, or the possessed pawn",
-      "Designer friendly config so logging can be enabled without writing code",
-    ],
-    image: "/assets/projects/telemetry.mp4",
-    imageAlt: "Telemetry Analytics Viewer showing player movement paths and event markers",
-    links: [],
-  },
-  {
     id: "uss-calliope",
     title: "USS Calliope",
     status: "5-person team",
@@ -205,10 +205,6 @@ export const projects: Project[] = [
     image: "/assets/projects/uss-calliope.mp4",
     imageAlt: "USS Calliope gameplay clip",
     links: [
-      {
-        label: "Contributions",
-        href: "/assets/projects/uss-calliope-contributions.pdf",
-      },
       {
         label: "Showcase Video",
         href: "https://www.youtube.com/watch?v=EgMWL9ezOO0",
