@@ -7,12 +7,21 @@ import {
   hasBreakdown,
   loadBreakdown,
 } from "../data/breakdowns";
-import { projects, site } from "../data/site";
+import { projects, site, type Project } from "../data/site";
 import { AppLink } from "../router";
 
 function assetUrl(path: string) {
   const base = import.meta.env.BASE_URL;
   return `${base}${path.replace(/^\//, "")}`;
+}
+
+function isShaderBreakdown(project: Project) {
+  return project.role === "Graphics / Shaders";
+}
+
+function breakdownTitle(project: Project) {
+  if (!isShaderBreakdown(project) || project.title.endsWith("Breakdown")) return project.title;
+  return `${project.title} Breakdown`;
 }
 
 const sectionHeading =
@@ -150,7 +159,9 @@ export default function BreakdownPage({ id }: { id: string }) {
   useEffect(() => {
     const previous = document.title;
     document.title = project
-      ? `${project.title} breakdown | ${site.name}`
+      ? isShaderBreakdown(project)
+        ? `${breakdownTitle(project)} | ${site.name}`
+        : `${project.title} breakdown | ${site.name}`
       : `Breakdown | ${site.name}`;
     return () => {
       document.title = previous;
@@ -202,16 +213,20 @@ export default function BreakdownPage({ id }: { id: string }) {
         </AppLink>
 
         <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-text sm:text-4xl">
-          {project.title}
+          {breakdownTitle(project)}
         </h2>
-        {(project.role || project.engine || project.platform) ? (
-          <p className="mt-2 font-mono text-xs tracking-wide text-accent">
-            {[project.role, project.engine, project.platform].filter(Boolean).join(" · ")}
-          </p>
-        ) : null}
-        <p className="mt-4 max-w-3xl text-lg leading-relaxed text-text-muted">
-          {project.description}
-        </p>
+        {isShaderBreakdown(project) ? null : (
+          <>
+            {(project.role || project.engine || project.platform) ? (
+              <p className="mt-2 font-mono text-xs tracking-wide text-accent">
+                {[project.role, project.engine, project.platform].filter(Boolean).join(" · ")}
+              </p>
+            ) : null}
+            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-text-muted">
+              {project.description}
+            </p>
+          </>
+        )}
 
         <div className="mt-6 flex flex-wrap gap-2">
           {breakdownIds.map((itemId) => {
@@ -227,7 +242,7 @@ export default function BreakdownPage({ id }: { id: string }) {
                     : "border-border text-text-muted hover:border-accent/60 hover:text-accent"
                 }`}
               >
-                {linked?.title ?? itemId}
+                {linked ? breakdownTitle(linked) : itemId}
               </AppLink>
             );
           })}

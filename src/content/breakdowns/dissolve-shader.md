@@ -33,7 +33,7 @@ A gameplay event could then modify the threshold to trigger the effect, for exam
 
 The material can be created from the Dissolve Shader and assigned to any compatible mesh that needs to use the effect.
 
-## Full HLSL code 
+## Full Shader
 
 ```hlsl
 Shader "Custom/DissolveShader"
