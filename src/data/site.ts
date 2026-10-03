@@ -96,6 +96,23 @@ export const projects: Project[] = [
     links: [],
   },
   {
+    id: "portal-shader",
+    title: "Portal Shader",
+    featured: true,
+    role: "Graphics / Shaders",
+    engine: "Unity URP",
+    platform: "PC",
+    description:
+      "Custom URP portal shader written in HLSL.",
+    technologies: ["HLSL", "Unity", "URP", "Shaders"],
+    highlights: [
+      "Portal shader made in Unity, exploring concepts such as Fresnel effects, animated noise, and UV distortion."
+    ],
+    image: "/assets/projects/portal-shader.mp4",
+    imageAlt: "Unity portal shader with a warped energy core and a bright fresnel rim",
+    links: [],
+  },
+  {
     id: "vulkan-raytracer",
     title: "Vulkan renderer",
     status: "In progress",

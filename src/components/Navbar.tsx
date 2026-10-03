@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { navLinks, site } from "../data/site";
+import { AppLink } from "../router";
 
 function GitHubIcon() {
   return (
@@ -29,12 +30,12 @@ export function Navbar() {
         aria-label="Primary"
       >
         <div>
-          <a
-            href="#"
+          <AppLink
+            to="/"
             className="font-mono text-xs font-medium tracking-wide text-accent uppercase transition-colors hover:text-accent-hover"
           >
             {site.name}
-          </a>
+          </AppLink>
           <h1 className="font-display text-xl font-bold tracking-tight text-text sm:text-2xl">
             {site.role}
           </h1>
@@ -44,12 +45,12 @@ export function Navbar() {
           <ul className="flex items-center gap-5">
             {sectionLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
+                <AppLink
+                  to={link.href}
                   className="text-sm font-medium text-text-muted transition-colors hover:text-accent"
                 >
                   {link.label}
-                </a>
+                </AppLink>
               </li>
             ))}
           </ul>
@@ -73,12 +74,12 @@ export function Navbar() {
             >
               <LinkedInIcon />
             </a>
-            <a
-              href="#contact"
+            <AppLink
+              to="#contact"
               className="ml-1 inline-flex items-center rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
             >
               Contact
-            </a>
+            </AppLink>
           </div>
         </div>
 
@@ -118,13 +119,13 @@ export function Navbar() {
           <ul className="space-y-3">
             {sectionLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
+                <AppLink
+                  to={link.href}
                   className="block text-sm font-medium text-text-muted transition-colors hover:text-accent"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
-                </a>
+                </AppLink>
               </li>
             ))}
           </ul>
@@ -149,13 +150,13 @@ export function Navbar() {
             >
               <LinkedInIcon />
             </a>
-            <a
-              href="#contact"
+            <AppLink
+              to="#contact"
               className="inline-flex rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-bg"
               onClick={() => setOpen(false)}
             >
               Contact
-            </a>
+            </AppLink>
           </div>
         </div>
       )}

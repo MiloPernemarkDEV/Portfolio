@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
+import { breakdownById } from "../data/breakdowns";
 import type { Project } from "../data/site";
+import { AppLink } from "../router";
 
 interface ProjectCardProps {
   project: Project;
@@ -178,6 +180,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
       link.label !== "Contributions" &&
       link.label !== "Showcase Video",
   );
+  const breakdown = breakdownById(project.id);
 
   return (
     <article
@@ -264,7 +267,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
             .join(" ")}
         </p>
 
-        {project.links.length > 0 ? (
+        {project.links.length > 0 || breakdown ? (
           <div className="mt-auto flex flex-wrap gap-3 pt-8">
             {github ? (
               <a
@@ -297,6 +300,18 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
                 <PlayIcon />
                 Showcase Video
               </a>
+            ) : null}
+            {breakdown ? (
+              <AppLink
+                to={`/breakdown/${project.id}`}
+                className={
+                  github || pdf
+                    ? "inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-text transition-colors hover:border-accent/60 hover:text-accent"
+                    : "inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
+                }
+              >
+                Breakdown
+              </AppLink>
             ) : null}
             {otherLinks.map((link) => (
               <a
