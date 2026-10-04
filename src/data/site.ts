@@ -1,8 +1,8 @@
 export const site = {
   name: "Milo Pernemark",
-  role: "Game Programmer",
+  role: "Technical Artist & Game Programmer",
   heroGreeting: "Hi, I'm Milo.",
-  heroFocus: "Game programmer focused on graphics and game technology.",
+  heroFocus: "Technical Artist & Game Programmer focused on graphics and game technology.",
   heroInvite:
     "I work across gameplay, engine systems, rendering, and technical tools, with a growing focus on the intersection of graphics and VFX.",
   description:
