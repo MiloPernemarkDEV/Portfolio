@@ -4,7 +4,7 @@ export const site = {
   heroGreeting: "Hi, I'm Milo.",
   heroFocus: "I work across gameplay, engine systems, rendering, and technical tools, with a growing focus on the intersection of graphics and VFX.",
   heroInvite:
-    ""
+    "",
   description:
     "Game programmer focused on C++, graphics, and game technology. Gameplay, engine systems, rendering, and technical tools, including Unreal, Niagara, and Vulkan.",
   email: "milosnya@gmail.com",
