@@ -2,9 +2,9 @@ export const site = {
   name: "Milo Pernemark",
   role: "Technical Artist & Game Programmer",
   heroGreeting: "Hi, I'm Milo.",
-  heroFocus: "Technical Artist & Game Programmer focused on graphics and game technology.",
+  heroFocus: "I work across gameplay, engine systems, rendering, and technical tools, with a growing focus on the intersection of graphics and VFX.",
   heroInvite:
-    "I work across gameplay, engine systems, rendering, and technical tools, with a growing focus on the intersection of graphics and VFX.",
+    ""
   description:
     "Game programmer focused on C++, graphics, and game technology. Gameplay, engine systems, rendering, and technical tools, including Unreal, Niagara, and Vulkan.",
   email: "milosnya@gmail.com",
