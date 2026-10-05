@@ -4,7 +4,7 @@ The kit uses two trim sheets instead of texturing each piece individually, reduc
 ![Wood and plaster trim open in Substance Painter](/assets/projects/modular-house/trim-substance.jpg)
 
 ### Trim Sheet 1: Wood & Plaster
-This sheet handles the main structural surfaces and architectural framing:
+This sheet handles the main structural surfaces and framing:
 * **Upper Band (Wall Plaster):** Used for the seamless, tilable plaster surfaces on the walls.
 * **Lower Bands (Wood Trim):** Used for structural elements like doors, windows, and decorative frames.
 
@@ -13,10 +13,10 @@ This sheet handles the main structural surfaces and architectural framing:
 ![Stone, tile, and ground trim sheet](/assets/projects/modular-house/trim-sheet.jpg)
 
 ### Trim Sheet 2: Stone, Tile & Ground
-This sheet handles the heavy masonry and environment foundations:
-* **Main Section (Stone):** Used for the structural stone walls and foundations.
-* **Lower-Left Section (Roof Tile):** Dedicated to the roof tiles (remains unused for this prototype as the roof was not UV-unwrapped in time).
-* **Right Corner (Stone Gravel):** A small tileable section of gravel for ground details and vertex blending transitions.
+This sheet contains the textures used for tessellation:
+* **Main Section Stone:** Used for the structural stone walls.
+* **Lower Left Section Roof Tile:** Dedicated to the roof tiles, Unfortunately, I did not have time to UV unwrap the roof for this prototype, so this section of the trim sheet remains unused.
+* **Right Corner Stone Gravel:** A small tileable section of gravel for subtle details.
 
 > **Key Takeaway:** A major lesson learned during this process was how critical it is to plan and maintain a consistent texel density across all sections when creating a combined trim sheet.
 
