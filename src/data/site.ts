@@ -59,9 +59,9 @@ export const projects: Project[] = [
     technologies: ["Niagara", "Unreal Engine 5", "C++", "Technical Art", "Blueprints"],
     highlights: [
       "I made the dynamic weather system using Niagara and C++",
-      "Decoupled puzzle architecture with Board, Node, and Link actors",
-      "Type safe screen logs using variadic templates, stripped from shipping builds",
-      "Glowing spirits VFX using Niagara",
+      "Niagara glowing spirits VFX",
+      "Board Puzzle in C++",
+      "Type safe screen log macro",
     ],
     image: "/assets/projects/unseen.mp4",
     imageAlt: "The Unseen gameplay clip, including Niagara weather",
