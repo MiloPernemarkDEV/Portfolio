@@ -100,12 +100,14 @@ function ProjectVideo({
   label,
   zoomed,
   startAt,
+  objectPosition,
   eager = false,
 }: {
   src: string;
   label: string;
   zoomed?: boolean;
   startAt?: number;
+  objectPosition?: string;
   eager?: boolean;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -191,6 +193,7 @@ function ProjectVideo({
       playsInline
       preload={armed ? "metadata" : "none"}
       aria-label={label}
+      style={objectPosition ? { objectPosition } : undefined}
       className={`h-full w-full object-cover ${zoomed ? "scale-[1.35]" : ""}`}
     />
   );
@@ -236,6 +239,7 @@ export function ProjectCard({ project, featured = false, priority = false }: Pro
               src={assetUrl(project.image)}
               label={project.imageAlt ?? project.title}
               zoomed={project.id === "telemetry-for-dummies"}
+              objectPosition={project.imagePosition}
               startAt={project.previewStart}
               eager={priority}
             />

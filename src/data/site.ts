@@ -38,9 +38,12 @@ export interface Project {
   callout?: { label: string; text: string };
   prominent?: boolean;
   previewStart?: number;
+  imagePosition?: string;
+  breakdownImagePosition?: string;
   image?: string;
   imageAlt?: string;
   breakdownImageLast?: boolean;
+  mediaBesideImage?: string;
   links: { label: string; href: string }[];
 }
 
@@ -131,6 +134,29 @@ export const projects: Project[] = [
     ],
     image: "/assets/projects/portal-shader.mp4",
     imageAlt: "Unity portal shader with a warped energy core and a bright fresnel rim",
+    links: [],
+  },
+  {
+    id: "energy-dice",
+    title: "Energy Dice",
+    featured: true,
+    status: "Upcoming",
+    role: "Graphics / Shaders",
+    engine: "Unity URP",
+    platform: "Mobile",
+    description:
+      "Chamfered dice with a custom opaque energy material for an upcoming mobile dice builder.",
+    technologies: ["HLSL", "Unity", "URP", "3ds Max", "Shaders"],
+    highlights: [
+      "Dice modeled in 3ds Max by chamfering the vertices of a standard cube",
+      "Opaque version of the projectile shader, with the core on the base color and the rim on the energy color",
+    ],
+    image: "/assets/projects/energy-dice.mp4",
+    imagePosition: "center 73%",
+    breakdownImagePosition: "natural",
+    imageAlt: "Chamfered dice with an opaque energy shader in Unity",
+    breakdownImageLast: true,
+    mediaBesideImage: "/assets/projects/energy-dice/material.png",
     links: [],
   },
   {

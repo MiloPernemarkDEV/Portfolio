@@ -99,7 +99,7 @@ const markdownComponents: Components = {
         alt={alt ?? ""}
         loading="lazy"
         decoding="async"
-        className="mt-4 w-full rounded-2xl border border-border"
+        className="mx-auto mt-4 block h-auto max-w-full rounded-2xl border border-border"
       />
     );
   },
@@ -150,7 +150,11 @@ function BreakdownMedia({ project }: { project: Project }) {
       {video ? (
         <video
           src={assetUrl(project.image)}
-          className="aspect-video w-full object-cover"
+          className={
+            project.breakdownImagePosition
+              ? "block h-auto w-full"
+              : "aspect-video w-full object-cover"
+          }
           autoPlay
           muted
           loop
@@ -170,10 +174,60 @@ function BreakdownMedia({ project }: { project: Project }) {
   );
 }
 
-function BreakdownMarkdown({ markdown }: { markdown: string }) {
+function imagePathsMatch(src: string | undefined, target: string | undefined) {
+  if (!src || !target) return false;
+  const normalize = (path: string) => path.replace(/^\//, "");
+  return normalize(src) === normalize(target) || src.endsWith(normalize(target));
+}
+
+function BreakdownMarkdown({ markdown, project }: { markdown: string; project: Project }) {
+  const components: Components = {
+    ...markdownComponents,
+    img({ src, alt }) {
+      if (!src) return null;
+      const resolved = /^(https?:|data:)/.test(src) ? src : assetUrl(src);
+      if (!imagePathsMatch(src, project.mediaBesideImage) || !project.image) {
+        return (
+          <img
+            src={resolved}
+            alt={alt ?? ""}
+            loading="lazy"
+            decoding="async"
+            className="mx-auto mt-4 block h-auto max-w-full rounded-2xl border border-border"
+          />
+        );
+      }
+      return (
+        <div className="mt-4 flex flex-col items-start gap-4 md:flex-row">
+          <div className="w-full md:w-auto md:max-w-[46%] md:shrink-0">
+            <img
+              src={resolved}
+              alt={alt ?? ""}
+              loading="lazy"
+              decoding="async"
+              className="mx-auto block h-auto w-full max-w-full rounded-2xl border border-border"
+            />
+          </div>
+          <div className="w-full min-w-0 flex-1 overflow-hidden rounded-2xl border border-border bg-surface">
+            <video
+              src={assetUrl(project.image)}
+              className="block h-auto w-full"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label={project.imageAlt ?? project.title}
+            />
+          </div>
+        </div>
+      );
+    },
+  };
+
   return (
     <div className="[&>:first-child]:mt-12">
-      <Markdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+      <Markdown remarkPlugins={[remarkGfm]} components={components}>
         {markdown}
       </Markdown>
     </div>
@@ -255,13 +309,13 @@ export default function BreakdownPage({ id }: { id: string }) {
           </>
         )}
 
-        {project.image && !project.breakdownImageLast ? (
+        {project.image && !project.mediaBesideImage && !project.breakdownImageLast ? (
           <BreakdownMedia project={project} />
         ) : null}
 
-        {markdown ? <BreakdownMarkdown markdown={markdown} /> : null}
+        {markdown ? <BreakdownMarkdown markdown={markdown} project={project} /> : null}
 
-        {project.image && project.breakdownImageLast ? (
+        {project.image && !project.mediaBesideImage && project.breakdownImageLast ? (
           <BreakdownMedia project={project} />
         ) : null}
       </article>
