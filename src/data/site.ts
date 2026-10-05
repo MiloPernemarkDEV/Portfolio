@@ -17,7 +17,7 @@ export const site = {
 
 export const about = {
   heading: "About",
-  text: "I'm a TA & Game programmer in Stockholm., I love building systems and making games look and run fast.",
+  text: "I'm a TA/Game programmer in Stockholm, I love building systems and making games look good and run fast.",
   education:
     "Alongside class I'm exploring shaders, VFX and graphics.",
   extra:
