@@ -58,7 +58,7 @@ export const projects: Project[] = [
     },
     technologies: ["Niagara", "Unreal Engine 5", "C++", "Technical Art", "Blueprints"],
     highlights: [
-      "I made the dynamic weather system using Niagara and C++",
+      "I made the dynamic weather system using Niagara, C++ and Blueprints",
       "Niagara glowing spirits VFX",
       "Board Puzzle in C++",
       "Type safe screen log macro",
