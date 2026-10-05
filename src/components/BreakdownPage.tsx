@@ -141,6 +141,35 @@ const markdownComponents: Components = {
   },
 };
 
+function BreakdownMedia({ project }: { project: Project }) {
+  const video = project.image && /\.(mp4|webm)$/i.test(project.image);
+  if (!project.image) return null;
+
+  return (
+    <div className="mt-8 overflow-hidden rounded-3xl border border-border bg-surface">
+      {video ? (
+        <video
+          src={assetUrl(project.image)}
+          className="aspect-video w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={project.imageAlt ?? project.title}
+        />
+      ) : (
+        <img
+          src={assetUrl(project.image)}
+          alt={project.imageAlt ?? project.title}
+          decoding="async"
+          className="aspect-video w-full object-cover"
+        />
+      )}
+    </div>
+  );
+}
+
 function BreakdownMarkdown({ markdown }: { markdown: string }) {
   return (
     <div className="[&>:first-child]:mt-12">
@@ -200,8 +229,6 @@ export default function BreakdownPage({ id }: { id: string }) {
     );
   }
 
-  const video = project.image && /\.(mp4|webm)$/i.test(project.image);
-
   return (
     <main className="border-b border-border bg-bg py-10 lg:py-14">
       <article className="mx-auto max-w-4xl px-6 lg:px-8">
@@ -248,31 +275,15 @@ export default function BreakdownPage({ id }: { id: string }) {
           })}
         </div>
 
-        {project.image ? (
-          <div className="mt-8 overflow-hidden rounded-3xl border border-border bg-surface">
-            {video ? (
-              <video
-                src={assetUrl(project.image)}
-                className="aspect-video w-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                aria-label={project.imageAlt ?? project.title}
-              />
-            ) : (
-              <img
-                src={assetUrl(project.image)}
-                alt={project.imageAlt ?? project.title}
-                decoding="async"
-                className="aspect-video w-full object-cover"
-              />
-            )}
-          </div>
+        {project.image && !project.breakdownImageLast ? (
+          <BreakdownMedia project={project} />
         ) : null}
 
         {markdown ? <BreakdownMarkdown markdown={markdown} /> : null}
+
+        {project.image && project.breakdownImageLast ? (
+          <BreakdownMedia project={project} />
+        ) : null}
       </article>
     </main>
   );

@@ -4,6 +4,19 @@ This project was made in 3ds Max to learn more about the art production pipeline
 
 I definitely want to continue exploring environment art and create more environment focused work in the future.
 
+## Modelling
+I blocked out the roof with simple guide meshes so I could match the slope and pull exact measurements before modeling the real piece.
+
+![Guide meshes used to measure the roof in 3ds Max](/assets/projects/modular-house/model-roof-guide.png)
+
+The same roof corner in wireframe. This makes the edge flow easier to read and shows how the piece sits on the guide.
+
+![Wireframe of the roof corner built from the guide](/assets/projects/modular-house/model-roof-wireframe.png)
+
+I worked on each model individually, followed the exact measurements, and exported a collision mesh for every model using the UCX prefix so Unreal Engine automatically applies the collision.
+
+![The modular pieces laid out one by one in 3ds Max](/assets/projects/modular-house/model-pieces.png)
+
 ## Trim Sheets
 The kit uses two trim sheets instead of texturing each piece individually, reducing texture memory. The modules share the same trim sheets, making it quick and simple to add new pieces. Beide sheets were textured in Substance Painter.
 

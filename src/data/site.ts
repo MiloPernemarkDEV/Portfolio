@@ -40,6 +40,7 @@ export interface Project {
   previewStart?: number;
   image?: string;
   imageAlt?: string;
+  breakdownImageLast?: boolean;
   links: { label: string; href: string }[];
 }
 
@@ -94,6 +95,7 @@ export const projects: Project[] = [
     ],
     image: "/assets/projects/modular-house/house.jpg",
     imageAlt: "Textured modular house kit assembled in Unreal Engine",
+    breakdownImageLast: true,
     links: [],
   },
   {
