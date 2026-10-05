@@ -6,11 +6,12 @@ The kit uses two trim sheets instead of texturing each piece individually, reduc
 Both sheets were textured in Substance Painter. The textures are divided into multiple sections: the upper band is used for the wall plaster, while the lower bands contain the wood used for the doors, windows, and frames.
 
 ![Stone, tile, and ground trim sheet](/assets/projects/modular-house/trim-sheet.jpg)
+
 Here you can see the stone texture used by the walls, as well as the roof tile texture in the lower-left section of the trim sheet. Unfortunately, I did not have time to UV unwrap the roof for this prototype, so this section of the trim sheet remains unused.
 
 In the right corner, there is also a small section of stone gravel. One thing I learned from this process was how important it is to maintain consistent texel density when creating a trim sheet.
 
-## Blockout
+## Blockout in Unreal Engine
 ![The same house in Unreal before the trim textures](/assets/projects/modular-house/house-blockout.jpg)
 
 Working with art requires quick iteration, so as soon as the first version of the pieces was finished, I created a blockout in Unreal Engine. From there, I could update any of the FBX files in 3ds Max and reimport them into Unreal, automatically updating the corresponding pieces in the scene.
