@@ -5,7 +5,7 @@ This project was made in 3ds Max to learn more about the art production pipeline
 I definitely want to continue exploring environment art and create more environment focused work in the future.
 
 ## Modelling
-I blocked out the roof with simple guide meshes so I could match the slope and pull exact measurements before modeling the real piece.
+Since this is a modular house-building kit, every piece needs to follow exact measurements. As shown in the image, I used guide meshes and 3ds Max's powerful snapping tools to maintain accurate proportions and alignment.
 
 ![Guide meshes used to measure the roof in 3ds Max](/assets/projects/modular-house/model-roof-guide.png)
 
