@@ -86,7 +86,7 @@ export const projects: Project[] = [
     engine: "3ds Max",
     platform: "Unreal Engine 5",
     description:
-      "Modular house kit modeled in 3ds Max for Unreal Engine 5.",
+      "",
     technologies: ["3ds Max", "Unreal Engine 5", "Substance Painter", "Trim Sheets"],
     highlights: [
       "Reusable wall, roof, door, and window modules assembled into a house",
