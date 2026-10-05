@@ -79,7 +79,7 @@ export const projects: Project[] = [
   },
   {
     id: "modular-house-kit",
-    title: "Modular House Kit",
+    title: "Modular House Kit - Prototype",
     featured: true,
     role: "Technical Art",
     engine: "3ds Max",
