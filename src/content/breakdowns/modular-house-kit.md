@@ -5,8 +5,8 @@ The kit uses two trim sheets instead of texturing each piece individually, reduc
 
 ### Trim Sheet 1: Wood & Plaster
 This sheet handles the main structural surfaces and framing:
-* **Upper Band (Wall Plaster):** Used for the seamless, tilable plaster surfaces on the walls.
-* **Lower Bands (Wood Trim):** Used for structural elements like doors, windows, and decorative frames.
+* **Upper Band Wall Plaster:** Used for the seamless, tilable plaster surfaces on the walls.
+* **Lower Bands Wood Trim:** Used for structural elements like doors, windows, and decorative frames.
 
 ---
 
