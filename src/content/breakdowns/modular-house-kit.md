@@ -9,7 +9,6 @@ Since this is a modular house-building kit, every piece needs to follow exact me
 
 ![Guide meshes used to measure the roof in 3ds Max](/assets/projects/modular-house/model-roof-guide.png)
 
-The same roof corner in wireframe. This makes the edge flow easier to read and shows how the piece sits on the guide.
 
 ![Wireframe of the roof corner built from the guide](/assets/projects/modular-house/model-roof-wireframe.png)
 
@@ -52,3 +51,5 @@ Working with art requires quick iteration, so as soon as the first version of th
 ![A module unwrapped in 3ds Max onto horizontal trim strips](/assets/projects/modular-house/uv-unwrap.png)
 
 In 3ds Max, I unwrap each module onto the trim sheets. Parts using the same material are mapped and aligned onto the corresponding horizontal strips, allowing the walls, doors, and windows to seamlessly share the same texture space.
+
+## And Boom!
