@@ -78,6 +78,25 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "modular-house-kit",
+    title: "Modular House Kit",
+    featured: true,
+    role: "Technical Art",
+    engine: "3ds Max",
+    platform: "Unreal Engine 5",
+    description:
+      "Modular house kit modeled in 3ds Max so I can block out and dress buildings quickly while prototyping.",
+    technologies: ["3ds Max", "Unreal Engine 5", "Substance Painter", "Trim Sheets"],
+    highlights: [
+      "Reusable wall, roof, door, and window modules assembled into a house",
+      "UVs stacked onto shared trim strips so pieces reuse the same materials",
+      "Two trim sheets, one painted in Substance Painter for plaster and wood, and one for stone, tile, and ground",
+    ],
+    image: "/assets/projects/modular-house/house.jpg",
+    imageAlt: "Textured modular house kit assembled in Unreal Engine",
+    links: [],
+  },
+  {
     id: "dissolve-shader",
     title: "Dissolve Shader",
     featured: true,
