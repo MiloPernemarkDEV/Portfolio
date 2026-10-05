@@ -1,3 +1,9 @@
+## Overview
+
+This project was made in 3ds Max to learn more about the art production pipeline and environment art. Unfortunately, I did not have time to complete the full environment kit due to multiple school projects coming in, but I really enjoyed working on it and learned a lot about the process.
+
+I definitely want to continue exploring environment art and create more environment focused work in the future.
+
 ## Trim Sheets
 The kit uses two trim sheets instead of texturing each piece individually, reducing texture memory. The modules share the same trim sheets, making it quick and simple to add new pieces. Beide sheets were textured in Substance Painter.
 
