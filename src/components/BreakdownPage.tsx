@@ -255,7 +255,25 @@ export default function BreakdownPage({ id }: { id: string }) {
           </>
         )}
 
-        <div className="mt-6 flex flex-wrap gap-2">
+        {project.image && !project.breakdownImageLast ? (
+          <BreakdownMedia project={project} />
+        ) : null}
+
+        {markdown ? <BreakdownMarkdown markdown={markdown} /> : null}
+
+        {project.image && project.breakdownImageLast ? (
+          <BreakdownMedia project={project} />
+        ) : null}
+      </article>
+
+      <nav
+        aria-label="Breakdowns"
+        className="mx-auto mt-16 max-w-4xl border-t border-border px-6 pt-8 lg:px-8"
+      >
+        <p className="font-mono text-xs font-medium tracking-wide text-accent uppercase">
+          Breakdowns
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2">
           {breakdownIds.map((itemId) => {
             const linked = projects.find((entry) => entry.id === itemId);
             const current = itemId === id;
@@ -274,17 +292,7 @@ export default function BreakdownPage({ id }: { id: string }) {
             );
           })}
         </div>
-
-        {project.image && !project.breakdownImageLast ? (
-          <BreakdownMedia project={project} />
-        ) : null}
-
-        {markdown ? <BreakdownMarkdown markdown={markdown} /> : null}
-
-        {project.image && project.breakdownImageLast ? (
-          <BreakdownMedia project={project} />
-        ) : null}
-      </article>
+      </nav>
     </main>
   );
 }
