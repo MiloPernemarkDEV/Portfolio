@@ -38,6 +38,7 @@ export interface Project {
   callout?: { label: string; text: string };
   prominent?: boolean;
   previewStart?: number;
+  imagePosition?: string;
   image?: string;
   imageAlt?: string;
   breakdownImageLast?: boolean;
