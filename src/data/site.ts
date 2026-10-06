@@ -41,6 +41,7 @@ export interface Project {
   image?: string;
   imageAlt?: string;
   breakdownImageLast?: boolean;
+  breakdownImagePosition?: string;
   mediaBesideImage?: string;
   links: { label: string; href: string }[];
 }
