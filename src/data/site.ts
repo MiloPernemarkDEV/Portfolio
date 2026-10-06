@@ -38,8 +38,6 @@ export interface Project {
   callout?: { label: string; text: string };
   prominent?: boolean;
   previewStart?: number;
-  imagePosition?: string;
-  breakdownImagePosition?: string;
   image?: string;
   imageAlt?: string;
   breakdownImageLast?: boolean;
@@ -62,10 +60,10 @@ export const projects: Project[] = [
     },
     technologies: ["Niagara", "Unreal Engine 5", "C++", "Technical Art", "Blueprints"],
     highlights: [
-      "I made the dynamic weather system using Niagara, C++ and Blueprints",
-      "Niagara glowing spirits VFX",
-      "Board Puzzle in C++",
-      "Type safe screen log macro",
+      "I built the dynamic weather system using Niagara, C++, and Blueprints",
+      "Along with the glowing spirit VFX.", 
+      "I also implemented the board puzzle system",
+      "and a type-safe screen logging macro in C++.",
     ],
     image: "/assets/projects/unseen.mp4",
     imageAlt: "The Unseen gameplay clip, including Niagara weather",
@@ -83,18 +81,17 @@ export const projects: Project[] = [
   },
   {
     id: "modular-house-kit",
-    title: "Modular House Kit - Prototype",
+    title: "Modular House - Prototype",
     featured: true,
     role: "Technical Art",
     engine: "3ds Max",
     platform: "Unreal Engine 5",
     description:
-      "",
+      "Modular house building kit made in 3ds Max",
     technologies: ["3ds Max", "Unreal Engine 5", "Substance Painter", "Trim Sheets"],
     highlights: [
-      "Reusable wall, roof, door, and window modules assembled into a house",
-      "UVs stacked onto shared trim strips so pieces reuse the same materials",
-      "Two trim sheets, one painted in Substance Painter for plaster and wood, and one for stone, tile, and ground",
+      "Reusable wall, roof, door, and window modules built as a modular house kit.", 
+      "Shared trim sheets keep the materials reusable across the entire kit.",
     ],
     image: "/assets/projects/modular-house/house.jpg",
     imageAlt: "Textured modular house kit assembled in Unreal Engine",
@@ -148,14 +145,11 @@ export const projects: Project[] = [
       "Chamfered dice with a custom opaque energy material for an upcoming mobile dice builder.",
     technologies: ["HLSL", "Unity", "URP", "3ds Max", "Shaders"],
     highlights: [
-      "Dice modeled in 3ds Max by chamfering the vertices of a standard cube",
-      "Opaque version of the projectile shader, with the core on the base color and the rim on the energy color",
+      "The material uses animated noise, UV distortion, and a Fresnel effect to create flowing energy across the surface.", 
+      "The Fresnel response also darkens the dice around the edges while adding an energy-colored rim.",
     ],
     image: "/assets/projects/energy-dice.mp4",
-    imagePosition: "center 73%",
-    breakdownImagePosition: "natural",
     imageAlt: "Chamfered dice with an opaque energy shader in Unity",
-    breakdownImageLast: true,
     mediaBesideImage: "/assets/projects/energy-dice/material.png",
     links: [],
   },
