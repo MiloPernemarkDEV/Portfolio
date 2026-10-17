@@ -41,7 +41,6 @@ const TECH_STYLES: Record<string, string> = {
   Plugins: "border-amber/40 bg-amber/10 text-amber",
   Blueprints: "border-amber/40 bg-amber/10 text-amber",
   Niagara: "border-sky/40 bg-sky/10 text-sky",
-  "Technical Art": "border-sky/40 bg-sky/10 text-sky",
   "GPU Rendering": "border-accent/40 bg-accent/10 text-accent",
   "Ray Tracing": "border-accent/40 bg-accent/10 text-accent",
   "P/Invoke": "border-violet/40 bg-violet/10 text-violet",

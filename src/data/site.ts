@@ -1,12 +1,12 @@
 export const site = {
   name: "Milo Pernemark",
-  role: "Technical Artist & Game Programmer",
+  role: "Game Programmer",
   heroGreeting: "Hi, I'm Milo.",
-  heroFocus: "I bridge code and art through gameplay systems, rendering, tools, and technical VFX.",
+  heroFocus: "I build gameplay systems, rendering, and tools.",
   heroInvite:
     "",
   description:
-    "Game programmer focused on C++, graphics, and game technology. Gameplay, engine systems, rendering, and technical tools, including Unreal, Niagara, and Vulkan.",
+    "Game programmer focused on C++, graphics, and game technology. Gameplay, engine systems, rendering, and tools, including Unreal and Vulkan.",
   email: "milosnya@gmail.com",
   github: "https://github.com/MiloPernemarkDEV",
   linkedin: "https://www.linkedin.com/in/milo-pernemark-a78235274/",
@@ -17,9 +17,9 @@ export const site = {
 
 export const about = {
   heading: "About",
-  text: "I'm a TA/Game programmer in Stockholm, I love building systems and making games look good and run fast.",
+  text: "I'm a game programmer in Stockholm, I love building systems and making games look good and run fast.",
   education:
-    "Alongside class I'm exploring shaders, VFX and graphics.",
+    "Alongside class I'm exploring shaders and graphics.",
   extra:
     "I am a calm and social person who enjoys meditation and coffee, id like to work in a team that values collaboration and creativity, and I am always eager to learn and grow as a game developer.",
 } as const;
@@ -57,13 +57,13 @@ export const projects: Project[] = [
     description:
       "Unreal Engine 5 Physcological Puzzle Game made by a team of me and 4 other students.",
     callout: {
-      label: "VFX / Technical Art",
+      label: "Systems",
       text: "Niagara rain and dynamic weather effects",
     },
-    technologies: ["Niagara", "Unreal Engine 5", "C++", "Technical Art", "Blueprints"],
+    technologies: ["Niagara", "Unreal Engine 5", "C++", "Blueprints"],
     highlights: [
       "I built the dynamic weather system using Niagara, C++, and Blueprints",
-      "Along with the glowing spirit VFX.", 
+      "Along with the glowing spirit effects.", 
       "I also implemented the board puzzle system",
       "and a type-safe screen logging macro in C++.",
     ],
@@ -85,7 +85,6 @@ export const projects: Project[] = [
     id: "modular-house-kit",
     title: "Modular House - Prototype",
     featured: true,
-    role: "Technical Art",
     engine: "3ds Max",
     platform: "Unreal Engine 5",
     description:

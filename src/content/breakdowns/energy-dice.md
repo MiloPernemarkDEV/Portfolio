@@ -46,7 +46,7 @@ Because the corners have been chamfered instead of being perfectly sharp, the Fr
 
 ## Material
 
-The shader exposes multiple parameters, making it possible to create unique materials with different looks and effects, as shown in the video. Changing the noise texture can dramatically alter the appearance and movement of the VFX.
+The shader exposes multiple parameters, making it possible to create unique materials with different looks and effects, as shown in the video. Changing the noise texture can dramatically alter the appearance and movement of the effect.
 
 ![Energy dice material using the shader in the Unity inspector](/assets/projects/energy-dice/material.png)
 
